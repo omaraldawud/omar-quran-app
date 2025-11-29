@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 
 import SurahViewer from "@/components/SurahViewer";
-import SurahGrid from "@/components/SurahGrid";
 import SurahFilter from "@/components/SurahFilter";
 
 import { loadChapters } from "@/utils/loadChapters";
 import { loadQuran } from "@/utils/loadQuran";
 import { loadTranslation } from "@/utils/loadTranslation";
+import RightSidebar from "../components/layout/RightSidebar";
 
 export default function HomePage() {
   const [chapters, setChapters] = useState([]);
@@ -61,13 +61,11 @@ export default function HomePage() {
         />
       </div>
 
-      <aside className="home-surah-sidebar p-2">
-        <SurahGrid
-          chapters={filteredChapters}
-          onSelect={handleSelect}
-          selectedSurah={selectedSurah}
-        />
-      </aside>
+      <RightSidebar
+        chapters={filteredChapters}
+        selectedSurah={selectedSurah}
+        onSelect={handleSelect}
+      />
     </div>
   );
 }

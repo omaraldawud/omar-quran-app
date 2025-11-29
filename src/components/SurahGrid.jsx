@@ -1,6 +1,6 @@
 import "@/assets/css/surah-grid.css";
 
-export default function SurahGrid({ chapters, onSelect, selectedSurah }) {
+export default function SurahGrid({ chapters, selectedSurah, onSelect }) {
   return (
     <div className="surah-grid">
       {chapters.map((ch) => (

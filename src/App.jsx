@@ -1,6 +1,6 @@
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import Sidebar from "@/components/layout/Sidebar";
+import LeftSidebar from "@/components/layout/LeftSidebar";
 
 import HomePage from "@/pages/HomePage";
 import DashboardPage from "@/pages/DashboardPage";
@@ -26,7 +26,7 @@ export default function App() {
     <div className="app-wrapper">
       <Header />
       <div className="app-container w-100">
-        <Sidebar page={page} setPage={setPage} menuItems={sidebarMenu} />
+        <LeftSidebar page={page} setPage={setPage} menuItems={sidebarMenu} />
         <main className="main-content">{renderPage()}</main>
       </div>
       <Footer />
