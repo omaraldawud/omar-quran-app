@@ -1,6 +1,7 @@
 import ayahIcon from "@/assets/images/ayah-icon-tr.png";
 import "@/assets/css/surah-ayah.css";
 import "@/assets/css/islamic-hr.css";
+import quranBg from "@/assets/images/quran-bg.jpeg";
 
 export default function SurahViewer({ surah, arabic, translation }) {
   // Guard: wait until surah and loaded data exist
@@ -17,13 +18,13 @@ export default function SurahViewer({ surah, arabic, translation }) {
 
   return (
     <div>
-      <div className="d-flex justify-content-between">
+      <div className="d-flex flex-column justify-content-between">
         <div>
-          <h2 className="fw-bold text-success">
+          <h2 className="fw-bold text-dark mt-4">
             {surah.id}. {surah.transliteration}. {surah.name}
           </h2>
           <h3>
-            <small className="text-secondary ms-2">({surah.translation})</small>
+            <small className="ms-2 text-primary">({surah.translation})</small>
           </h3>
         </div>
         <div
@@ -37,15 +38,22 @@ export default function SurahViewer({ surah, arabic, translation }) {
           </audio>
         </div>
       </div>
-
       <hr className="hr-elegant-islamic" />
 
       {versesAr.map((verse, i) => (
-        <div key={i} className="ayah-container mb-4 p-4 rounded my-5">
+        <div
+          key={i}
+          className="ayah-container bg-gradient mb-4 p-4 rounded my-5"
+        >
           <div className="ayah-content py-4 rounded">
             <div className="ayah-header">
               <div className="ayah-number-wrapper">
-                <img src={ayahIcon} alt="Ayah" className="ayah-icon" />
+                <img
+                  src={ayahIcon}
+                  alt="Ayah"
+                  className="ayah-icon"
+                  style={{ width: "40px", height: "40px" }}
+                />
                 <span className="ayah-number-text">{verse.verse}</span>
               </div>
               <div className="text-end fs-3 arabic-text">{verse.text}</div>
