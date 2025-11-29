@@ -1,7 +1,6 @@
 import ayahIcon from "@/assets/images/ayah-icon-tr.png";
 import "@/assets/css/surah-ayah.css";
 import "@/assets/css/islamic-hr.css";
-import quranBg from "@/assets/images/quran-bg.jpeg";
 
 export default function SurahViewer({ surah, arabic, translation }) {
   // Guard: wait until surah and loaded data exist
@@ -47,18 +46,25 @@ export default function SurahViewer({ surah, arabic, translation }) {
         >
           <div className="ayah-content py-4 rounded">
             <div className="ayah-header">
-              <div className="ayah-number-wrapper">
+              <div
+                className="ayah-number-wrapper position-relative"
+                style={{ width: "40px", height: "40px" }}
+              >
                 <img
                   src={ayahIcon}
                   alt="Ayah"
                   className="ayah-icon"
                   style={{ width: "40px", height: "40px" }}
                 />
-                <span className="ayah-number-text">{verse.verse}</span>
+                <span className="ayah-number-text position-absolute top-50 start-50 translate-middle  fw-bold">
+                  {verse.verse}
+                </span>
               </div>
               <div className="text-end fs-3 arabic-text">{verse.text}</div>
             </div>
-            <div className="translation-text mt-3">{versesTr[i].text}</div>
+            <div className="translation-text text-dark mt-3">
+              {versesTr[i].text}
+            </div>
           </div>
         </div>
       ))}

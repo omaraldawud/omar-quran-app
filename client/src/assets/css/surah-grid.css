@@ -95,13 +95,3 @@
   height: 100%;
   display: block;
 }
-
-.ayah-number-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 12px;
-  font-weight: bold;
-  pointer-events: none; /* so it doesn't interfere with clicks */
-}
