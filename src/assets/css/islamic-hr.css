@@ -50,7 +50,14 @@
 .hr-elegant-islamic {
   height: 4px;
   border: none;
-  background: linear-gradient(90deg, transparent, #198754, transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #198754,
+    #d4af37,
+    #198754,
+    transparent
+  );
   position: relative;
   margin: 30px 0;
 }
