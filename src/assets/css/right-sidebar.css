@@ -1,0 +1,61 @@
+/* Right sidebar — static full width, no collapsible behavior */
+.right-sidebar {
+  width: 280px; /* full width */
+  min-width: 280px;
+  background: #fff;
+  border-left: 1px solid #e5e5e5;
+  display: flex;
+  flex-direction: column;
+  height: auto; /* let parent control height */
+  overflow-y: auto;
+  transition: none; /* no hover/collapse transitions */
+}
+
+/* Content area inside sidebar */
+.sidebar-content {
+  padding: 0.5rem;
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+/* Optional: styling for SurahGrid container */
+.surah-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.surah-btn {
+  display: flex;
+  align-items: center;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background-color: #f8f9fa;
+  cursor: pointer;
+}
+
+.surah-btn.active {
+  background-color: #e9ecef;
+  border-color: #ced4da;
+}
+
+.surah-number {
+  font-weight: bold;
+  margin-right: 0.5rem;
+}
+
+.surah-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.surah-name {
+  font-weight: 500;
+}
+
+.surah-translation {
+  font-size: 0.8rem;
+  color: #6c757d;
+}

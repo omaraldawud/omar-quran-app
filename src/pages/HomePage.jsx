@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import SurahViewer from "@/components/SurahViewer";
 import SurahFilter from "@/components/SurahFilter";
 
-import { loadChapters } from "@/utils/loadChapters";
+import { loadChaptersMetas } from "@/utils/loadChaptersMetas";
 import { loadQuran } from "@/utils/loadQuran";
 import { loadTranslation } from "@/utils/loadTranslation";
 import RightSidebar from "../components/layout/RightSidebar";
@@ -17,7 +17,7 @@ export default function HomePage() {
 
   useEffect(() => {
     (async () => {
-      const loadedChapters = await loadChapters("en");
+      const loadedChapters = await loadChaptersMetas("en");
       const loadedArabic = await loadQuran();
       const loadedTranslation = await loadTranslation("en");
 
