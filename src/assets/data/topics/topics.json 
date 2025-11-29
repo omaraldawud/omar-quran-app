@@ -1,0 +1,69 @@
+{
+  "Moral": {
+    "subcategories": {
+      "Noble Morals": {
+        "topics": {
+          "Ihsan": {
+            "verses": [
+              { "chapter": 2, "verse": 83 },
+              { "chapter": 2, "verse": 117 },
+              { "chapter": 2, "verse": 195 },
+              { "chapter": 3, "verse": 144 },
+              { "chapter": 3, "verse": 172 },
+              { "chapter": 4, "verse": 125 }
+            ],
+            "resources": {
+              "videos": [],
+              "articles": [],
+              "books": []
+            },
+            "notes": ""
+          },
+          "Fulfilling Trust": {
+            "verses": [
+              { "chapter": 2, "verse": 283 },
+              { "chapter": 3, "verse": 75 }
+            ],
+            "resources": {
+              "videos": [],
+              "articles": [],
+              "books": []
+            },
+            "notes": ""
+          },
+          "Ethics Towards Allah": {
+            "verses": [
+              { "chapter": 2, "verse": 32 },
+              { "chapter": 7, "verse": 143 },
+              { "chapter": 11, "verse": 45 }
+            ],
+            "resources": {
+              "videos": [],
+              "articles": [],
+              "books": []
+            },
+            "notes": ""
+          }
+        }
+      },
+
+      "Ethics Towards The Prophet (SAW)": {
+        "topics": {
+          "Calling the Prophet (SAW)": {
+            "verses": [
+              { "chapter": 26, "verse": 63 },
+              { "chapter": 49, "verse": 4 },
+              { "chapter": 49, "verse": 5 }
+            ],
+            "resources": {
+              "videos": [],
+              "articles": [],
+              "books": []
+            },
+            "notes": ""
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,84 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #1b5e20;
+}
+
+.header-left {
+  flex: 0 0 auto;
+}
+
+.header-center {
+  flex: 1 1 auto; /* center takes remaining space */
+  text-align: center;
+}
+
+.header-right {
+  flex: 0 0 auto;
+}
+
+.header-right .nav-link {
+  margin-right: 1rem;
+  white-space: nowrap;
+}
+
+.header-right .nav-link:last-child {
+  margin-right: 0;
+}
+.header-link {
+  padding: 0.5rem 1rem; /* comfortable clickable area */
+  color: #ffffff; /* text color */
+  text-decoration: none; /* remove underline */
+  font-weight: 500; /* medium font */
+  border-radius: 4px; /* rounded corners */
+  transition: all 0.2s ease; /* smooth hover */
+}
+
+.header-link:hover {
+  background-color: #007bff; /* blue background on hover */
+  color: #fff; /* white text on hover */
+  text-decoration: none; /* keep no underline */
+}
+
+.header-right .nav-link:last-child {
+  margin-right: 0; /* optional if using gap */
+}
+
+.app-title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.header-center {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.bismillah {
+  margin: 0;
+  font-size: 20px;
+  font-family: "Amiri", serif;
+  font-weight: 600;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+.header-nav {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-link {
+  text-decoration: none;
+  font-size: 15px;
+  color: white;
+}
+
+.nav-link:hover {
+  color: #0077cc;
+}

@@ -1,0 +1,107 @@
+.surah-grid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(2, 1fr); /* Mobile default */
+}
+
+/* Tablet: 3 per row */
+@media (min-width: 576px) {
+  .surah-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Small desktop: 5 per row */
+@media (min-width: 768px) {
+  .surah-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+/* Large desktop: 10 per row */
+@media (min-width: 1200px) {
+  .surah-grid {
+    grid-template-columns: repeat(10, 1fr);
+  }
+}
+
+/* Surah Buttons */
+.surah-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3px;
+  width: 100%;
+  border: 1px solid #ddd;
+  background: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+}
+
+.surah-btn:hover {
+  background: #f5f9ff;
+}
+
+.surah-btn.active {
+  background: #e7f0ff;
+  border-color: #7aa4ff;
+}
+
+/* Number bubble */
+.surah-number {
+  background: #eef3ff;
+  border-radius: 6px;
+  padding: 4px 8px;
+  min-width: 32px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  color: #444;
+  margin-bottom: 4px;
+}
+
+/* Names */
+.surah-name {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.surah-translation {
+  font-size: 12px;
+  color: #666;
+}
+
+.ayah-number {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.ayah-number-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 24px; /* match your image size */
+  height: 24px;
+  margin-left: 4px;
+  padding: 2px;
+}
+
+.ayah-icon {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.ayah-number-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 12px;
+  font-weight: bold;
+  pointer-events: none; /* so it doesn't interfere with clicks */
+}
