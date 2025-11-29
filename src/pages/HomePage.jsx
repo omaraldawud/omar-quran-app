@@ -1,30 +1,45 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import SurahViewer from "@/components/SurahViewer";
 import SurahGrid from "@/components/SurahGrid";
 import SurahFilter from "@/components/SurahFilter";
 
-export default function HomePage({ chapters, arabic, translation }) {
+import { loadChapters } from "@/utils/loadChapters";
+import { loadQuran } from "@/utils/loadQuran";
+import { loadTranslation } from "@/utils/loadTranslation";
+
+export default function HomePage() {
+  const [chapters, setChapters] = useState([]);
+  const [arabic, setArabic] = useState({});
+  const [translation, setTranslation] = useState({});
   const [selectedSurah, setSelectedSurah] = useState(null);
   const [search, setSearch] = useState("");
 
-  // When chapters + verse data are loaded, show first surah
   useEffect(() => {
-    if (
-      chapters.length > 0 &&
-      arabic[chapters[0].id] &&
-      translation[chapters[0].id]
-    ) {
-      setSelectedSurah(chapters[0]);
-    }
-  }, [chapters, arabic, translation]);
+    (async () => {
+      const loadedChapters = await loadChapters("en");
+      const loadedArabic = await loadQuran();
+      const loadedTranslation = await loadTranslation("en");
+
+      setChapters(loadedChapters);
+      setArabic(loadedArabic);
+      setTranslation(loadedTranslation);
+
+      if (
+        loadedChapters.length > 0 &&
+        loadedArabic[loadedChapters[0].id] &&
+        loadedTranslation[loadedChapters[0].id]
+      ) {
+        setSelectedSurah(loadedChapters[0]);
+      }
+    })();
+  }, []);
 
   const handleSelect = (id) => {
     const surah = chapters.find((ch) => ch.id === id);
     setSelectedSurah(surah);
   };
 
-  // Sidebar: search filter
   const filteredChapters = chapters.filter((c) => {
     const term = search.toLowerCase();
     return (
@@ -36,11 +51,9 @@ export default function HomePage({ chapters, arabic, translation }) {
 
   return (
     <div className="home-page d-flex">
-      {/* Main content */}
       <div className="home-main p-3">
         <SurahFilter search={search} setSearch={setSearch} />
 
-        {/* Surah Viewer */}
         <SurahViewer
           surah={selectedSurah}
           arabic={arabic}
@@ -48,7 +61,6 @@ export default function HomePage({ chapters, arabic, translation }) {
         />
       </div>
 
-      {/* Right sidebar */}
       <aside className="home-surah-sidebar p-2">
         <SurahGrid
           chapters={filteredChapters}
