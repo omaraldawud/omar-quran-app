@@ -1,5 +1,6 @@
 import ayahIcon from "@/assets/images/ayah-icon-tr.png";
 import "@/assets/css/surah-ayah.css";
+import "@/assets/css/islamic-hr.css";
 
 export default function SurahViewer({ surah, arabic, translation }) {
   // Guard: wait until surah and loaded data exist
@@ -10,25 +11,37 @@ export default function SurahViewer({ surah, arabic, translation }) {
   const versesAr = arabic[surah.id];
   const versesTr = translation[surah.id];
 
+  // Generate direct mp3 URL (no API fetch, avoids CORS)
+  const surahNumber = String(surah.id).padStart(3, "0");
+  const audioUrl = `https://download.quranicaudio.com/quran/abdullaah_3awwaad_al-juhaynee//${surahNumber}.mp3`;
+
   return (
     <div>
-      <h2 className="fw-bold text-success">
-        {surah.id}. {surah.transliteration}. {surah.name}
-      </h2>
-      <h3>
-        <small className="text-secondary ms-2">({surah.translation})</small>
-      </h3>
-
-      <div
-        className="mb-3"
-        style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}
-      >
-        <span className="surah-header">Type: {surah.type}</span>
-        <span className="surah-header">Verses: {surah.total_verses}</span>
+      <div className="d-flex justify-content-between">
+        <div>
+          <h2 className="fw-bold text-success">
+            {surah.id}. {surah.transliteration}. {surah.name}
+          </h2>
+          <h3>
+            <small className="text-secondary ms-2">({surah.translation})</small>
+          </h3>
+        </div>
+        <div
+          className="mb-3"
+          style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}
+        >
+          <span className="surah-header">Type: {surah.type}</span>
+          <span className="surah-header">Verses: {surah.total_verses}</span>
+          <audio controls src={audioUrl}>
+            Your browser does not support the audio element.
+          </audio>{" "}
+        </div>
       </div>
+      <hr class="hr-elegant-islamic" />
 
-      <hr className="w-50" />
+      {/* Audio player */}
 
+      {/* Verses */}
       {versesAr.map((verse, i) => (
         <div key={i} className="ayah-container mb-4 p-4 rounded my-5">
           <div className="ayah-content py-4 rounded">
