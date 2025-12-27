@@ -1,0 +1,182 @@
+[
+  {
+    "index": "01",
+    "name": "Alif-Lam-Mim",
+    "start": { "surah": 1, "verse": 1 },
+    "end": { "surah": 2, "verse": 141 }
+  },
+  {
+    "index": "02",
+    "name": "Sayaqūlu",
+    "start": { "surah": 2, "verse": 142 },
+    "end": { "surah": 2, "verse": 252 }
+  },
+  {
+    "index": "03",
+    "name": "Tilka’r-Rusul",
+    "start": { "surah": 2, "verse": 253 },
+    "end": { "surah": 3, "verse": 92 }
+  },
+  {
+    "index": "04",
+    "name": "Lan Tanaalu",
+    "start": { "surah": 3, "verse": 93 },
+    "end": { "surah": 4, "verse": 23 }
+  },
+  {
+    "index": "05",
+    "name": "Wal-Muhsanāt",
+    "start": { "surah": 4, "verse": 24 },
+    "end": { "surah": 5, "verse": 81 }
+  },
+  {
+    "index": "06",
+    "name": "La Yahubbullah",
+    "start": { "surah": 5, "verse": 82 },
+    "end": { "surah": 6, "verse": 110 }
+  },
+  {
+    "index": "07",
+    "name": "Wa Idha Samiʿu",
+    "start": { "surah": 6, "verse": 111 },
+    "end": { "surah": 7, "verse": 87 }
+  },
+  {
+    "index": "08",
+    "name": "Wa Law Annana",
+    "start": { "surah": 7, "verse": 88 },
+    "end": { "surah": 8, "verse": 40 }
+  },
+  {
+    "index": "09",
+    "name": "Qāla’l-Mala’u",
+    "start": { "surah": 8, "verse": 41 },
+    "end": { "surah": 9, "verse": 92 }
+  },
+  {
+    "index": "10",
+    "name": "Wa A'lamū",
+    "start": { "surah": 9, "verse": 93 },
+    "end": { "surah": 10, "verse": 109 }
+  },
+  {
+    "index": "11",
+    "name": "Yata’adhimoon",
+    "start": { "surah": 11, "verse": 1 },
+    "end": { "surah": 12, "verse": 52 }
+  },
+  {
+    "index": "12",
+    "name": "Wa Mā Unzila",
+    "start": { "surah": 12, "verse": 53 },
+    "end": { "surah": 14, "verse": 52 }
+  },
+  {
+    "index": "13",
+    "name": "Wa Mā Ubri'u",
+    "start": { "surah": 15, "verse": 1 },
+    "end": { "surah": 16, "verse": 128 }
+  },
+  {
+    "index": "14",
+    "name": "Rubamā",
+    "start": { "surah": 17, "verse": 1 },
+    "end": { "surah": 18, "verse": 74 }
+  },
+  {
+    "index": "15",
+    "name": "Subhāna’l-Ladhī",
+    "start": { "surah": 18, "verse": 75 },
+    "end": { "surah": 20, "verse": 135 }
+  },
+  {
+    "index": "16",
+    "name": "Qāla Alam",
+    "start": { "surah": 21, "verse": 1 },
+    "end": { "surah": 22, "verse": 78 }
+  },
+  {
+    "index": "17",
+    "name": "Iqtaraba",
+    "start": { "surah": 23, "verse": 1 },
+    "end": { "surah": 24, "verse": 20 }
+  },
+  {
+    "index": "18",
+    "name": "Qadd Aflaha",
+    "start": { "surah": 25, "verse": 1 },
+    "end": { "surah": 26, "verse": 227 }
+  },
+  {
+    "index": "19",
+    "name": "Wa Qāla’lladhīna",
+    "start": { "surah": 27, "verse": 1 },
+    "end": { "surah": 28, "verse": 88 }
+  },
+  {
+    "index": "20",
+    "name": "A'man Khalaq",
+    "start": { "surah": 29, "verse": 1 },
+    "end": { "surah": 30, "verse": 60 }
+  },
+  {
+    "index": "21",
+    "name": "Utlu Ma Oohiya",
+    "start": { "surah": 31, "verse": 1 },
+    "end": { "surah": 32, "verse": 30 }
+  },
+  {
+    "index": "22",
+    "name": "Wa Man Yattaq",
+    "start": { "surah": 33, "verse": 1 },
+    "end": { "surah": 34, "verse": 54 }
+  },
+  {
+    "index": "23",
+    "name": "Wa Mā Liya",
+    "start": { "surah": 35, "verse": 1 },
+    "end": { "surah": 36, "verse": 83 }
+  },
+  {
+    "index": "24",
+    "name": "Faman Azlam",
+    "start": { "surah": 37, "verse": 1 },
+    "end": { "surah": 38, "verse": 88 }
+  },
+  {
+    "index": "25",
+    "name": "Ilayhi Yuraddu",
+    "start": { "surah": 39, "verse": 1 },
+    "end": { "surah": 40, "verse": 85 }
+  },
+  {
+    "index": "26",
+    "name": "Ha’a Meem",
+    "start": { "surah": 41, "verse": 1 },
+    "end": { "surah": 42, "verse": 53 }
+  },
+  {
+    "index": "27",
+    "name": "Qala Fama Khatbukum",
+    "start": { "surah": 43, "verse": 1 },
+    "end": { "surah": 44, "verse": 59 }
+  },
+  {
+    "index": "28",
+    "name": "Qadd Sami’Allah",
+    "start": { "surah": 45, "verse": 1 },
+    "end": { "surah": 46, "verse": 35 }
+  },
+  {
+    "index": "29",
+    "name": "Tabāraka’l-Ladhī",
+    "start": { "surah": 67, "verse": 1 },
+    "end": { "surah": 67, "verse": 30 }
+  },
+  {
+    "index": "30",
+    "name": "Amma Yatasa'aloon",
+    "start": { "surah": 78, "verse": 1 },
+    "end": { "surah": 114, "verse": 6 }
+  }
+]

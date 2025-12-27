@@ -1,61 +1,47 @@
+// server/server.js (using import syntax)
 import express from "express";
-import fetch from "node-fetch";
 import dotenv from "dotenv";
+// node-fetch is needed internally by the package
+import fetch from "node-fetch";
+import { QuranClient, Language } from "@quranjs/api";
 
 dotenv.config();
 
 const app = express();
-app.use(express.json());
+const PORT = process.env.PORT || 5000;
 
-// In-memory token storage (simple, resets on server restart)
-let oauthToken = null;
-let tokenExpiry = 0;
+// Initialize the QuranClient with specific URLs from .env
+const client = new QuranClient({
+  clientId: process.env.QURAN_CLIENT_ID,
+  clientSecret: process.env.QURAN_CLIENT_SECRET,
+  defaults: {
+    language: Language.ENGLISH,
+  },
+  fetch: fetch,
+  // Use the pre-deployment URLs you defined in your .env file
+  baseUrl: process.env.QURAN_API_BASE_URL,
+  oauthUrl: process.env.QURAN_OAUTH_URL,
+});
 
-// Function to get a valid token
-async function getToken() {
-  const now = Date.now();
-  if (oauthToken && now < tokenExpiry) {
-    return oauthToken;
-  }
-
-  const res = await fetch("https://api.quran.foundation/oauth/token", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      client_id: process.env.QURAN_CLIENT_ID,
-      client_secret: process.env.QURAN_CLIENT_SECRET,
-      grant_type: "client_credentials",
-      scope: "content",
-    }),
-  });
-
-  const data = await res.json();
-  oauthToken = data.access_token;
-  tokenExpiry = now + data.expires_in * 1000 - 5000; // refresh 5s early
-  return oauthToken;
-}
-
-// Endpoint to fetch Surah audio
-app.get("/api/audio/:chapterId", async (req, res) => {
+// EXAMPLE: How to use the package to fetch data
+app.get("/api/verse/:key", async (req, res) => {
   try {
-    const { chapterId } = req.params;
-    const reciter = "abdullaah_3awwaad_al-juhaynee";
-
-    const token = await getToken();
-
-    const apiRes = await fetch(
-      `https://api.quran.foundation/v1/chapters/${chapterId}/reciter/${reciter}`,
-      { headers: { Authorization: `Bearer ${token}` } }
-    );
-
-    const data = await apiRes.json();
-    res.json(data);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: err.message });
+    // The client internally handles the getAccessToken() logic
+    const { key } = req.params; // e.g., "2:255"
+    const verse = await client.verses.findByKey(key, {
+      translations: 1, // Example translation ID (you need a valid ID)
+      words: true,
+    });
+    res.json(verse);
+  } catch (error) {
+    console.error(error);
+    // If this still gives "Unauthorized", the URLs or credentials are off
+    res.status(500).json({ error: "Failed to fetch verse using package" });
   }
 });
 
-app.listen(process.env.PORT || 3000, () =>
-  console.log(`Server running on port ${process.env.PORT || 3000}`)
-);
+// ... (Add your listen function here) ...
+
+app.listen(PORT, () => {
+  console.log(`✅ Server is running on http://localhost:${PORT}`);
+});
