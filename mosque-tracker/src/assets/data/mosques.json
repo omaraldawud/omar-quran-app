@@ -1,0 +1,154 @@
+[
+  {
+    "id": "m1",
+    "name": "Masjid Abu Bakr",
+    "contacts": {
+      "contact_name": "Omar Alheji",
+      "phone": "(303) 696-9800",
+      "email": ["info@coloradomuslimsociety.org"],
+      "website": "https://coloradomuslimsociety.org"
+    },
+    "address": {
+      "street": "2071 S. Parker Rd",
+      "city": "Denver",
+      "state": "CO",
+      "zip": "80231"
+    }
+  },
+  {
+    "id": "m2",
+    "name": "Colorado Islamic Center (Masjid Al-Salam)",
+    "contacts": {
+      "phone": "(720) 544-3249",
+      "email": ["office@coislamiccenter.com"],
+      "website": "https://coislamiccenter.com",
+      "facebook": "",
+      "whatsapp": ""
+    },
+    "address": {
+      "street": "14201 E Evans Dr",
+      "city": "Aurora",
+      "state": "CO",
+      "zip": "80013"
+    }
+  },
+  {
+    "id": "m3",
+    "name": "Colorado Muslims Community Center (CMCC)",
+    "contacts": {
+      "phone": "(720) 432-9027",
+      "email": ["info@ourcmcc.org"],
+      "website": "https://ourcmcc.org"
+    },
+    "address": {
+      "street": "15528 E Hampden Cir",
+      "city": "Aurora",
+      "state": "CO",
+      "zip": "80013"
+    }
+  },
+  {
+    "id": "m4",
+    "name": "Downtown Denver Islamic Center (Masjid Al-Shuhada)",
+    "contacts": {
+      "phone": "(720) 580-2605",
+      "email": ["info@theddic.org"],
+      "website": "https://www.theddic.org"
+    },
+    "address": {
+      "street": "2952 N Downing St",
+      "city": "Denver",
+      "state": "CO",
+      "zip": "80205"
+    }
+  },
+  {
+    "id": "m5",
+    "name": "Masjid Ikhlas (Metropolitan Denver North Islamic Center)",
+    "contacts": {
+      "phone": "(303) 920-0252",
+      "email": ["office@masjidikhlas.org"],
+      "website": "http://www.masjidikhlas.org"
+    },
+    "address": {
+      "street": "11141 N Irma Dr",
+      "city": "Northglenn",
+      "state": "CO",
+      "zip": "80233"
+    }
+  },
+  {
+    "id": "m6",
+    "name": "Islamic Society of Colorado Springs (Masjid Al-Farooq)",
+    "contacts": {
+      "phone": "(719) 632-3364",
+      "email": ["iscs.info.contact@gmail.com"],
+      "website": "http://iscs.info"
+    },
+    "address": {
+      "street": "2125 N Chestnut St",
+      "city": "Colorado Springs",
+      "state": "CO",
+      "zip": "80907"
+    }
+  },
+  {
+    "id": "m7",
+    "name": "Islamic Center of Fort Collins",
+    "contacts": {
+      "phone": "(970) 221-2425",
+      "email": ["info@icfc.org"],
+      "website": "https://www.icfc.org"
+    },
+    "address": {
+      "street": "925 W Lake St",
+      "city": "Fort Collins",
+      "state": "CO",
+      "zip": "80521"
+    }
+  },
+  {
+    "id": "m8",
+    "name": "Islamic Center of Boulder",
+    "contacts": {
+      "email": ["info@bouldermuslims.com"],
+      "website": "https://bouldermuslims.com"
+    },
+    "address": {
+      "street": "5495 Baseline Rd",
+      "city": "Boulder",
+      "state": "CO",
+      "zip": "80303"
+    }
+  },
+  {
+    "id": "m9",
+    "name": "Islamic Center of Golden",
+    "contacts": {
+      "phone": "(720) 989-1888",
+      "email": ["info@icgolden.org"],
+      "website": ""
+    },
+    "address": {
+      "street": "1940 Ford St",
+      "city": "Golden",
+      "state": "CO",
+      "zip": "80401"
+    }
+  },
+  {
+    "id": "m10",
+    "name": "Islamic Center of Grand Junction (Two Rivers Mosque)",
+    "contacts": {
+      "phone": "(970) 644-5270",
+      "email": ["info@tworiversmosque.org"],
+      "website": ""
+    },
+    "address": {
+      "street": "801 Gunnison Ave",
+      "city": "Grand Junction",
+      "state": "CO",
+      "zip": "81506"
+    }
+  }
+]

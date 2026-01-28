@@ -1,0 +1,19 @@
+[
+  {
+    "id": "o1",
+    "masjid_id": "m1",
+    "method": "phone",
+    "timestamp": "2026-01-20T14:30:00Z",
+    "notes": "Spoke to admin, follow up next month",
+    "result": "you can come on Dec/3rd first Jummah",
+    "clerk": "fatima"
+  },
+  {
+    "id": "o2",
+    "masjid_id": "m1",
+    "method": "email",
+    "timestamp": "2026-01-18T10:00:00Z",
+    "notes": "Sent intro email",
+    "clerk": "fatima"
+  }
+]

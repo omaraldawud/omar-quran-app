@@ -1,0 +1,167 @@
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-image: url("/images/majid-bg.jfif");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* HEADER */
+.app-header {
+  width: 100vw;
+  background: #0f172a;
+  color: white;
+}
+
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.25rem 1rem;
+}
+
+/* CONTENT */
+.app-content {
+  flex: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem;
+}
+
+/* FOOTER */
+.app-footer {
+  width: 100vw;
+  background: #111827;
+  color: #9ca3af;
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+}
+
+.masjid-card {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.masjid-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.5rem;
+}
+
+.masjid-header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.masjid-location {
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+.masjid-contacts div {
+  font-size: 0.9rem;
+  margin-top: 0.25rem;
+}
+
+.masjid-contacts a {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.masjid-card-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.first-row {
+  align-items: center;
+}
+
+.masjid-actions {
+  flex-shrink: 0;
+}
+
+.btn-log {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 0.35rem 0.6rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.btn-log:hover {
+  background: #1d4ed8;
+}
+
+/* Log table styling */
+.log-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.5rem;
+}
+
+.log-table th,
+.log-table td {
+  border: 1px solid #e5e7eb;
+  padding: 0.35rem 0.5rem;
+  font-size: 0.85rem;
+}
+
+.log-table th {
+  background: #f3f4f6;
+  text-align: left;
+}
+
+.masjid-contacts {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-top: 0.5rem;
+}
+
+.contact-item {
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.contact-item a {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.contact-item a:hover {
+  text-decoration: underline;
+}
+
+.masjid-contacts-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem; /* space between contacts */
+  margin-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #e5e7eb; /* bottom border separates log */
+}
+
+.contact-item a {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.contact-item a:hover {
+  text-decoration: underline;
+}

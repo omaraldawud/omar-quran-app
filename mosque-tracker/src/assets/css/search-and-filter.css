@@ -1,0 +1,29 @@
+.masjid-search {
+  padding: 0.5rem 0.75rem;
+  width: 300px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.state-filter {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  width: fit-content;
+}
+
+.state-filter select,
+.masjid-search {
+  height: 40px;
+  padding: 0 0.75rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 0.95rem;
+}
+
+.masjid-search {
+  width: 320px;
+}

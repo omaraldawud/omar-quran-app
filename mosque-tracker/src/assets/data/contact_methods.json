@@ -1,0 +1,7 @@
+[
+  { "id": "phone", "label": "Phone Call" },
+  { "id": "email", "label": "Email" },
+  { "id": "visit", "label": "In-Person Visit" },
+  { "id": "whatsapp", "label": "WhatsApp" },
+  { "id": "social", "label": "Social Media" }
+]
