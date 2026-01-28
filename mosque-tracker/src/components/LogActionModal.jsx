@@ -1,21 +1,33 @@
 import { useState } from "react";
-import "../assets/css/LogActionModal.css"; // we’ll create this
+import "../assets/css/LogActionModal.css";
 
 export default function LogActionModal({ onSave, onClose }) {
   const [method, setMethod] = useState("phone");
   const [notes, setNotes] = useState("");
   const [result, setResult] = useState("");
-  const [contact_name, setContactName] = useState("");
-  const [clerk, setClerk] = useState("Sr. Fatima");
+  const [contacted_person_name, setContactName] = useState("");
+  const [contacted_person_phone, setContactPhone] = useState("");
+  const [contacted_person_email, setContactEmail] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSave({ method, contact_name, notes, result, clerk });
+
+    onSave({
+      method,
+      contacted_person_name,
+      contacted_person_phone,
+      contacted_person_email,
+      notes,
+      result,
+    });
+
+    // reset form
     setMethod("phone");
     setNotes("");
     setResult("");
-    setClerk("");
     setContactName("");
+    setContactPhone("");
+    setContactEmail("");
   };
 
   return (
@@ -35,10 +47,26 @@ export default function LogActionModal({ onSave, onClose }) {
           </label>
 
           <label>
-            🙋 Contact Person
+            🙋 Contact Person Name
             <input
-              value={contact_name}
+              value={contacted_person_name}
               onChange={(e) => setContactName(e.target.value)}
+            />
+          </label>
+
+          <label>
+            🙋 Contact Person Phone
+            <input
+              value={contacted_person_phone}
+              onChange={(e) => setContactPhone(e.target.value)}
+            />
+          </label>
+
+          <label>
+            🙋 Contact Person Email
+            <input
+              value={contacted_person_email}
+              onChange={(e) => setContactEmail(e.target.value)}
             />
           </label>
 
@@ -56,11 +84,6 @@ export default function LogActionModal({ onSave, onClose }) {
               value={result}
               onChange={(e) => setResult(e.target.value)}
             />
-          </label>
-
-          <label>
-            🙋 Action By
-            <input value={clerk} onChange={(e) => setClerk(e.target.value)} />
           </label>
 
           <div className="modal-actions">

@@ -1,0 +1,119 @@
+🏠 https://ADVANCEDGARAGEDOORINC.COM, ADVANCEDGARAGEDOORINC forwards 
+ support, (480) 624-2500.
+
+Cloned on GitHub:	https://github.com/omaraldawud/advancedgaragedoorinc.com
+
+Local Folder:		/d/dev/advancedgaragedoorinc.com
+			
+Linux Alias 		alias ad='cd /d/dev/advancedgaragedoorinc.com'
+
+
+
+---------------------------------------------------------------------
+Moved to Hostitwise.net 
+Hosting HostITwise.net
+	FTP: abedadvanced@advancedgaragedoorinc.com
+	FTP Pwd: Abed_331284@2025 
+
+
+
+-----------------------------------
+Hosting Price Done right:
+	148.72.63.16
+	https://sso.secureserver.net/
+		30739570
+		Omar.Aldfawud@gmail.com		OLD: zakihajer@gmail.com 
+		Abed_843312
+		Code: 2205
+	
+		Abed_843312
+
+
+cPanel login: fatubvt6dkd3
+------------------------------------------
+Yelp 		ehabaref@aol.com
+		Password: Adv12900
+hzaki40@gmail.com
+------------------------------------------
+FTP
+	FTP Username: omaraldawud@advancedgaragedoorinc.com
+	FTP server: ftp.hbq.8d4.mytemp.website
+	FTP & explicit FTPS port:  21
+	Abed_843312Garage
+
+----------------------------------------------
+To access Email: 
+https://p3plzcpnl505785.prod.phx3.secureserver.net:2096/cpsess8704922695/3rdparty/roundcube/?_task=mail&_mbox=INBOX
+
+EmailJS
+	Service IS  : service_wl2mv1d
+	Template ID: template_trw1mqb
+	emailjs public key  'user_ko6phmeIKmrDDuO1FzuHG';
+
+EmailJS is used for SMTP mail
+EMAIL_USER=info@advancedgaragedoorinc.com
+EMAIL_PASS=Abed_843312Naperville
+SMTP_HOST=mail.advancedgaragedoorinc.com
+SMTP_PORT=465
+----------------------------------------------------------------------------------------
+Abdel Karim Abu Izraiq
+110 Arbor Dr
+Carol Stream IL 60188
+---------------------------------------------------------------------
+OLD Site URLS
+/index.html
+/garage_door_aboutus.html		HOME
+/garage_door_services.html		Services
+/garage_door_aboutus.html
+/garage_door_testimonials.html		Testimonials
+/garage_door_contactus.html		Contact US
+/garage_door_residential.html		Residential
+/garage_door_commercial.html		Commercial
+/garage_door_service_area.html		Service Area
+/garage_door_specials_coupons.html	Specials
+/garage_door_safetytips.html		Safety Tips
+/garage_door_openers.html		Openers
+
+-----------------------------------------------------------
+Type
+Name
+Data
+TTL
+Delete
+Edit
+
+a	@	148.72.63.16	10800 seconds		
+
+a	admin	148.72.63.16	10800 seconds		
+
+a	mail	148.72.63.16	10800 seconds		
+
+ns	@	ns57.domaincontrol.com.	1 Hour	
+Can't delete
+Can't edit
+
+ns	@	ns58.domaincontrol.com.	1 Hour	
+Can't delete
+Can't edit
+
+cname	cpanel	advancedgaragedoorinc.com.	10800 seconds		
+
+cname	email	email.secureserver.net.	1 Hour		
+
+cname	ftp	advancedgaragedoorinc.com.	1 Hour		
+
+cname	webdisk	advancedgaragedoorinc.com.	10800 seconds		
+
+cname	webdisk.admin	advancedgaragedoorinc.com.	10800 seconds		
+
+cname	whm	advancedgaragedoorinc.com.	10800 seconds		
+
+cname	www	advancedgaragedoorinc.com.	10800 seconds		
+
+cname	www.admin	advancedgaragedoorinc.com.	10800 seconds		
+
+cname	_domainconnect	_domainconnect.ss.domaincontrol.com.	1 Hour		
+
+soa	@	Primary nameserver: ns57.domaincontrol.com.	1 Hour		
+
+

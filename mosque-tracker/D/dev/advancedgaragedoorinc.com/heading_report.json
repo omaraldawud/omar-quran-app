@@ -1,0 +1,378 @@
+[
+  {
+    "file": "D:\\dev\\hostitwise-sites\\advancedgaragedoorinc.com\\src\\components\\cards\\USAMadeBanner.jsx",
+    "headings": [
+      {
+        "line": 80,
+        "tag": "h2",
+        "text": "{current.title}",
+        "extra_h1": false
+      }
+    ]
+  },
+  {
+    "file": "D:\\dev\\hostitwise-sites\\advancedgaragedoorinc.com\\src\\components\\functional\\GarageDoorTypes.jsx",
+    "headings": [
+      {
+        "line": 103,
+        "tag": "h3",
+        "text": "{currentType.name}",
+        "extra_h1": false
+      },
+      {
+        "line": 112,
+        "tag": "h6",
+        "text": "Key Features:",
+        "extra_h1": false
+      },
+      {
+        "line": 127,
+        "tag": "h6",
+        "text": "Top Brands/Products:",
+        "extra_h1": false
+      }
+    ]
+  },
+  {
+    "file": "D:\\dev\\hostitwise-sites\\advancedgaragedoorinc.com\\src\\components\\helpers\\WarningInfobox.jsx",
+    "headings": [
+      {
+        "line": 20,
+        "tag": "h3",
+        "text": "{title}",
+        "extra_h1": false
+      },
+      {
+        "line": 38,
+        "tag": "h4",
+        "text": "{dangerTitle}",
+        "extra_h1": false
+      }
+    ]
+  },
+  {
+    "file": "D:\\dev\\hostitwise-sites\\advancedgaragedoorinc.com\\src\\components\\sections\\AboutUsSection.jsx",
+    "headings": [
+      {
+        "line": 37,
+        "tag": "h3",
+        "text": "Why Choose Us?",
+        "extra_h1": false
+      },
+      {
+        "line": 69,
+        "tag": "h3",
+        "text": "Authorized Dealers",
+        "extra_h1": false
+      },
+      {
+        "line": 86,
+        "tag": "h3",
+        "text": "Our Services",
+        "extra_h1": false
+      }
+    ]
+  },
+  {
+    "file": "D:\\dev\\hostitwise-sites\\advancedgaragedoorinc.com\\src\\components\\sections\\ReplacementProcess.jsx",
+    "headings": [
+      {
+        "line": 81,
+        "tag": "h3",
+        "text": "{step.title}",
+        "extra_h1": false
+      }
+    ]
+  },
+  {
+    "file": "D:\\dev\\hostitwise-sites\\advancedgaragedoorinc.com\\src\\components\\sections\\ServiceAreaSection.jsx",
+    "headings": [
+      {
+        "line": 27,
+        "tag": "h2",
+        "text": "Northwest Suburbs",
+        "extra_h1": false
+      },
+      {
+        "line": 54,
+        "tag": "h2",
+        "text": "West Suburbs",
+        "extra_h1": false
+      },
+      {
+        "line": 81,
+        "tag": "h2",
+        "text": "Southwest Suburbs",
+        "extra_h1": false
+      },
+      {
+        "line": 108,
+        "tag": "h2",
+        "text": "Chicago Counties",
+        "extra_h1": false
+      },
+      {
+        "line": 145,
+        "tag": "h2",
+        "text": "More Service Areas",
+        "extra_h1": false
+      },
+      {
+        "line": 198,
+        "tag": "h3",
+        "text": "Don't see your area?",
+        "extra_h1": false
+      }
+    ]
+  },
+  {
+    "file": "D:\\dev\\hostitwise-sites\\advancedgaragedoorinc.com\\src\\pages\\Contact.jsx",
+    "headings": [
+      {
+        "line": 102,
+        "tag": "h3",
+        "text": "Immediate Assistance",
+        "extra_h1": false
+      }
+    ]
+  },
+  {
+    "file": "D:\\dev\\hostitwise-sites\\advancedgaragedoorinc.com\\src\\pages\\FAQsPage.jsx",
+    "headings": [
+      {
+        "line": 159,
+        "tag": "h3",
+        "text": "Need Immediate Help?",
+        "extra_h1": false
+      }
+    ]
+  },
+  {
+    "file": "D:\\dev\\hostitwise-sites\\advancedgaragedoorinc.com\\src\\pages\\GarageDoorOpenersPage.jsx",
+    "headings": [
+      {
+        "line": 15,
+        "tag": "h3",
+        "text": "{title}",
+        "extra_h1": false
+      },
+      {
+        "line": 24,
+        "tag": "h5",
+        "text": "{name}",
+        "extra_h1": false
+      },
+      {
+        "line": 159,
+        "tag": "h2",
+        "text": "Key Openers Features",
+        "extra_h1": false
+      },
+      {
+        "line": 198,
+        "tag": "h2",
+        "text": "Featured Models",
+        "extra_h1": false
+      },
+      {
+        "line": 260,
+        "tag": "h2",
+        "text": "Ready to upgrade your garage door opener?",
+        "extra_h1": false
+      }
+    ]
+  },
+  {
+    "file": "D:\\dev\\hostitwise-sites\\advancedgaragedoorinc.com\\src\\pages\\GarageDoorRepairPage.jsx",
+    "headings": [
+      {
+        "line": 206,
+        "tag": "h3",
+        "text": "Exclusive Repair Savings",
+        "extra_h1": false
+      },
+      {
+        "line": 273,
+        "tag": "h2",
+        "text": "Recent Repair Projects",
+        "extra_h1": false
+      },
+      {
+        "line": 276,
+        "tag": "h5",
+        "text": "Naperville, IL",
+        "extra_h1": false
+      },
+      {
+        "line": 285,
+        "tag": "h5",
+        "text": "St. Charles, IL",
+        "extra_h1": false
+      },
+      {
+        "line": 295,
+        "tag": "h5",
+        "text": "Gurnee, IL",
+        "extra_h1": false
+      }
+    ]
+  },
+  {
+    "file": "D:\\dev\\hostitwise-sites\\advancedgaragedoorinc.com\\src\\pages\\LegalPage.jsx",
+    "headings": [
+      {
+        "line": 20,
+        "tag": "h3",
+        "text": "Mission Statement",
+        "extra_h1": false
+      },
+      {
+        "line": 31,
+        "tag": "h4",
+        "text": "Licensed, Bonded & Insured",
+        "extra_h1": false
+      },
+      {
+        "line": 43,
+        "tag": "h4",
+        "text": "Local Garage Door Company",
+        "extra_h1": false
+      },
+      {
+        "line": 109,
+        "tag": "h2",
+        "text": "Privacy Policy",
+        "extra_h1": false
+      },
+      {
+        "line": 116,
+        "tag": "h4",
+        "text": "Information Collection",
+        "extra_h1": false
+      },
+      {
+        "line": 123,
+        "tag": "h4",
+        "text": "Data Security",
+        "extra_h1": false
+      },
+      {
+        "line": 130,
+        "tag": "h4",
+        "text": "Policy Updates",
+        "extra_h1": false
+      },
+      {
+        "line": 146,
+        "tag": "h4",
+        "text": "Your Privacy Matters To Us",
+        "extra_h1": false
+      },
+      {
+        "line": 155,
+        "tag": "h2",
+        "text": "Terms of Service",
+        "extra_h1": false
+      },
+      {
+        "line": 162,
+        "tag": "h4",
+        "text": "Service Agreements",
+        "extra_h1": false
+      },
+      {
+        "line": 169,
+        "tag": "h4",
+        "text": "Payment Terms",
+        "extra_h1": false
+      },
+      {
+        "line": 176,
+        "tag": "h4",
+        "text": "Cancellation Policy",
+        "extra_h1": false
+      },
+      {
+        "line": 192,
+        "tag": "h5",
+        "text": "Clear Service Terms",
+        "extra_h1": false
+      },
+      {
+        "line": 205,
+        "tag": "h2",
+        "text": "Copyright Information",
+        "extra_h1": false
+      },
+      {
+        "line": 211,
+        "tag": "h4",
+        "text": "Content Usage",
+        "extra_h1": false
+      },
+      {
+        "line": 218,
+        "tag": "h4",
+        "text": "Permissions",
+        "extra_h1": false
+      }
+    ]
+  },
+  {
+    "file": "D:\\dev\\hostitwise-sites\\advancedgaragedoorinc.com\\src\\pages\\ResidentialGarageDoorsPage.jsx",
+    "headings": [
+      {
+        "line": 122,
+        "tag": "h2",
+        "text": "Complete Your System With Quality Openers",
+        "extra_h1": false
+      }
+    ]
+  },
+  {
+    "file": "D:\\dev\\hostitwise-sites\\advancedgaragedoorinc.com\\src\\pages\\SafetyTipsPage.jsx",
+    "headings": [
+      {
+        "line": 77,
+        "tag": "h2",
+        "text": "Garage Door Safety Tips",
+        "extra_h1": false
+      },
+      {
+        "line": 82,
+        "tag": "h2",
+        "text": "Important Safety Information",
+        "extra_h1": false
+      }
+    ]
+  },
+  {
+    "file": "D:\\dev\\hostitwise-sites\\advancedgaragedoorinc.com\\src\\pages\\ServicesPage.jsx",
+    "headings": [
+      {
+        "line": 98,
+        "tag": "h3",
+        "text": "Recent notes from our customers",
+        "extra_h1": false
+      },
+      {
+        "line": 148,
+        "tag": "h3",
+        "text": "St Charles, IL",
+        "extra_h1": false
+      },
+      {
+        "line": 163,
+        "tag": "h3",
+        "text": "Gurnee, IL",
+        "extra_h1": false
+      },
+      {
+        "line": 178,
+        "tag": "h3",
+        "text": "Naperville, IL",
+        "extra_h1": false
+      }
+    ]
+  }
+]

@@ -5,7 +5,7 @@ import "./assets/css/layout.css";
 export default function App() {
   return (
     <Layout>
-      <Dashboard />
+      <Dashboard currentUserId={1} />
     </Layout>
   );
 }

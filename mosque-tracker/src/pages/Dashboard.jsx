@@ -1,44 +1,99 @@
-import { useState } from "react";
-import mosques from "../assets/data/mosques.json";
-import outreachSeed from "../assets/data/outreach_log.json";
+import { useState, useEffect } from "react";
 import MasjidCard from "../components/layout/MasjidCard";
+import OutreachTable from "../components/OutreachTable";
+
 import LogActionModal from "../components/LogActionModal";
 import { US_STATES } from "../assets/ds/us_states";
 import "../assets/css/search-and-filter.css";
 
-export default function Dashboard() {
-  const [outreach, setOutreach] = useState(() => {
-    const saved = localStorage.getItem("outreach");
-    return saved ? JSON.parse(saved) : outreachSeed;
-  });
-
+export default function Dashboard({ currentUserId }) {
+  const [mosques, setMosques] = useState([]);
+  const [outreach, setOutreach] = useState([]);
   const [activeMasjidId, setActiveMasjidId] = useState(null);
   const [selectedState, setSelectedState] = useState("ALL");
   const [searchTerm, setSearchTerm] = useState("");
 
-  const handleSaveAction = ({ method, contact_name, notes, result, clerk }) => {
+  // Load mosques and outreach from API
+  useEffect(() => {
+    fetch("http://localhost/api/mosques.php")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Mosques loaded:", data);
+        setMosques(data);
+      })
+      .catch(console.error);
+
+    fetch("http://localhost/api/outreach.php")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Outreach data loaded:", data);
+        setOutreach(Array.isArray(data) ? data : []);
+      })
+      .catch((err) => {
+        console.error("Error loading outreach:", err);
+        setOutreach([]);
+      });
+  }, []);
+
+  const handleSaveAction = async ({
+    method,
+    contacted_person_name,
+    contacted_person_phone,
+    contacted_person_email,
+    notes,
+    result,
+  }) => {
+    if (!activeMasjidId) return;
+
     const newEntry = {
-      id: crypto.randomUUID(),
-      masjid_id: activeMasjidId,
+      mosque_id: activeMasjidId,
+      user_id: currentUserId, // logged-in clerk
       method,
-      contact_name,
+      contacted_person_name,
+      contacted_person_phone,
+      contacted_person_email,
       notes,
       result,
-      clerk,
-      timestamp: new Date().toISOString(),
     };
 
-    setOutreach((prev) => {
-      const updated = [...prev, newEntry];
-      localStorage.setItem("outreach", JSON.stringify(updated));
-      return updated;
-    });
-    setActiveMasjidId(null);
+    try {
+      const res = await fetch("http://localhost/api/outreach.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newEntry),
+      });
+      const savedEntry = await res.json();
+
+      console.log("Saved entry:", savedEntry);
+
+      // Append new entry to local state
+      setOutreach((prev) => [savedEntry, ...prev]);
+      setActiveMasjidId(null);
+    } catch (err) {
+      console.error("Error saving outreach:", err);
+    }
   };
+
+  // Filtered mosques by state and search term
+  const filteredMosques = mosques.filter((m) => {
+    if (selectedState !== "ALL" && m.state !== selectedState) return false;
+    if (!searchTerm) return true;
+    const q = searchTerm.toLowerCase();
+    return (
+      m.name.toLowerCase().includes(q) ||
+      m.street?.toLowerCase().includes(q) ||
+      m.city?.toLowerCase().includes(q) ||
+      m.contact_phone?.toLowerCase().includes(q) ||
+      m.contact_name?.toLowerCase().includes(q)
+    );
+  });
+
+  console.log("Rendering Dashboard - Outreach count:", outreach.length);
 
   return (
     <>
-      <div className="state-filter mb-4">
+      {/* STATE + SEARCH */}
+      <div className="state-filter mb-4 d-flex align-items-center">
         <select
           value={selectedState}
           onChange={(e) => setSelectedState(e.target.value)}
@@ -60,45 +115,39 @@ export default function Dashboard() {
         />
       </div>
 
-      {/* GRID */}
+      {/* MOSQUE GRID */}
       <div className="masjid-grid">
-        {mosques
-          .filter((m) => {
-            // state filter
-            if (selectedState !== "ALL" && m.address?.state !== selectedState) {
-              return false;
-            }
+        {filteredMosques.map((m) => {
+          const masjidOutreach = outreach.filter(
+            (o) => String(o.mosque_id) === String(m.id),
+          );
 
-            // search filter
-            if (!searchTerm) return true;
-
-            const q = searchTerm.toLowerCase();
-
-            return (
-              m.name?.toLowerCase().includes(q) ||
-              m.address?.street?.toLowerCase().includes(q) ||
-              m.address?.city?.toLowerCase().includes(q) ||
-              m.contacts?.phone?.toLowerCase().includes(q) ||
-              m.contacts?.contact_name?.toLowerCase().includes(q)
-            );
-          })
-          .map((m) => {
-            const masjidOutreach = outreach.filter(
-              (o) => String(o.masjid_id) === String(m.id),
-            );
-
-            return (
-              <MasjidCard
-                key={m.id}
-                masjid={m}
-                outreachLog={masjidOutreach}
-                onAddAction={(id) => setActiveMasjidId(id)}
-              />
-            );
-          })}
+          return (
+            <MasjidCard
+              key={m.id}
+              masjid={m}
+              outreachLog={masjidOutreach}
+              onAddAction={(id) => setActiveMasjidId(id)}
+            />
+          );
+        })}
       </div>
 
-      {/* STEP 5: MODAL LIVES HERE */}
+      {/* ALL OUTREACH LOGS TABLE - Always render this section */}
+      <div
+        className="mt-5 mb-5"
+        style={{
+          width: "100%",
+          padding: "20px",
+          backgroundColor: "#f8f9fa",
+          borderRadius: "8px",
+        }}
+      >
+        <h3 className="mb-3">📊 All Outreach Logs ({outreach.length} total)</h3>
+        <OutreachTable outreachLog={outreach} />
+      </div>
+
+      {/* LOG MODAL */}
       {activeMasjidId && (
         <LogActionModal
           onSave={handleSaveAction}
