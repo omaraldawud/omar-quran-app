@@ -159,28 +159,88 @@ export default function OrganizationSidebar({
                         .replace(/^www\./, "")}
                     </a>
                     {donation_link && (
-                      <div className="contact-item d-flex align-items-center mb-2">
-                        <span
-                          className="ms-5"
-                          style={{ color: primary_color, width: "20px" }}
-                        >
-                          ❤️
-                        </span>
-                        <a
-                          href={donation_link}
-                          target="_blank"
-                          rel="noreferrer"
-                        >
-                          Donation Link
-                        </a>
-                      </div>
+                      <a
+                        href={donation_link}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="resource-link"
+                        style={{ color: primary_color }}
+                      >
+                        💚 Donation Link
+                      </a>
                     )}
                   </div>
                 )}
               </Card.Body>
             </Card>
           )}
-
+          {/* Social Media */}
+          {(facebook_url ||
+            instagram_url ||
+            twitter_url ||
+            linkedin_url ||
+            youtube_url) && (
+            <Card className="sidebar-card">
+              <Card.Body>
+                <h6 className="card-title">
+                  <span style={{ color: primary_color }}>🌐</span> Social Media
+                  Links
+                </h6>
+                <div className="social-links ms-3">
+                  {facebook_url && (
+                    <a
+                      href={facebook_url}
+                      target="_blank"
+                      rel="noreferrer"
+                      title="Facebook"
+                    >
+                      🔵
+                    </a>
+                  )}
+                  {instagram_url && (
+                    <a
+                      href={instagram_url}
+                      target="_blank"
+                      rel="noreferrer"
+                      title="Instagram"
+                    >
+                      📷
+                    </a>
+                  )}
+                  {twitter_url && (
+                    <a
+                      href={twitter_url}
+                      target="_blank"
+                      rel="noreferrer"
+                      title="Twitter"
+                    >
+                      🐦
+                    </a>
+                  )}
+                  {linkedin_url && (
+                    <a
+                      href={linkedin_url}
+                      target="_blank"
+                      rel="noreferrer"
+                      title="LinkedIn"
+                    >
+                      💼
+                    </a>
+                  )}
+                  {youtube_url && (
+                    <a
+                      href={youtube_url}
+                      target="_blank"
+                      rel="noreferrer"
+                      title="YouTube"
+                    >
+                      📺
+                    </a>
+                  )}
+                </div>
+              </Card.Body>
+            </Card>
+          )}
           {/* Elevator Pitch */}
           {elevator_pitch && (
             <Card className="sidebar-card">
@@ -197,20 +257,33 @@ export default function OrganizationSidebar({
           {talking_points && talking_points.length > 0 && (
             <Card className="sidebar-card">
               <Card.Body>
-                <h6 className="card-title">
-                  <span style={{ color: primary_color }}>💬</span> Talking
-                  Points
-                </h6>
-                <ListGroup variant="flush">
-                  {talking_points.map((point, index) => (
-                    <ListGroup.Item key={index} className="talking-point">
-                      <span className="bullet" style={{ color: primary_color }}>
-                        •
-                      </span>
-                      {point}
-                    </ListGroup.Item>
-                  ))}
-                </ListGroup>
+                <h6 className="card-title">💬 Talking Points</h6>
+                <ul style={{ listStyleType: "none", paddingLeft: 0 }}>
+                  <ListGroup variant="flush">
+                    {talking_points.map((point, index) => (
+                      <li
+                        key={index}
+                        style={{
+                          paddingLeft: "1.5em",
+                          fontSize: "14px",
+                          position: "relative",
+                        }}
+                      >
+                        <span
+                          style={{
+                            color: primary_color,
+                            position: "absolute",
+                            left: 0,
+                            fontSize: "1.5em",
+                          }}
+                        >
+                          •
+                        </span>
+                        {point}
+                      </li>
+                    ))}
+                  </ListGroup>
+                </ul>
               </Card.Body>
             </Card>
           )}
@@ -264,73 +337,6 @@ export default function OrganizationSidebar({
                       style={{ color: primary_color }}
                     >
                       💚 Donate
-                    </a>
-                  )}
-                </div>
-              </Card.Body>
-            </Card>
-          )}
-
-          {/* Social Media */}
-          {(facebook_url ||
-            instagram_url ||
-            twitter_url ||
-            linkedin_url ||
-            youtube_url) && (
-            <Card className="sidebar-card">
-              <Card.Body>
-                <h6 className="card-title">
-                  <span style={{ color: primary_color }}>🌐</span> Social Media
-                </h6>
-                <div className="social-links">
-                  {facebook_url && (
-                    <a
-                      href={facebook_url}
-                      target="_blank"
-                      rel="noreferrer"
-                      title="Facebook"
-                    >
-                      🔵
-                    </a>
-                  )}
-                  {instagram_url && (
-                    <a
-                      href={instagram_url}
-                      target="_blank"
-                      rel="noreferrer"
-                      title="Instagram"
-                    >
-                      📷
-                    </a>
-                  )}
-                  {twitter_url && (
-                    <a
-                      href={twitter_url}
-                      target="_blank"
-                      rel="noreferrer"
-                      title="Twitter"
-                    >
-                      🐦
-                    </a>
-                  )}
-                  {linkedin_url && (
-                    <a
-                      href={linkedin_url}
-                      target="_blank"
-                      rel="noreferrer"
-                      title="LinkedIn"
-                    >
-                      💼
-                    </a>
-                  )}
-                  {youtube_url && (
-                    <a
-                      href={youtube_url}
-                      target="_blank"
-                      rel="noreferrer"
-                      title="YouTube"
-                    >
-                      📺
                     </a>
                   )}
                 </div>
