@@ -1,4 +1,4 @@
-INSERT INTO users (id, organization_id, role, name, email, phone, associated_mosque_id) VALUES
+INSERT INTO users (id, organization_id, role, user_name, user_email, user_phone, associated_mosque_id) VALUES
 -- System admin
 (1, 1, 'system_admin', 'System Admin', 'sysadmin@example.com', '(303) 555-0000', NULL),
 

@@ -1,17 +1,18 @@
 import { useState, useEffect } from "react";
+import Badge from "react-bootstrap/Badge";
 import MasjidCard from "../components/layout/MasjidCard";
-import OutreachTable from "../components/OutreachTable";
-
 import LogActionModal from "../components/LogActionModal";
+import OrganizationSidebar from "../components/layout/OrganizationSidebar";
 import { US_STATES } from "../assets/ds/us_states";
 import "../assets/css/search-and-filter.css";
 
-export default function Dashboard({ currentUserId }) {
+export default function Dashboard({ currentUserId, organizationId = 1 }) {
   const [mosques, setMosques] = useState([]);
   const [outreach, setOutreach] = useState([]);
   const [activeMasjidId, setActiveMasjidId] = useState(null);
   const [selectedState, setSelectedState] = useState("ALL");
   const [searchTerm, setSearchTerm] = useState("");
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
   // Load mosques and outreach from API
   useEffect(() => {
@@ -47,7 +48,7 @@ export default function Dashboard({ currentUserId }) {
 
     const newEntry = {
       mosque_id: activeMasjidId,
-      user_id: currentUserId, // logged-in clerk
+      user_id: currentUserId,
       method,
       contacted_person_name,
       contacted_person_phone,
@@ -66,7 +67,7 @@ export default function Dashboard({ currentUserId }) {
 
       console.log("Saved entry:", savedEntry);
 
-      // Append new entry to local state
+      // Append new entry to local state (add to beginning for newest first)
       setOutreach((prev) => [savedEntry, ...prev]);
       setActiveMasjidId(null);
     } catch (err) {
@@ -88,64 +89,89 @@ export default function Dashboard({ currentUserId }) {
     );
   });
 
-  console.log("Rendering Dashboard - Outreach count:", outreach.length);
+  // Calculate statistics
+  const totalOutreach = outreach.length;
+  const mosquesWithOutreach = new Set(outreach.map((o) => o.mosque_id)).size;
 
   return (
     <>
-      {/* STATE + SEARCH */}
-      <div className="state-filter mb-4 d-flex align-items-center">
-        <select
-          value={selectedState}
-          onChange={(e) => setSelectedState(e.target.value)}
-        >
-          <option value="ALL">All States</option>
-          {US_STATES.map((s) => (
-            <option key={s.abbreviation} value={s.abbreviation}>
-              {s.name}
-            </option>
-          ))}
-        </select>
-
-        <input
-          type="text"
-          placeholder="🔍 Search masjid, city, phone, contact..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="masjid-search ms-4"
-        />
-      </div>
-
-      {/* MOSQUE GRID */}
-      <div className="masjid-grid">
-        {filteredMosques.map((m) => {
-          const masjidOutreach = outreach.filter(
-            (o) => String(o.mosque_id) === String(m.id),
-          );
-
-          return (
-            <MasjidCard
-              key={m.id}
-              masjid={m}
-              outreachLog={masjidOutreach}
-              onAddAction={(id) => setActiveMasjidId(id)}
-            />
-          );
-        })}
-      </div>
-
-      {/* ALL OUTREACH LOGS TABLE - Always render this section */}
+      {/* Main Dashboard Content */}
       <div
-        className="mt-5 mb-5"
-        style={{
-          width: "100%",
-          padding: "20px",
-          backgroundColor: "#f8f9fa",
-          borderRadius: "8px",
-        }}
+        className={`dashboard-with-sidebar ${sidebarCollapsed ? "sidebar-collapsed" : ""}`}
       >
-        <h3 className="mb-3">📊 All Outreach Logs ({outreach.length} total)</h3>
-        <OutreachTable outreachLog={outreach} />
+        {/* STATE + SEARCH + STATS */}
+        <div className="state-filter mb-4 d-flex align-items-center flex-wrap gap-3">
+          <select
+            value={selectedState}
+            onChange={(e) => setSelectedState(e.target.value)}
+          >
+            <option value="ALL">All States</option>
+            {US_STATES.map((s) => (
+              <option key={s.abbreviation} value={s.abbreviation}>
+                {s.name}
+              </option>
+            ))}
+          </select>
+
+          <input
+            type="text"
+            placeholder="🔍 Search masjid, city, phone, contact..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="masjid-search"
+            style={{ flex: "1 1 300px" }}
+          />
+
+          {/* Summary Stats */}
+          <div className="d-flex gap-2">
+            <Badge bg="primary" className="p-2">
+              📊 {totalOutreach} Total Outreach
+            </Badge>
+            <Badge bg="success" className="p-2">
+              🕌 {mosquesWithOutreach} Mosques Contacted
+            </Badge>
+          </div>
+        </div>
+
+        {/* MOSQUE GRID */}
+        <div className="masjid-grid">
+          {filteredMosques.length === 0 ? (
+            <div
+              style={{
+                textAlign: "center",
+                padding: "40px",
+                gridColumn: "1 / -1",
+                color: "#6c757d",
+              }}
+            >
+              <h4>No mosques found</h4>
+              <p>Try adjusting your filters or search term</p>
+            </div>
+          ) : (
+            filteredMosques.map((m) => {
+              const masjidOutreach = outreach.filter(
+                (o) => String(o.mosque_id) === String(m.id),
+              );
+
+              return (
+                <MasjidCard
+                  key={m.id}
+                  masjid={m}
+                  outreachLog={masjidOutreach}
+                  onAddAction={(id) => setActiveMasjidId(id)}
+                />
+              );
+            })
+          )}
+        </div>
       </div>
+
+      {/* Organization Sidebar */}
+      <OrganizationSidebar
+        organizationId={organizationId}
+        isCollapsed={sidebarCollapsed}
+        onToggle={() => setSidebarCollapsed(!sidebarCollapsed)}
+      />
 
       {/* LOG MODAL */}
       {activeMasjidId && (
