@@ -33,63 +33,114 @@ export default function LogActionModal({ onSave, onClose }) {
   return (
     <div className="modal-backdrop">
       <div className="modal-card">
-        <h4>Log Outreach</h4>
+        <div className="modal-header">
+          <h3>Log Outreach Action</h3>
+          <button className="close-btn" onClick={onClose}>
+            ×
+          </button>
+        </div>
+
         <form onSubmit={handleSubmit}>
-          <label>
-            Method
-            <select value={method} onChange={(e) => setMethod(e.target.value)}>
-              <option value="phone">📞 Phone</option>
-              <option value="email">✉️ Email</option>
-              <option value="visit">🏠 Visit</option>
-              <option value="whatsapp">💬 WhatsApp</option>
-              <option value="social">🌐 Social</option>
-            </select>
-          </label>
+          <div className="form-grid">
+            {/* Left Column */}
+            <div className="form-column">
+              <div className="form-group">
+                <label>
+                  <span className="label-icon">📞</span>
+                  Contact Method
+                </label>
+                <select
+                  value={method}
+                  onChange={(e) => setMethod(e.target.value)}
+                  className="method-select"
+                >
+                  <option value="phone">Phone Call</option>
+                  <option value="email">Email</option>
+                  <option value="visit">In-Person Visit</option>
+                  <option value="whatsapp">WhatsApp</option>
+                  <option value="social">Social Media</option>
+                </select>
+              </div>
 
-          <label>
-            🙋 Contact Person Name
-            <input
-              value={contacted_person_name}
-              onChange={(e) => setContactName(e.target.value)}
-            />
-          </label>
+              <div className="form-group">
+                <label>
+                  <span className="label-icon">👤</span>
+                  Contact Person
+                </label>
+                <input
+                  placeholder="Full name"
+                  value={contacted_person_name}
+                  onChange={(e) => setContactName(e.target.value)}
+                  className="form-input"
+                />
+              </div>
 
-          <label>
-            🙋 Contact Person Phone
-            <input
-              value={contacted_person_phone}
-              onChange={(e) => setContactPhone(e.target.value)}
-            />
-          </label>
+              <div className="form-group">
+                <label>
+                  <span className="label-icon">📱</span>
+                  Phone Number
+                </label>
+                <input
+                  placeholder="+1 XXX XXX XXX"
+                  value={contacted_person_phone}
+                  onChange={(e) => setContactPhone(e.target.value)}
+                  className="form-input"
+                />
+              </div>
 
-          <label>
-            🙋 Contact Person Email
-            <input
-              value={contacted_person_email}
-              onChange={(e) => setContactEmail(e.target.value)}
-            />
-          </label>
+              <div className="form-group">
+                <label>
+                  <span className="label-icon">✉️</span>
+                  Email Address
+                </label>
+                <input
+                  placeholder="person@example.com"
+                  value={contacted_person_email}
+                  onChange={(e) => setContactEmail(e.target.value)}
+                  className="form-input"
+                  type="email"
+                />
+              </div>
+            </div>
 
-          <label>
-            📝 Notes
-            <textarea
-              value={notes}
-              onChange={(e) => setNotes(e.target.value)}
-            />
-          </label>
+            {/* Right Column */}
+            <div className="form-column">
+              <div className="form-group">
+                <label>
+                  <span className="label-icon">📝</span>
+                  Conversation Notes
+                </label>
+                <textarea
+                  placeholder="What was discussed during the outreach..."
+                  value={notes}
+                  onChange={(e) => setNotes(e.target.value)}
+                  className="form-textarea"
+                  rows="5"
+                />
+              </div>
 
-          <label>
-            ✅ Result
-            <textarea
-              value={result}
-              onChange={(e) => setResult(e.target.value)}
-            />
-          </label>
+              <div className="form-group">
+                <label>
+                  <span className="label-icon">✅</span>
+                  Outcome / Next Steps
+                </label>
+                <textarea
+                  placeholder="Result of contact and follow-up actions..."
+                  value={result}
+                  onChange={(e) => setResult(e.target.value)}
+                  className="form-textarea"
+                  rows="3"
+                />
+              </div>
+            </div>
+          </div>
 
-          <div className="modal-actions">
-            <button type="submit">Save</button>
-            <button type="button" onClick={onClose}>
+          <div className="form-footer">
+            <button type="button" className="btn-secondary" onClick={onClose}>
               Cancel
+            </button>
+            <button type="submit" className="btn-primary">
+              Save Outreach Log
             </button>
           </div>
         </form>

@@ -85,7 +85,10 @@ export default function Dashboard({ currentUserId, organizationId = 1 }) {
       m.street?.toLowerCase().includes(q) ||
       m.city?.toLowerCase().includes(q) ||
       m.contact_phone?.toLowerCase().includes(q) ||
-      m.contact_name?.toLowerCase().includes(q)
+      m.contact_name?.toLowerCase().includes(q) ||
+      m.website?.toLowerCase().includes(q) ||
+      m.facebook?.toLowerCase().includes(q) ||
+      m.whatsapp?.toLowerCase().includes(q)
     );
   });
 
@@ -102,6 +105,7 @@ export default function Dashboard({ currentUserId, organizationId = 1 }) {
         {/* STATE + SEARCH + STATS */}
         <div className="state-filter mb-4 d-flex align-items-center flex-wrap gap-3">
           <select
+            className="pe-2 text-primary"
             value={selectedState}
             onChange={(e) => setSelectedState(e.target.value)}
           >
@@ -152,7 +156,7 @@ export default function Dashboard({ currentUserId, organizationId = 1 }) {
               const masjidOutreach = outreach.filter(
                 (o) => String(o.mosque_id) === String(m.id),
               );
-
+              console.log("M = ", m);
               return (
                 <MasjidCard
                   key={m.id}

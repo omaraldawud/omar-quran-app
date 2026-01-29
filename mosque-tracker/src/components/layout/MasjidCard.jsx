@@ -26,14 +26,86 @@ export default function MasjidCard({ masjid, outreachLog = [], onAddAction }) {
   const sortedOutreach = [...outreachLog].sort(
     (a, b) => new Date(b.contacted_at) - new Date(a.contacted_at),
   );
-
+  console.log("Contact props:", {
+    contact_phone,
+    contact_email,
+    website,
+    facebook,
+    whatsapp,
+  });
   return (
     <div className="masjid-card">
+      <div className="d-flex md-flex justify-content-between align-items-center">
+        <h2 className="text-success">{name}</h2>
+        <span className="masjid-location">
+          <Badge bg="info" className="p-2">
+            📍 {street}. {city} {zip}
+            {state ? ` , ${state}` : ""}
+          </Badge>
+        </span>
+      </div>
       {/* ROW 1: INFO + ACTIONS */}
       <div className="masjid-card-row first-row">
         <div className="masjid-info">
+          <h4 className="ms-3  ">
+            <span className="small">- Contact Person: </span>
+            <span>{contact_name}</span>
+          </h4>
+
+          {/* Single row contact info */}
+          <div
+            className="d-flex align-items-center masjid-contacts-row my-3"
+            style={{
+              flexWrap: "nowrap",
+              overflow: "hidden",
+              whiteSpace: "nowrap",
+              gap: "12px",
+            }}
+          >
+            {contact_phone && (
+              <span className="contact-item text-truncate">
+                📞 <a href={`tel:${contact_phone}`}>{contact_phone}</a>
+              </span>
+            )}
+
+            {contact_email && (
+              <span className="contact-item text-truncate">
+                ✉️{" "}
+                <a href={`mailto:${contact_email}`} className="text-truncate">
+                  {contact_email}
+                </a>
+              </span>
+            )}
+
+            {website && (
+              <span className="contact-item text-truncate">
+                🌐{" "}
+                <a href={website} target="_blank" rel="noreferrer">
+                  {website.replace(/^https?:\/\//, "").replace(/\/$/, "")}
+                </a>
+              </span>
+            )}
+
+            {facebook && (
+              <span className="contact-item">
+                🔵{" "}
+                <a href={facebook} target="_blank" rel="noreferrer">
+                  Facebook
+                </a>
+              </span>
+            )}
+
+            {whatsapp && (
+              <span className="contact-item">
+                💬{" "}
+                <a href={whatsapp} target="_blank" rel="noreferrer">
+                  WhatsApp
+                </a>
+              </span>
+            )}
+          </div>
+
           <div className="d-flex align-items-center">
-            <h2 className="text-success">{name}</h2>
             {sortedOutreach.length > 0 && (
               <Badge
                 bg="success"
@@ -47,55 +119,6 @@ export default function MasjidCard({ masjid, outreachLog = [], onAddAction }) {
               </Badge>
             )}
           </div>
-          <span className="masjid-location ms-3">
-            <Badge bg="info" className="p-2">
-              📍 {street}. {city} {zip}
-              {state ? ` , ${state}` : ""}
-            </Badge>
-          </span>
-          <h4 className="ms-3 my-4">
-            <span className="small">- Contact Person: </span>
-            <span className="text-primary">{contact_name}</span>
-          </h4>
-
-          {/* Single row contact info */}
-          <div className="d-flex masjid-contacts-row my-3">
-            {contact_phone && (
-              <span className="contact-item mx-3">
-                📞 <a href={`tel:${contact_phone}`}>{contact_phone}</a>
-              </span>
-            )}
-            {contact_email && contact_email.length > 0 && (
-              <span className="contact-item mx-3">
-                ✉️ <a href={`mailto:${contact_email}`}>{contact_email}</a>
-              </span>
-            )}
-            {website && (
-              <span className="contact-item">
-                🌐{" "}
-                <a href={website} target="_blank" rel="noreferrer">
-                  {website}
-                </a>
-              </span>
-            )}
-            {facebook && (
-              <span className="contact-item">
-                🔵{" "}
-                <a href={facebook} target="_blank" rel="noreferrer">
-                  Facebook
-                </a>
-              </span>
-            )}
-            {whatsapp && (
-              <span className="contact-item">
-                💬{" "}
-                <a href={whatsapp} target="_blank" rel="noreferrer">
-                  WhatsApp
-                </a>
-              </span>
-            )}
-          </div>
-
           {/* Show recent outreach activity */}
           {sortedOutreach.length > 0 && (
             <div className="mt-2">
