@@ -1,12 +1,12 @@
 import Header from "./Header";
 import Footer from "./Footer";
 
-export default function Layout({ children }) {
+export default function Layout({ children, user, onLogout }) {
   return (
     <div className="app-shell">
-      <Header />
+      {user && <Header user={user} onLogout={onLogout} />}
       <main className="app-content">{children}</main>
-      <Footer />
+      {user && <Footer />}
     </div>
   );
 }
