@@ -1,8 +1,6 @@
 <?php
 header('Content-Type: application/json');
 
-$data = json_decode(file_get_contents('php://input'), true);
-
 header("Access-Control-Allow-Origin: http://localhost:5173");
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
@@ -15,27 +13,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 
 require 'db.php';
 
+$data = json_decode(file_get_contents('php://input'), true);
+
+// Handle GET request - fetch all outreach logs
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    $stmt = $pdo->query("SELECT * FROM outreach_logs ORDER BY created_at DESC");
+    $stmt = $pdo->query("
+        SELECT * FROM outreach_logs 
+        ORDER BY contacted_at DESC
+    ");
     echo json_encode($stmt->fetchAll(PDO::FETCH_ASSOC));
     exit;
 }
 
+// Handle POST request - create new outreach log
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt = $pdo->prepare("
-        INSERT INTO outreach_logs (masjid_id, method, contact_name, notes, result, user_id, created_at)
-        VALUES (?, ?, ?, ?, ?, ?, NOW())
+        INSERT INTO outreach_logs 
+        (mosque_id, user_id, method, contacted_person_name, contacted_person_phone, contacted_person_email, notes, result, contacted_at)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, NOW())
     ");
+
     $stmt->execute([
-        $data['masjid_id'],
+        $data['mosque_id'],
+        $data['user_id'],
         $data['method'],
-        $data['contact_name'],
-        $data['notes'],
-        $data['result'],
-        $data['user_id']
+        $data['contacted_person_name'] ?? null,
+        $data['contacted_person_phone'] ?? null,
+        $data['contacted_person_email'] ?? null,
+        $data['notes'] ?? null,
+        $data['result'] ?? null
     ]);
 
-    // return inserted record with its new ID
     $id = $pdo->lastInsertId();
     $stmt = $pdo->prepare("SELECT * FROM outreach_logs WHERE id = ?");
     $stmt->execute([$id]);

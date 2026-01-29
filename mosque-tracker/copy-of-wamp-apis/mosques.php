@@ -27,7 +27,7 @@ SELECT
   m.contact_email,
   m.contact_phone
 FROM mosques m
-ORDER BY m.name
+ORDER BY m.id
 ";
 
 $stmt = $pdo->query($sql);
