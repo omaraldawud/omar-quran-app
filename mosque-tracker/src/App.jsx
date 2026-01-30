@@ -9,11 +9,13 @@ import Login from "./pages/Login";
 import OrganizationRegistration from "./components/OrganizationRegistration";
 import AdminPanel from "./components/AdminPanel";
 import OrganizationProfile from "./components/OrganizationProfile";
+import MosqueEditForm from "./components/MosqueEditForm";
 
 function App() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [currentView, setCurrentView] = useState("dashboard"); // dashboard, profile, admin, register
+  const [currentView, setCurrentView] = useState("dashboard"); // dashboard, profile, admin, register, edit-mosque
+  const [selectedMosqueId, setSelectedMosqueId] = useState(null);
 
   // Check authentication on mount
   useEffect(() => {
@@ -55,8 +57,11 @@ function App() {
     }
   };
 
-  const navigateTo = (view) => {
+  const navigateTo = (view, mosqueId = null) => {
     setCurrentView(view);
+    if (mosqueId !== null) {
+      setSelectedMosqueId(mosqueId);
+    }
   };
 
   if (loading) {
@@ -96,6 +101,7 @@ function App() {
               organizationId={user.organization_id}
               userRole={user.role}
               associatedMosqueId={user.associated_mosque_id}
+              onNavigate={navigateTo}
             />
           )}
 
@@ -112,8 +118,8 @@ function App() {
             </div>
           )}
 
-          {/* Admin Panel View (only for admins) */}
-          {currentView === "admin" && user.role === "admin" && (
+          {/* Admin Panel View (only for system_admin) */}
+          {currentView === "admin" && user.role === "system_admin" && (
             <div className="page-container">
               <button
                 className="btn-back-nav"
@@ -125,8 +131,23 @@ function App() {
             </div>
           )}
 
+          {/* Mosque Edit View */}
+          {currentView === "edit-mosque" && (
+            <MosqueEditForm
+              mosqueId={selectedMosqueId}
+              userRole={user.role}
+              onNavigate={navigateTo}
+              onSuccess={() => {
+                // Optionally refresh data or show notification
+                console.log("Mosque updated successfully");
+              }}
+            />
+          )}
+
           {/* Fallback to dashboard if invalid view */}
-          {!["dashboard", "profile", "admin"].includes(currentView) && (
+          {!["dashboard", "profile", "admin", "edit-mosque"].includes(
+            currentView,
+          ) && (
             <Dashboard
               currentUserId={user.id}
               organizationId={user.organization_id}

@@ -1,0 +1,214 @@
+/* Mosque Admin Sidebar Styles */
+
+.mosque-admin-sidebar {
+  position: fixed;
+  right: 0;
+  top: 160px;
+  width: 350px;
+  height: calc(100vh - 60px);
+  background: #ffffff;
+  border-left: 1px solid #e0e0e0;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.05);
+  overflow-y: auto;
+  transition: all 0.3s ease;
+  z-index: 999;
+}
+
+.mosque-admin-sidebar.collapsed {
+  width: 50px;
+}
+
+.sidebar-header {
+  padding: 15px;
+  background: #f8f9fa;
+  border-bottom: 1px solid #e0e0e0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.sidebar-toggle {
+  background: #3498db;
+  color: white;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  font-size: 12px;
+}
+
+.sidebar-toggle:hover {
+  background: #2980b9;
+  transform: scale(1.1);
+}
+
+.role-badge {
+  font-size: 11px;
+  padding: 4px 10px;
+}
+
+.sidebar-content {
+  padding: 20px;
+}
+
+.mosque-header {
+  margin-bottom: 25px;
+}
+
+.mosque-name {
+  color: #2c3e50;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.btn-edit-mosque {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-edit-mosque:hover {
+  background: linear-gradient(135deg, #2980b9 0%, #21618c 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+}
+
+.sidebar-card {
+  margin-bottom: 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.sidebar-card .card-body {
+  padding: 15px;
+}
+
+.sidebar-card .card-title {
+  color: #34495e;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #ecf0f1;
+}
+
+.info-line {
+  color: #555;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.contact-item strong {
+  color: #34495e;
+  min-width: 50px;
+}
+
+.contact-icon {
+  font-size: 16px;
+}
+
+.contact-item a {
+  color: #3498db;
+  text-decoration: none;
+}
+
+.contact-item a:hover {
+  text-decoration: underline;
+}
+
+.link-item {
+  margin-bottom: 10px;
+}
+
+.link-item a {
+  color: #3498db;
+  text-decoration: none;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.link-item a:hover {
+  text-decoration: underline;
+}
+
+.help-card {
+  background: #f0f8ff;
+  border-color: #3498db;
+}
+
+.help-text {
+  color: #555;
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Scrollbar Styling */
+.mosque-admin-sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.mosque-admin-sidebar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.mosque-admin-sidebar::-webkit-scrollbar-thumb {
+  background: #bdc3c7;
+  border-radius: 3px;
+}
+
+.mosque-admin-sidebar::-webkit-scrollbar-thumb:hover {
+  background: #95a5a6;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .mosque-admin-sidebar {
+    width: 100%;
+    top: auto;
+    bottom: 0;
+    height: 50vh;
+    border-left: none;
+    border-top: 1px solid #e0e0e0;
+  }
+
+  .mosque-admin-sidebar.collapsed {
+    height: 50px;
+    width: 100%;
+  }
+
+  .sidebar-toggle {
+    transform: rotate(90deg);
+  }
+
+  .mosque-admin-sidebar.collapsed .sidebar-toggle {
+    transform: rotate(-90deg);
+  }
+}
