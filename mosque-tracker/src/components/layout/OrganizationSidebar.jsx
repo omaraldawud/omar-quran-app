@@ -105,14 +105,15 @@ export default function OrganizationSidebar({
           {/* Organization Header */}
 
           <div
-            className="org-header "
+            className="org-header"
             style={{ borderLeftColor: primary_color || "#28a745" }}
           >
             {logo_url && (
               <img src={logo_url} alt={`${name} logo`} className="org-logo" />
             )}
-
-            <h3 className="org-name fs-2 fw-bolder">{name}</h3>
+          </div>
+          <div>
+            <h3 className="org-name">{name}</h3>
             {tagline && <p className="org-tagline">{tagline}</p>}
           </div>
 
@@ -123,27 +124,29 @@ export default function OrganizationSidebar({
                 <h6 className="card-title fs-4 fw-bold">
                   <span style={{ color: primary_color }}> Contacts</span>
                 </h6>
+                <div className="mb-3 fw-bold" style={{ fontSize: "11px" }}>
+                  {street}. {city}, {state}.
+                </div>
                 {phone && (
                   <div className="contact-item d-flex align-items-center mb-2">
                     <span
                       className="me-2"
-                      style={{ color: primary_color, width: "20px" }}
+                      style={{ color: primary_color, width: "10px" }}
                     >
                       📞
                     </span>
                     <a href={`tel:${phone}`}>{phone}</a>
-                  </div>
-                )}
-                {email && (
-                  <div className="contact-item d-flex align-items-center mb-2">
                     <span
-                      className="me-2"
-                      style={{ color: primary_color, width: "20px" }}
+                      className="mx-2"
+                      style={{ color: primary_color, width: "10px" }}
                     >
                       ✉️
                     </span>
                     <a href={`mailto:${email}`}>{email}</a>
                   </div>
+                )}
+                {email && (
+                  <div className="contact-item d-flex align-items-center mb-2"></div>
                 )}
                 {website && (
                   <div className="contact-item d-flex align-items-center mb-2">
@@ -296,6 +299,23 @@ export default function OrganizationSidebar({
                   <span style={{ color: primary_color }}>🎯</span> Current Goals
                 </h6>
                 <p className="goals-text">{outreach_goals}</p>
+              </Card.Body>
+            </Card>
+          )}
+
+          {/* mission / vision*/}
+          {mission_statement && (
+            <Card className="sidebar-card">
+              <Card.Body>
+                <h6 className="card-title">
+                  <span style={{ color: primary_color }}>🎯</span> Mission
+                  Statement
+                </h6>
+
+                <div
+                  className="goals-text"
+                  dangerouslySetInnerHTML={{ __html: mission_statement }}
+                />
               </Card.Body>
             </Card>
           )}

@@ -3,7 +3,7 @@
 .organization-sidebar {
   position: fixed;
   right: 0;
-  top: 80px;
+  top: 100px;
   right: 20px;
   width: 420px;
   height: calc(100vh - 60px);
@@ -65,14 +65,14 @@
 }
 
 .org-logo {
-  max-width: 150px;
+  /* max-width: 150px; */
   max-height: 150px;
   margin-bottom: 5px;
   border-radius: 8px;
 }
 
 .org-name {
-  font-size: 18px;
+  font-size: 36px;
   font-weight: 700;
   color: #212529;
   margin: 0;
@@ -82,7 +82,7 @@
 .org-tagline {
   font-size: 13px;
   color: #6c757d;
-  margin: 8px 0 0;
+  margin-bottom: 22px;
   font-style: italic;
 }
 

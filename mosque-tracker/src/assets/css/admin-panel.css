@@ -1,0 +1,266 @@
+/* Admin Panel Styles */
+
+.admin-panel {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.admin-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.admin-header h1 {
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.admin-header p {
+  color: #7f8c8d;
+  font-size: 16px;
+}
+
+.admin-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+  border-bottom: 2px solid #ecf0f1;
+}
+
+.tab {
+  padding: 12px 24px;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  color: #7f8c8d;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.tab:hover {
+  color: #3498db;
+}
+
+.tab.active {
+  color: #3498db;
+  border-bottom-color: #3498db;
+}
+
+.tab .badge {
+  background: #e74c3c;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  margin-left: 8px;
+}
+
+.tab.active .badge {
+  background: #3498db;
+}
+
+.tab-content {
+  min-height: 400px;
+}
+
+.org-list {
+  display: grid;
+  gap: 20px;
+}
+
+.org-card {
+  background: white;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.org-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.org-header {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #ecf0f1;
+}
+
+.org-header h3 {
+  color: #2c3e50;
+  margin: 0 0 10px 0;
+  font-size: 20px;
+}
+
+.org-type-badge,
+.status-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-left: 10px;
+}
+
+.org-type-badge.nonprofit {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.org-type-badge.mosque {
+  background: #e3f2fd;
+  color: #1565c0;
+}
+
+.org-type-badge.other {
+  background: #f3e5f5;
+  color: #6a1b9a;
+}
+
+.status-badge.active {
+  background: #d4edda;
+  color: #155724;
+}
+
+.status-badge.inactive {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.org-date {
+  color: #7f8c8d;
+  font-size: 14px;
+}
+
+.org-details {
+  margin-bottom: 20px;
+}
+
+.detail-row {
+  padding: 8px 0;
+  font-size: 14px;
+  color: #34495e;
+}
+
+.detail-row strong {
+  color: #2c3e50;
+  margin-right: 8px;
+}
+
+.detail-row a {
+  color: #3498db;
+  text-decoration: none;
+}
+
+.detail-row a:hover {
+  text-decoration: underline;
+}
+
+.org-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  padding-top: 15px;
+  border-top: 1px solid #ecf0f1;
+}
+
+.btn-approve,
+.btn-reject {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-approve {
+  background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+  color: white;
+}
+
+.btn-approve:hover:not(:disabled) {
+  background: linear-gradient(135deg, #229954 0%, #1e8449 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
+}
+
+.btn-reject {
+  background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+  color: white;
+}
+
+.btn-reject:hover:not(:disabled) {
+  background: linear-gradient(135deg, #c0392b 0%, #a93226 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+}
+
+.btn-approve:disabled,
+.btn-reject:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 80px 20px;
+  color: #7f8c8d;
+}
+
+.empty-state p {
+  font-size: 18px;
+}
+
+.loading {
+  text-align: center;
+  padding: 60px 20px;
+  font-size: 18px;
+  color: #7f8c8d;
+}
+
+/* Responsive Design */
+
+@media (max-width: 768px) {
+  .admin-panel {
+    padding: 10px;
+  }
+
+  .admin-tabs {
+    flex-direction: column;
+  }
+
+  .tab {
+    width: 100%;
+    text-align: left;
+    border-bottom: 1px solid #ecf0f1;
+    border-left: 3px solid transparent;
+  }
+
+  .tab.active {
+    border-bottom-color: #ecf0f1;
+    border-left-color: #3498db;
+  }
+
+  .org-header {
+    flex-direction: column;
+  }
+
+  .org-actions {
+    flex-direction: column;
+  }
+
+  .btn-approve,
+  .btn-reject {
+    width: 100%;
+  }
+}

@@ -1,13 +1,19 @@
 import { useState, useEffect } from "react";
 import "./assets/css/layout.css";
+import "./assets/css/App.css";
+//main components
 import Layout from "./components/layout/Layout";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
-import "./assets/css/App.css";
+//organization
+import OrganizationRegistration from "./components/OrganizationRegistration";
+import AdminPanel from "./components/AdminPanel";
+import OrganizationProfile from "./components/OrganizationProfile";
 
 function App() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [currentView, setCurrentView] = useState("dashboard"); // dashboard, profile, admin, register
 
   // Check authentication on mount
   useEffect(() => {
@@ -33,6 +39,7 @@ function App() {
 
   const handleLogin = (userData) => {
     setUser(userData);
+    setCurrentView("dashboard");
   };
 
   const handleLogout = async () => {
@@ -42,9 +49,14 @@ function App() {
         credentials: "include",
       });
       setUser(null);
+      setCurrentView("dashboard");
     } catch (err) {
       console.error("Logout failed:", err);
     }
+  };
+
+  const navigateTo = (view) => {
+    setCurrentView(view);
   };
 
   if (loading) {
@@ -56,17 +68,79 @@ function App() {
     );
   }
 
-  return (
-    <Layout user={user} onLogout={handleLogout}>
-      {user ? (
-        <Dashboard
-          currentUserId={user.id}
-          organizationId={user.organization_id}
-          userRole={user.role}
-          associatedMosqueId={user.associated_mosque_id}
+  // Registration page (public, no layout needed)
+  if (!user && currentView === "register") {
+    return (
+      <div className="registration-page">
+        <OrganizationRegistration
+          onBackToLogin={() => setCurrentView("dashboard")}
         />
+      </div>
+    );
+  }
+
+  // Main app with Layout
+  return (
+    <Layout
+      user={user}
+      onLogout={handleLogout}
+      currentView={currentView}
+      onNavigate={navigateTo}
+    >
+      {user ? (
+        <>
+          {/* Dashboard View */}
+          {currentView === "dashboard" && (
+            <Dashboard
+              currentUserId={user.id}
+              organizationId={user.organization_id}
+              userRole={user.role}
+              associatedMosqueId={user.associated_mosque_id}
+            />
+          )}
+
+          {/* Organization Profile View */}
+          {currentView === "profile" && (
+            <div className="page-container">
+              <button
+                className="btn-back-nav"
+                onClick={() => navigateTo("dashboard")}
+              >
+                ← Back to Dashboard
+              </button>
+              <OrganizationProfile organizationId={user.organization_id} />
+            </div>
+          )}
+
+          {/* Admin Panel View (only for admins) */}
+          {currentView === "admin" && user.role === "admin" && (
+            <div className="page-container">
+              <button
+                className="btn-back-nav"
+                onClick={() => navigateTo("dashboard")}
+              >
+                ← Back to Dashboard
+              </button>
+              <AdminPanel />
+            </div>
+          )}
+
+          {/* Fallback to dashboard if invalid view */}
+          {!["dashboard", "profile", "admin"].includes(currentView) && (
+            <Dashboard
+              currentUserId={user.id}
+              organizationId={user.organization_id}
+              userRole={user.role}
+              associatedMosqueId={user.associated_mosque_id}
+              onNavigate={navigateTo}
+            />
+          )}
+        </>
       ) : (
-        <Login onLogin={handleLogin} />
+        <Login
+          onLogin={handleLogin}
+          onRegister={() => setCurrentView("register")}
+        />
       )}
     </Layout>
   );

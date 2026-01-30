@@ -1,7 +1,7 @@
 import { useState } from "react";
-import "../assets/css/Login.css";
+import "../assets/css/login.css";
 
-export default function Login({ onLogin }) {
+export default function Login({ onLogin, onRegister }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -25,11 +25,11 @@ export default function Login({ onLogin }) {
       if (data.success) {
         onLogin(data.user);
       } else {
-        setError(data.message || "Invalid credentials");
+        setError(data.error || "Login failed");
       }
     } catch (err) {
-      setError("Connection error. Please try again.");
       console.error("Login error:", err);
+      setError("An error occurred. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -39,55 +39,60 @@ export default function Login({ onLogin }) {
     <div className="login-container">
       <div className="login-card">
         <div className="login-header">
-          <h1>🕌 Mosque Outreach</h1>
-          <p>Sign in to continue</p>
+          <h1>Welcome Back</h1>
+          <p>Login to your account</p>
         </div>
 
         <form onSubmit={handleSubmit} className="login-form">
-          {error && (
-            <div className="alert alert-error">
-              <span>⚠️</span> {error}
-            </div>
-          )}
+          {error && <div className="error-message">{error}</div>}
 
           <div className="form-group">
             <label htmlFor="email">Email Address</label>
             <input
-              id="email"
               type="email"
+              id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="you@example.com"
+              placeholder="Enter your email"
               required
               autoComplete="email"
-              disabled={loading}
             />
           </div>
 
           <div className="form-group">
             <label htmlFor="password">Password</label>
             <input
-              id="password"
               type="password"
+              id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="••••••••"
+              placeholder="Enter your password"
               required
               autoComplete="current-password"
-              disabled={loading}
             />
           </div>
 
           <button type="submit" className="btn-login" disabled={loading}>
-            {loading ? "Signing in..." : "Sign In"}
+            {loading ? "Logging in..." : "Login"}
           </button>
-
-          <div className="login-footer">
-            <a href="#" className="forgot-password">
-              Forgot password?
-            </a>
-          </div>
         </form>
+
+        <div className="login-footer">
+          <div className="divider">
+            <span>New Organization?</span>
+          </div>
+          <button
+            type="button"
+            onClick={onRegister}
+            className="btn-register-link"
+          >
+            Register Your Organization
+          </button>
+          <p className="help-text">
+            Register your organization to get access to the platform. Your
+            application will be reviewed by our admin team.
+          </p>
+        </div>
       </div>
     </div>
   );
