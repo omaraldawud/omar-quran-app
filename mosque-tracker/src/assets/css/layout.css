@@ -283,3 +283,87 @@
 .contact-item a:hover {
   text-decoration: underline;
 }
+
+/* Masid Card */
+/* Additional styles for MasjidCard Edit Button */
+
+.masjid-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-end;
+}
+
+.btn-log,
+.btn-edit {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 140px;
+}
+
+.btn-log {
+  background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+  color: white;
+}
+
+.btn-log:hover {
+  background: linear-gradient(135deg, #229954 0%, #1e8449 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
+}
+
+.btn-edit {
+  background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+  color: white;
+}
+
+.btn-edit:hover {
+  background: linear-gradient(135deg, #2980b9 0%, #21618c 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+}
+
+/* Dashboard layout adjustments for no sidebar */
+.dashboard-with-sidebar.no-sidebar {
+  margin-right: 0;
+}
+
+.dashboard-with-sidebar {
+  margin-right: 350px;
+  transition: margin-right 0.3s ease;
+}
+
+.dashboard-with-sidebar.sidebar-collapsed {
+  margin-right: 50px;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .masjid-actions {
+    width: 100%;
+    align-items: stretch;
+  }
+
+  .btn-log,
+  .btn-edit {
+    width: 100%;
+  }
+
+  .dashboard-with-sidebar {
+    margin-right: 0;
+    margin-bottom: 50vh;
+  }
+
+  .dashboard-with-sidebar.sidebar-collapsed {
+    margin-bottom: 50px;
+  }
+
+  .dashboard-with-sidebar.no-sidebar {
+    margin-bottom: 0;
+  }
+}

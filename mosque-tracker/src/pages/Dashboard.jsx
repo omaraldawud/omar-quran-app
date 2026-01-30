@@ -3,10 +3,17 @@ import Badge from "react-bootstrap/Badge";
 import MasjidCard from "../components/layout/MasjidCard";
 import LogActionModal from "../components/LogActionModal";
 import OrganizationSidebar from "../components/layout/OrganizationSidebar";
+import MosqueAdminSidebar from "../components/layout/MosqueAdminSidebar";
 import { US_STATES } from "../assets/ds/us_states";
 import "../assets/css/search-and-filter.css";
 
-export default function Dashboard({ currentUserId, organizationId = 1 }) {
+export default function Dashboard({
+  currentUserId,
+  organizationId,
+  userRole,
+  associatedMosqueId,
+  onNavigate,
+}) {
   const [mosques, setMosques] = useState([]);
   const [outreach, setOutreach] = useState([]);
   const [activeMasjidId, setActiveMasjidId] = useState(null);
@@ -16,7 +23,9 @@ export default function Dashboard({ currentUserId, organizationId = 1 }) {
 
   // Load mosques and outreach from API
   useEffect(() => {
-    fetch("http://localhost/api/mosques.php")
+    fetch("http://localhost/api/mosques.php", {
+      credentials: "include",
+    })
       .then((res) => res.json())
       .then((data) => {
         console.log("Mosques loaded:", data);
@@ -24,7 +33,9 @@ export default function Dashboard({ currentUserId, organizationId = 1 }) {
       })
       .catch(console.error);
 
-    fetch("http://localhost/api/outreach.php")
+    fetch("http://localhost/api/outreach.php", {
+      credentials: "include",
+    })
       .then((res) => res.json())
       .then((data) => {
         console.log("Outreach data loaded:", data);
@@ -61,6 +72,7 @@ export default function Dashboard({ currentUserId, organizationId = 1 }) {
       const res = await fetch("http://localhost/api/outreach.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        credentials: "include",
         body: JSON.stringify(newEntry),
       });
       const savedEntry = await res.json();
@@ -73,6 +85,10 @@ export default function Dashboard({ currentUserId, organizationId = 1 }) {
     } catch (err) {
       console.error("Error saving outreach:", err);
     }
+  };
+
+  const handleEditMosque = (mosqueId) => {
+    onNavigate("edit-mosque", mosqueId);
   };
 
   // Filtered mosques by state and search term
@@ -96,11 +112,17 @@ export default function Dashboard({ currentUserId, organizationId = 1 }) {
   const totalOutreach = outreach.length;
   const mosquesWithOutreach = new Set(outreach.map((o) => o.mosque_id)).size;
 
+  // Determine which sidebar to show based on role
+  const showOrganizationSidebar =
+    userRole === "organization_admin" && organizationId;
+  const showMosqueSidebar = userRole === "mosque_admin" && associatedMosqueId;
+  const showNoSidebar = userRole === "system_admin";
+
   return (
     <>
       {/* Main Dashboard Content */}
       <div
-        className={`dashboard-with-sidebar ${sidebarCollapsed ? "sidebar-collapsed" : ""}`}
+        className={`dashboard-with-sidebar ${sidebarCollapsed ? "sidebar-collapsed" : ""} ${showNoSidebar ? "no-sidebar" : ""}`}
       >
         {/* STATE + SEARCH + STATS */}
         <div className="state-filter mb-4 d-flex align-items-center flex-wrap gap-3">
@@ -156,13 +178,17 @@ export default function Dashboard({ currentUserId, organizationId = 1 }) {
               const masjidOutreach = outreach.filter(
                 (o) => String(o.mosque_id) === String(m.id),
               );
-              console.log("M = ", m);
+
               return (
                 <MasjidCard
                   key={m.id}
                   masjid={m}
                   outreachLog={masjidOutreach}
                   onAddAction={(id) => setActiveMasjidId(id)}
+                  onEditMosque={handleEditMosque}
+                  userRole={userRole}
+                  userOrganizationId={organizationId}
+                  userAssociatedMosqueId={associatedMosqueId}
                 />
               );
             })
@@ -170,12 +196,25 @@ export default function Dashboard({ currentUserId, organizationId = 1 }) {
         </div>
       </div>
 
-      {/* Organization Sidebar */}
-      <OrganizationSidebar
-        organizationId={organizationId}
-        isCollapsed={sidebarCollapsed}
-        onToggle={() => setSidebarCollapsed(!sidebarCollapsed)}
-      />
+      {/* Conditional Sidebar Based on Role */}
+      {showOrganizationSidebar && (
+        <OrganizationSidebar
+          organizationId={organizationId}
+          isCollapsed={sidebarCollapsed}
+          onToggle={() => setSidebarCollapsed(!sidebarCollapsed)}
+        />
+      )}
+
+      {showMosqueSidebar && (
+        <MosqueAdminSidebar
+          mosqueId={associatedMosqueId}
+          isCollapsed={sidebarCollapsed}
+          onToggle={() => setSidebarCollapsed(!sidebarCollapsed)}
+          onEditMosque={() => handleEditMosque(associatedMosqueId)}
+        />
+      )}
+
+      {/* system_admin has NO SIDEBAR */}
 
       {/* LOG MODAL */}
       {activeMasjidId && (
