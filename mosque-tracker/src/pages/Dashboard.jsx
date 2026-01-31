@@ -11,7 +11,7 @@ export default function Dashboard({
   currentUserId,
   organizationId,
   userRole,
-  associatedMosqueId,
+  associatedMosqueId, // This comes from user.associated_mosque_id
   onNavigate,
 }) {
   const [mosques, setMosques] = useState([]);
@@ -117,6 +117,16 @@ export default function Dashboard({
     userRole === "organization_admin" && organizationId;
   const showMosqueSidebar = userRole === "mosque_admin" && associatedMosqueId;
   const showNoSidebar = userRole === "system_admin";
+
+  // Debug logging
+  console.log("Dashboard Props:", {
+    userRole,
+    organizationId,
+    associatedMosqueId,
+    showOrganizationSidebar,
+    showMosqueSidebar,
+    showNoSidebar,
+  });
 
   return (
     <>

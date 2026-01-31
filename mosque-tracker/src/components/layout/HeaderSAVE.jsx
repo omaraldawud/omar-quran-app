@@ -13,9 +13,6 @@ export default function Header({ user, onLogout, currentView, onNavigate }) {
     setMenuOpen(false);
   };
 
-  // Show Organization Profile button only if user has organization_id
-  const hasOrganization = user.organization_id != null && user.organization_id !== "";
-
   return (
     <header className="app-header">
       <div className="header-container">
@@ -38,15 +35,12 @@ export default function Header({ user, onLogout, currentView, onNavigate }) {
             📊 Dashboard
           </button>
 
-          {/* Show Organization Profile only if user has organization_id */}
-          {hasOrganization && (
-            <button
-              className={`nav-btn ${currentView === "profile" ? "active" : ""}`}
-              onClick={() => handleNavigation("profile")}
-            >
-              🏢 Organization Profile
-            </button>
-          )}
+          <button
+            className={`nav-btn ${currentView === "profile" ? "active" : ""}`}
+            onClick={() => handleNavigation("profile")}
+          >
+            🏢 Organization Profile
+          </button>
 
           {user.role === "system_admin" && (
             <button

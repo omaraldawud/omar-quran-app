@@ -13,6 +13,8 @@ export default function MosqueEditForm({ mosqueId, userRole, onNavigate, onSucce
     contact_name: "",
     contact_email: "",
     contact_phone: "",
+    phone: "",
+    email: "",
     website: "",
     facebook: "",
     whatsapp: "",
@@ -218,9 +220,9 @@ export default function MosqueEditForm({ mosqueId, userRole, onNavigate, onSucce
           </div>
         </section>
 
-        {/* Contact Information */}
+        {/* Contact Person */}
         <section className="form-section">
-          <h2>Contact Information</h2>
+          <h2>Contact Person</h2>
 
           <div className="form-group">
             <label htmlFor="contact_name">Contact Person Name</label>
@@ -252,6 +254,35 @@ export default function MosqueEditForm({ mosqueId, userRole, onNavigate, onSucce
                 id="contact_phone"
                 name="contact_phone"
                 value={formData.contact_phone || ""}
+                onChange={handleChange}
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* General Mosque Contact */}
+        <section className="form-section">
+          <h2>Mosque Contact Information</h2>
+
+          <div className="form-row">
+            <div className="form-group">
+              <label htmlFor="phone">Main Phone</label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                value={formData.phone || ""}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="email">Main Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email || ""}
                 onChange={handleChange}
               />
             </div>
