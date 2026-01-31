@@ -14,7 +14,8 @@ export default function Header({ user, onLogout, currentView, onNavigate }) {
   };
 
   // Show Organization Profile button only if user has organization_id
-  const hasOrganization = user.organization_id != null && user.organization_id !== "";
+  const hasOrganization =
+    user.organization_id != null && user.organization_id !== "";
 
   return (
     <header className="app-header">

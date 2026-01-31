@@ -54,9 +54,9 @@ export default function Dashboard({
     contacted_person_email,
     notes,
     result,
+    contacted_by_org_id,
   }) => {
     if (!activeMasjidId) return;
-
     const newEntry = {
       mosque_id: activeMasjidId,
       user_id: currentUserId,
@@ -66,6 +66,7 @@ export default function Dashboard({
       contacted_person_email,
       notes,
       result,
+      contacted_by_org_id,
     };
 
     try {
@@ -77,7 +78,7 @@ export default function Dashboard({
       });
       const savedEntry = await res.json();
 
-      console.log("Saved entry:", savedEntry);
+      // console.log("Saved entry:", savedEntry);
 
       // Append new entry to local state (add to beginning for newest first)
       setOutreach((prev) => [savedEntry, ...prev]);
@@ -119,14 +120,14 @@ export default function Dashboard({
   const showNoSidebar = userRole === "system_admin";
 
   // Debug logging
-  console.log("Dashboard Props:", {
-    userRole,
-    organizationId,
-    associatedMosqueId,
-    showOrganizationSidebar,
-    showMosqueSidebar,
-    showNoSidebar,
-  });
+  // console.log("Dashboard Props:", {
+  //   userRole,
+  //   organizationId,
+  //   associatedMosqueId,
+  //   showOrganizationSidebar,
+  //   showMosqueSidebar,
+  //   showNoSidebar,
+  // });
 
   return (
     <>
