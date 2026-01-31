@@ -1,0 +1,197 @@
+Country,ISO_Code,Mosque_Count
+Indonesia,ID,744123
+Democratic Republic of the Congo,CD,385000
+Saudi Arabia,SA,326000
+Pakistan,PK,313000
+Bangladesh,BD,253000
+India,IN,152241
+Egypt,EG,151194
+Iran,IR,80200
+Sudan,SD,78100
+Morocco,MA,52000
+Nigeria,NG,50000
+Turkey,TR,41883
+China,CN,40000
+Algeria,DZ,25000
+Iraq,IQ,15000
+Syria,SY,8000
+Russia,RU,8000
+Malaysia,MY,6500
+Tanzania,TZ,6000
+Afghanistan,AF,5000
+Niger,NE,5000
+Thailand,TH,5000
+Tunisia,TN,5000
+Yemen,YE,4000
+Kenya,KE,4000
+United States of America,US,3967
+Philippines,PH,3000
+Ethiopia,ET,3000
+Libya,LY,3000
+Kazakhstan,KZ,2800
+Germany,DE,2600
+France,FR,2500
+Chad,TD,2000
+Uzbekistan,UZ,2000
+Uganda,UG,2000
+Senegal,SN,2000
+Jordan,JO,2000
+Mali,ML,2000
+Oman,OM,2000
+Kyrgyzstan,KG,2000
+South Sudan,SS,2000
+United Kingdom,GB,2000
+Bosnia and Herzegovina,BA,1500
+Azerbaijan,AZ,1500
+Spain,ES,1500
+Somalia,SO,1500
+Lebanon,LB,1500
+Sri Lanka,LK,1500
+Italy,IT,1200
+Bulgaria,BG,1200
+Burkina Faso,BF,1000
+Ghana,GH,1000
+Guinea,GN,1000
+Mauritania,MR,1000
+United Arab Emirates,AE,1000
+Palestine,PS,1000
+South Africa,ZA,1000
+Tajikistan,TJ,1000
+Romania,RO,800
+Kuwait,KW,800
+Cyprus,CY,700
+North Macedonia,MK,600
+Albania,AL,600
+Côte d'Ivoire,CI,500
+Gambia,GM,500
+Cameroon,CM,500
+Canada,CA,500
+Australia,AU,500
+Netherlands,NL,500
+Israel,IL,500
+Nepal,NP,500
+Myanmar,MM,500
+Ukraine,UA,500
+Qatar,QA,500
+Turkmenistan,TM,500
+Belgium,BE,400
+Maldives,MV,300
+Greece,GR,300
+Serbia,RS,300
+Switzerland,CH,250
+Bahrain,BH,200
+Brazil,BR,200
+Benin,BJ,200
+Austria,AT,200
+Korea (Republic of),KR,200
+Sweden,SE,200
+Madagascar,MG,200
+Mexico,MX,200
+Namibia,NA,200
+Denmark,DK,120
+Japan,JP,113
+Eritrea,ER,100
+Togo,TG,100
+Trinidad and Tobago,TT,100
+Venezuela (Bolivarian Republic of),VE,100
+Sierra Leone,SL,100
+Hungary,HU,100
+Norway,NO,100
+Mauritius,MU,100
+Mozambique,MZ,100
+Comoros,KM,100
+Angola,AO,100
+Georgia,GE,100
+Argentina,AR,100
+Burundi,BI,100
+Cambodia,KH,100
+Vietnam,VN,80
+Singapore,SG,70
+Finland,FI,50
+Moldova,MD,50
+Montenegro,ME,50
+New Zealand,NZ,50
+Malawi,MW,50
+Panama,PA,50
+Portugal,PT,50
+Rwanda,RW,50
+Mongolia,MN,50
+Liberia,LR,50
+Guinea-Bissau,GW,50
+Ireland,IE,50
+Armenia,AM,50
+Djibouti,DJ,50
+Croatia,HR,50
+Central African Republic,CF,50
+Colombia,CO,50
+Congo (Congo-Brazzaville),CG,50
+Czechia (Czech Republic),CZ,50
+Chile,CL,50
+Poland,PL,30
+Costa Rica,CR,30
+Brunei,BN,30
+Belarus,BY,30
+Cabo Verde,CV,20
+Botswana,BW,20
+Gabon,GA,20
+Ecuador,EC,20
+Guatemala,GT,20
+Guyana,GY,20
+Luxembourg,LU,20
+Lithuania,LT,20
+Laos,LA,20
+Slovenia,SI,20
+Zambia,ZM,20
+Peru,PE,20
+Slovakia,SK,20
+Uruguay,UY,20
+Nicaragua,NI,20
+Fiji,FJ,20
+Suriname,SR,10
+Zimbabwe,ZW,10
+Taiwan,TW,10
+Lesotho,LS,10
+Malta,MT,10
+Latvia,LV,10
+Papua New Guinea,PG,10
+Paraguay,PY,10
+El Salvador,SV,10
+Bolivia,BO,10
+Bahamas,BS,10
+Dominican Republic,DO,10
+Bhutan,BT,10
+Equatorial Guinea,GQ,10
+Honduras,HN,10
+Estonia,EE,5
+Haiti,HT,5
+Jamaica,JM,5
+Sao Tome and Principe,ST,5
+"Eswatini (fmr. ""Swaziland"")",SZ,5
+Cuba,CU,5
+Barbados,BB,5
+Belize,BZ,5
+Grenada,GD,5
+Seychelles,SC,2
+Saint Lucia,LC,2
+Antigua and Barbuda,AG,2
+Dominica,DM,1
+Tonga,TO,1
+Iceland,IS,1
+Micronesia (Federated States of),FM,1
+Monaco,MC,1
+Tuvalu,TV,1
+Solomon Islands,SB,1
+Nauru,NR,1
+Marshall Islands,MH,1
+Liechtenstein,LI,1
+Kiribati,KI,1
+Saint Kitts and Nevis,KN,1
+Palau,PW,1
+Vanuatu,VU,1
+Timor-Leste,TL,1
+Samoa,WS,1
+Saint Vincent and the Grenadines,VC,1
+Andorra,AD,0
+Korea (Democratic People's Republic of),KP,0
+Holy See,VA,0
+San Marino,SM,0

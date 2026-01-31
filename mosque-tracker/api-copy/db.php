@@ -10,10 +10,10 @@
 // );
 
 // Database connection configuration
-$host = 'localhost';
-$db   = 'masjid_saas';  
-$user = 'root';                
-$pass = 'omar';                    
+$host = '198.12.233.232';
+$db   = 'majid_saas';  
+$user = 'usr_masjid_admin';                
+$pass = 'Masjid_843312';                    
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";

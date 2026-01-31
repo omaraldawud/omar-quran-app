@@ -150,11 +150,14 @@ export default function Dashboard({
 
           {/* Summary Stats */}
           <div className="d-flex gap-2">
+            <Badge bg="info" className="p-2">
+              🕌 {filteredMosques.length} Total Mosques in {selectedState}:
+            </Badge>
             <Badge bg="primary" className="p-2">
               📊 {totalOutreach} Total Outreach
             </Badge>
             <Badge bg="success" className="p-2">
-              🕌 {mosquesWithOutreach} Mosques Contacted
+              📊 {mosquesWithOutreach} Mosques Contacted
             </Badge>
           </div>
         </div>
