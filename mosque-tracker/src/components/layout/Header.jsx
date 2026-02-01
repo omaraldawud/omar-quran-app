@@ -65,33 +65,34 @@ export default function Header({ user, onLogout, currentView, onNavigate }) {
         </nav>
 
         <div className="header-right">
-          <div className="user-info">
+          <div className="user-info flex-column">
             <div className="profile-picture-container">
-              <img
-                src={user.user_profile_picture}
-                alt={user.user_name}
-                className="profile-picture"
-                onError={(e) => {
-                  e.target.style.display = "none";
-                  e.target.nextElementSibling.style.display = "flex";
-                }}
-              />
-              <div className="profile-fallback">
-                {user.user_name?.charAt(0) || "U"}
+              <div className="user-actions">
+                {user.user_profile_picture ? (
+                  <img
+                    src={user.user_profile_picture}
+                    alt={user.user_name}
+                    className="profile-picture"
+                    onError={(e) => {
+                      e.target.style.display = "none";
+                      e.target.nextElementSibling.style.display = "flex";
+                    }}
+                  />
+                ) : null}
+                <button className="btn-logout" onClick={onLogout}>
+                  Logout
+                </button>
               </div>
             </div>
-            <span className="user-name">
-              <FaUsers className="text-warning me-2" />
-              {user.user_name} - {user.role}
-              {user.organization_id && ` - ORG-ID: ${user.organization_id}`}
-            </span>
-            <span className="user-role"></span>
+            <div>
+              <span className="user-name">
+                <FaUsers size={24} className="text-primary me-2" />
+                {user.user_name} :{"  "}
+                <span className="text-dark">{user.role}</span>
+                {user.organization_id && ` - ORG-ID: ${user.organization_id}`}
+              </span>
+            </div>
           </div>
-        </div>
-        <div>
-          <button className="btn-logout" onClick={onLogout}>
-            Logout
-          </button>
         </div>
       </div>
 

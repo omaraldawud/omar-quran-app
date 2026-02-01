@@ -1,5 +1,16 @@
 /* Header Styles */
 
+/* overrides */
+.text-blue-600 {
+  color: #1f4fd8;
+}
+.text-green-600 {
+  color: #2e7d32;
+}
+.text-gray-700 {
+  color: #374151;
+}
+
 .app-header {
   background-color: #bb4947;
   color: white;
@@ -46,12 +57,11 @@
 }
 
 .header-container {
-  max-width: 1400px;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 15px 30px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   gap: 20px;
 }
 
@@ -92,7 +102,7 @@
 }
 
 .nav-btn {
-  background: none;
+  background: rgba(255, 255, 255, 0.1);
   border: none;
   color: black;
   padding: 10px 16px;
@@ -105,7 +115,7 @@
 }
 
 .nav-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 0, 0, 0.5);
 }
 
 .nav-btn.active {
@@ -122,15 +132,19 @@
 
 .user-info {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 2px;
+  align-items: center;
+  gap: 16px;
+  max-width: 100%;
+  /* overflow-x: hidden; */
 }
 
 .user-name {
-  color: white;
+  background-color: white;
+  color: #01b65a;
   font-weight: 600;
   font-size: 12px;
+  border-radius: 11px;
+  padding: 11px;
 }
 
 .user-role {
@@ -274,12 +288,25 @@
 }
 
 .profile-picture {
-  width: 100%;
-  height: 100%;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid #ace3c7;
+  border: 3px solid #ffc107;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+.user-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.profile-fallback {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background: #ccc;
+  font-weight: bold;
 }
 
 .profile-fallback {

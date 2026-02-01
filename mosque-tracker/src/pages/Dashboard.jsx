@@ -6,6 +6,7 @@ import OrganizationSidebar from "../components/layout/OrganizationSidebar";
 import MosqueAdminSidebar from "../components/layout/MosqueAdminSidebar";
 import { US_STATES } from "../assets/ds/us_states";
 import "../assets/css/search-and-filter.css";
+import { FaMosque, FaChartPie, FaChartLine } from "react-icons/fa";
 
 export default function Dashboard({
   currentUserId,
@@ -17,7 +18,7 @@ export default function Dashboard({
   const [mosques, setMosques] = useState([]);
   const [outreach, setOutreach] = useState([]);
   const [activeMasjidId, setActiveMasjidId] = useState(null);
-  const [selectedState, setSelectedState] = useState("ALL");
+  const [selectedState, setSelectedState] = useState("ALL STATES");
   const [searchTerm, setSearchTerm] = useState("");
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
@@ -94,7 +95,8 @@ export default function Dashboard({
 
   // Filtered mosques by state and search term
   const filteredMosques = mosques.filter((m) => {
-    if (selectedState !== "ALL" && m.state !== selectedState) return false;
+    if (selectedState !== "ALL STATES" && m.state !== selectedState)
+      return false;
     if (!searchTerm) return true;
     const q = searchTerm.toLowerCase();
     return (
@@ -143,7 +145,7 @@ export default function Dashboard({
             value={selectedState}
             onChange={(e) => setSelectedState(e.target.value)}
           >
-            <option value="ALL">All States</option>
+            <option value="ALL STATES">All States</option>
             {US_STATES.map((s) => (
               <option key={s.abbreviation} value={s.abbreviation}>
                 {s.name}
@@ -156,20 +158,28 @@ export default function Dashboard({
             placeholder="🔍 Search masjid, city, phone, contact..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="masjid-search"
+            className="masjid-search me-3"
             style={{ flex: "1 1 300px" }}
           />
 
           {/* Summary Stats */}
           <div className="d-flex gap-2">
-            <Badge bg="info" className="p-2">
-              🕌 {filteredMosques.length} Total Mosques in {selectedState}:
+            <Badge bg="primary" className="p-2">
+              <FaMosque size={24} className="text-gray-700 me-2" />{" "}
+              <span className="text-warning fs-5">
+                {filteredMosques.length}
+              </span>{" "}
+              Total Mosques in: {selectedState}
             </Badge>
             <Badge bg="primary" className="p-2">
-              📊 {totalOutreach} Total Outreach
+              <FaChartLine size={24} className="text-blue-600 me-2" />{" "}
+              <span className="text-warning fs-5">{totalOutreach}</span> Total
+              Outreach
             </Badge>
-            <Badge bg="success" className="p-2">
-              📊 {mosquesWithOutreach} Mosques Contacted
+            <Badge bg="primary" className="p-2">
+              <FaChartPie size={24} className="text-blue-600 me-2" />{" "}
+              <span className="text-warning fs-5">{mosquesWithOutreach}</span>{" "}
+              Mosques Contacted
             </Badge>
           </div>
         </div>
