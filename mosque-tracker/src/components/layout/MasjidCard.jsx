@@ -53,6 +53,11 @@ export default function MasjidCard({
   };
   const showEditButton = canEdit();
 
+  const canLogActions = () => {
+    if (userRole === "system_admin") return false;
+  };
+  const showLogButton = canLogActions();
+
   // Sort outreach by date (most recent first)
   const sortedOutreach = [...outreachLog].sort(
     (a, b) => new Date(b.contacted_at) - new Date(a.contacted_at),
@@ -154,9 +159,11 @@ export default function MasjidCard({
 
         {/* ACTION BUTTONS */}
         <div className="masjid-actions">
-          <button className="btn-log" onClick={handleAddAction}>
-            + Log Action
-          </button>
+          {showLogButton && (
+            <button className="btn-log" onClick={handleAddAction}>
+              + Log Action
+            </button>
+          )}
           {showEditButton && (
             <button className="btn-edit" onClick={handleEditMosque}>
               ✏️ Edit Mosque

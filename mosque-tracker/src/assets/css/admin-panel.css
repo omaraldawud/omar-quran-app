@@ -12,12 +12,12 @@
 }
 
 .admin-header h1 {
-  color: #2c3e50;
+  color: whitesmoke;
   margin-bottom: 10px;
 }
 
 .admin-header p {
-  color: #7f8c8d;
+  color: rgb(84, 138, 199);
   font-size: 16px;
 }
 
@@ -36,7 +36,7 @@
   cursor: pointer;
   font-size: 16px;
   font-weight: 600;
-  color: #7f8c8d;
+  color: #cfa049;
   transition: all 0.3s ease;
   position: relative;
 }

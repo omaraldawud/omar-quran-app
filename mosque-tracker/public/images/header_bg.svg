@@ -1,0 +1,55 @@
+<svg width="100%" height="100" viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <linearGradient id="headerBg" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#f8f9fa;stop-opacity:1" />
+        </linearGradient>
+        
+        <pattern id="pattern" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+            <!-- Subtle geometric pattern -->
+            <circle cx="10" cy="10" r="0.5" fill="#67BF92" opacity="0.1"/>
+            <circle cx="30" cy="30" r="0.5" fill="#67BF92" opacity="0.1"/>
+            <circle cx="50" cy="10" r="0.5" fill="#67BF92" opacity="0.1"/>
+            <circle cx="70" cy="30" r="0.5" fill="#67BF92" opacity="0.1"/>
+            <circle cx="90" cy="10" r="0.5" fill="#67BF92" opacity="0.1"/>
+            
+            <!-- Mosque silhouette pattern (subtle) -->
+            <path d="M20,80 L20,75 C20,73 22,71 25,71 C28,71 30,73 30,75 L30,80 L25,80 L25,77 C25,76 24,75 23,75 C22,75 21,76 21,77 L21,80 L20,80 Z" 
+                  fill="#67BF92" opacity="0.03"/>
+            <path d="M25,71 L25,69 C25,68 26,67 27,67 C28,67 29,68 29,69 L29,71 Z" fill="#67BF92" opacity="0.03"/>
+            <path d="M25,71 Q27,68 29,71" fill="none" stroke="#67BF92" stroke-width="0.3" opacity="0.03"/>
+            
+            <path d="M60,80 L60,75 C60,73 62,71 65,71 C68,71 70,73 70,75 L70,80 L65,80 L65,77 C65,76 64,75 63,75 C62,75 61,76 61,77 L61,80 L60,80 Z" 
+                  fill="#67BF92" opacity="0.03"/>
+            <path d="M65,71 L65,69 C65,68 66,67 67,67 C68,67 69,68 69,69 L69,71 Z" fill="#67BF92" opacity="0.03"/>
+            <path d="M65,71 Q67,68 69,71" fill="none" stroke="#67BF92" stroke-width="0.3" opacity="0.03"/>
+        </pattern>
+    </defs>
+    
+    <!-- Background -->
+    <rect width="100%" height="100" fill="url(#headerBg)"/>
+    
+    <!-- Pattern overlay -->
+    <rect width="100%" height="100" fill="url(#pattern)" opacity="0.3"/>
+    
+    <!-- Bottom border accent -->
+    <path d="M0,100 L1440,100" stroke="url(#linearGradient)" stroke-width="2"/>
+    
+    <defs>
+        <linearGradient id="linearGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#67BF92;stop-opacity:0.5" />
+            <stop offset="50%" style="stop-color:#4CAF87;stop-opacity:0.7" />
+            <stop offset="100%" style="stop-color:#67BF92;stop-opacity:0.5" />
+        </linearGradient>
+        
+        <!-- Decorative element at bottom -->
+        <linearGradient id="bottomAccent" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#67BF92;stop-opacity:0.1" />
+            <stop offset="50%" style="stop-color:#4CAF87;stop-opacity:0.2" />
+            <stop offset="100%" style="stop-color:#67BF92;stop-opacity:0.1" />
+        </linearGradient>
+    </defs>
+    
+    <!-- Bottom accent -->
+    <rect y="98" width="100%" height="2" fill="url(#bottomAccent)"/>
+</svg>

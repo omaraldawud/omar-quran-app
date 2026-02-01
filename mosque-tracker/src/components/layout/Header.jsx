@@ -28,6 +28,7 @@ export default function Header({ user, onLogout, currentView, onNavigate }) {
           >
             ☰
           </button>
+
           <h1 className="app-title">Masjid Outreach Platform</h1>
         </div>
 
@@ -36,7 +37,7 @@ export default function Header({ user, onLogout, currentView, onNavigate }) {
             className={`nav-btn ${currentView === "dashboard" ? "active" : ""}`}
             onClick={() => handleNavigation("dashboard")}
           >
-            📊 Dashboard
+            🕌 Masjid Dashboard
           </button>
 
           {/* Show Organization Profile only if user has organization_id */}
