@@ -1,5 +1,16 @@
 import { useState, useEffect } from "react";
+import {
+  FaMosque, // Mosque
+  FaBuilding, // Organization
+  FaHandsHelping, // Outreach
+  FaUsers, // Users
+  FaUserFriends, // Alternative for users
+  FaGlobeAmericas, // Alternative for outreach
+  FaCity, // Alternative for organizations
+} from "react-icons/fa";
+
 import "../assets/css/admin-panel.css";
+import "../assets/css/admin-stats.css";
 
 export default function AdminPanel() {
   const [pendingOrgs, setPendingOrgs] = useState([]);
@@ -7,24 +18,38 @@ export default function AdminPanel() {
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState("pending");
   const [processingId, setProcessingId] = useState(null);
+  const [stats, setStats] = useState(null);
 
   useEffect(() => {
     fetchOrganizations();
+    fetchStats();
   }, []);
+
+  const fetchStats = async () => {
+    try {
+      const res = await fetch("http://localhost/api/stats.php", {
+        credentials: "include",
+      });
+      const data = await res.json();
+      setStats(data);
+    } catch (err) {
+      console.error("Failed to fetch stats", err);
+    }
+  };
 
   const fetchOrganizations = async () => {
     setLoading(true);
     try {
       // Fetch pending organizations
       const pendingRes = await fetch(
-        "http://localhost/api/register_organization.php?status=pending"
+        "http://localhost/api/register_organization.php?status=pending",
       );
       const pending = await pendingRes.json();
       setPendingOrgs(pending);
 
       // Fetch all organizations
       const allRes = await fetch(
-        "http://localhost/api/register_organization.php?status=all"
+        "http://localhost/api/register_organization.php?status=all",
       );
       const all = await allRes.json();
       setAllOrgs(all);
@@ -53,7 +78,7 @@ export default function AdminPanel() {
             organization_id: orgId,
             action: "approve",
           }),
-        }
+        },
       );
 
       const result = await response.json();
@@ -75,7 +100,7 @@ export default function AdminPanel() {
   const handleReject = async (orgId) => {
     if (
       !confirm(
-        "Are you sure you want to reject this organization? This will permanently delete the registration."
+        "Are you sure you want to reject this organization? This will permanently delete the registration.",
       )
     ) {
       return;
@@ -94,7 +119,7 @@ export default function AdminPanel() {
             organization_id: orgId,
             action: "reject",
           }),
-        }
+        },
       );
 
       const result = await response.json();
@@ -202,6 +227,38 @@ export default function AdminPanel() {
 
   return (
     <div className="admin-panel">
+      <div className="admin-stats">
+        {!stats ? (
+          <p>Loading stats...</p>
+        ) : (
+          <div className="stats-grid">
+            <div className="stat-card">
+              <FaMosque size={24} className="text-success me-2 mb-2" />
+              <h2>{stats.total_mosques}</h2>
+              <span>Mosques</span>
+            </div>
+
+            <div className="stat-card">
+              <FaCity size={24} className="text-success me-2 mb-2" />
+              <h2>{stats.total_organizations}</h2>
+              <span>Organizations</span>
+            </div>
+
+            <div className="stat-card">
+              <FaGlobeAmericas size={24} className="text-success me-2 mb-2" />
+              <h2>{stats.total_outreach}</h2>
+              <span>Total Outreach</span>
+            </div>
+
+            <div className="stat-card">
+              <FaUserFriends size={24} className="text-success me-2 mb-2" />
+              <h2>{stats.total_users}</h2>
+              <span>Users</span>
+            </div>
+          </div>
+        )}
+      </div>
+
       <div className="admin-header">
         <h1>Organization Management</h1>
         <p>Review and approve organization registrations</p>

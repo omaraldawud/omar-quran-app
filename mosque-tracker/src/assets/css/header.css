@@ -9,6 +9,7 @@
   top: 0;
   z-index: 1000;
   position: relative; /* needed for pseudo-element */
+  position: sticky;
 }
 
 /* Accent bottom border (50%, left-aligned) */

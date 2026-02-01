@@ -108,12 +108,6 @@ function App() {
           {/* Organization Profile View */}
           {currentView === "profile" && (
             <div className="page-container">
-              <button
-                className="btn-back-nav"
-                onClick={() => navigateTo("dashboard")}
-              >
-                ← Back to Dashboard
-              </button>
               <OrganizationProfile organizationId={user.organization_id} />
             </div>
           )}
@@ -121,12 +115,6 @@ function App() {
           {/* Admin Panel View (only for system_admin) */}
           {currentView === "admin" && user.role === "system_admin" && (
             <div className="page-container">
-              <button
-                className="btn-back-nav"
-                onClick={() => navigateTo("dashboard")}
-              >
-                ← Back to Dashboard
-              </button>
               <AdminPanel />
             </div>
           )}
