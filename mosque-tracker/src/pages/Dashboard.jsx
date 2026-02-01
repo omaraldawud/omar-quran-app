@@ -105,7 +105,8 @@ export default function Dashboard({
       m.contact_name?.toLowerCase().includes(q) ||
       m.website?.toLowerCase().includes(q) ||
       m.facebook?.toLowerCase().includes(q) ||
-      m.whatsapp?.toLowerCase().includes(q)
+      m.whatsapp?.toLowerCase().includes(q) ||
+      m.youtube?.toLowerCase().include(q)
     );
   });
 

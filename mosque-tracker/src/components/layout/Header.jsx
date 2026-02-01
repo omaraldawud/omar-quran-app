@@ -1,5 +1,7 @@
 import { useState } from "react";
 import "../../assets/css/header.css";
+import { FaMosque, FaUsers } from "react-icons/fa";
+import { FaBuildingCircleArrowRight } from "react-icons/fa6";
 
 export default function Header({ user, onLogout, currentView, onNavigate }) {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -37,7 +39,8 @@ export default function Header({ user, onLogout, currentView, onNavigate }) {
             className={`nav-btn ${currentView === "dashboard" ? "active" : ""}`}
             onClick={() => handleNavigation("dashboard")}
           >
-            🕌 Masjid Dashboard
+            <FaMosque className="text-success me-2" />
+            Masjid Dashboard
           </button>
 
           {/* Show Organization Profile only if user has organization_id */}
@@ -46,7 +49,8 @@ export default function Header({ user, onLogout, currentView, onNavigate }) {
               className={`nav-btn ${currentView === "profile" ? "active" : ""}`}
               onClick={() => handleNavigation("profile")}
             >
-              🏢 Organization Profile
+              <FaBuildingCircleArrowRight className="text-info me-2" />
+              Organization Profile
             </button>
           )}
 
@@ -62,9 +66,29 @@ export default function Header({ user, onLogout, currentView, onNavigate }) {
 
         <div className="header-right">
           <div className="user-info">
-            <span className="user-name">{user.user_name}</span>
-            <span className="user-role">{user.role}</span>
+            <div className="profile-picture-container">
+              <img
+                src={user.user_profile_picture}
+                alt={user.user_name}
+                className="profile-picture"
+                onError={(e) => {
+                  e.target.style.display = "none";
+                  e.target.nextElementSibling.style.display = "flex";
+                }}
+              />
+              <div className="profile-fallback">
+                {user.user_name?.charAt(0) || "U"}
+              </div>
+            </div>
+            <span className="user-name">
+              <FaUsers className="text-warning me-2" />
+              {user.user_name} - {user.role}
+              {user.organization_id && ` - ORG-ID: ${user.organization_id}`}
+            </span>
+            <span className="user-role"></span>
           </div>
+        </div>
+        <div>
           <button className="btn-logout" onClick={onLogout}>
             Logout
           </button>

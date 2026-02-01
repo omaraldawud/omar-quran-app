@@ -3,12 +3,12 @@
 .organization-sidebar {
   position: fixed;
   right: 0;
-  top: 100px;
+  top: 145px;
   right: 20px;
   width: 420px;
-  height: calc(100vh - 60px);
+  height: calc(100vh - 145px);
   background-color: #ffffff;
-  border-left: 1px solid #dee2e6;
+  border-left: 6px solid #f0552e;
   box-shadow: -2px 0 10px rgba(0, 0, 0, 0.05);
   overflow-y: auto;
   transition:
@@ -111,7 +111,7 @@
 /* Contact Items */
 .contact-item {
   margin-bottom: 6px;
-  font-size: 13px;
+  font-size: 11px;
 }
 
 .contact-item:last-child {
@@ -122,6 +122,7 @@
   color: #007bff;
   text-decoration: none;
   transition: color 0.2s;
+  font-size: 11px;
 }
 
 .contact-item a:hover {

@@ -1,5 +1,21 @@
 import { useState } from "react";
 import Badge from "react-bootstrap/Badge";
+import {
+  FaMapMarkerAlt,
+  FaGlobe,
+  FaPhone,
+  FaEnvelope,
+  FaFacebook,
+  FaWhatsapp,
+  FaYoutube,
+  FaPhoneAlt,
+  FaEnvelopeOpen,
+  FaUsers,
+  FaChevronDown,
+  FaChevronRight,
+  FaHistory,
+  FaHeart,
+} from "react-icons/fa";
 
 export default function MasjidCard({
   masjid,
@@ -27,6 +43,8 @@ export default function MasjidCard({
     website,
     facebook,
     whatsapp,
+    youtube,
+    donation_url,
     parent_organization_id,
   } = masjid;
 
@@ -55,6 +73,7 @@ export default function MasjidCard({
 
   const canLogActions = () => {
     if (userRole === "system_admin") return false;
+    return true;
   };
   const showLogButton = canLogActions();
 
@@ -69,11 +88,91 @@ export default function MasjidCard({
       <div className="masjid-card-row first-row">
         <div className="masjid-info">
           <h2 className="text-success">{name}</h2>
-          <span className="masjid-location ms-3">
-            <Badge bg="info" className="p-2">
-              📍 {street}. {city} {zip}
-              {state ? ` , ${state}` : ""}
+          <span className="masjid-location d-flex align-items-center flex-wrap gap-1 ">
+            <Badge bg="light" className="p-2 text-dark">
+              <FaMapMarkerAlt className="text-success me-1" /> {street}. {city}{" "}
+              {zip}
+              {state ? `, ${state}` : ""}
             </Badge>
+            {website && (
+              <Badge
+                bg="light"
+                className="p-2 text-dark d-inline-flex align-items-center gap-1"
+              >
+                <FaGlobe className="text-primary me-1" />
+                <a
+                  href={website}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-decoration-none text-dark"
+                >
+                  {website.replace(/^https?:\/\//, "").replace(/\/$/, "")}
+                </a>
+              </Badge>
+            )}
+
+            {donation_url && (
+              <Badge
+                bg="light"
+                className="p-2 text-dark d-inline-flex align-items-center gap-1"
+              >
+                <FaHeart className="text-danger me-1" />
+                <a href={donation_url} target="_blank" rel="noreferrer">
+                  Donations
+                </a>
+              </Badge>
+            )}
+            {phone && (
+              <Badge
+                bg="light"
+                className="p-2 text-dark d-inline-flex align-items-center gap-1"
+              >
+                <FaPhone className="me-1" />{" "}
+                <a href={`tel:${phone}`}>{phone}</a>
+              </Badge>
+            )}
+            {email && (
+              <Badge
+                bg="light"
+                className="p-2 text-dark d-inline-flex align-items-center gap-1"
+              >
+                <FaEnvelope className="me-1" />{" "}
+                <a href={`mailto:${email}`}>{email}</a>
+              </Badge>
+            )}
+            {facebook && (
+              <Badge
+                bg="light"
+                className="p-2 text-dark d-inline-flex align-items-center gap-1"
+              >
+                <FaFacebook className="text-primary me-1" />
+                <a href={facebook} target="_blank" rel="noreferrer">
+                  Facebook
+                </a>
+              </Badge>
+            )}
+            {whatsapp && (
+              <Badge
+                bg="light"
+                className="p-2 text-dark d-inline-flex align-items-center gap-1"
+              >
+                <FaWhatsapp className="me-1" />
+                <a href={whatsapp} target="_blank" rel="noreferrer">
+                  WhatsApp
+                </a>
+              </Badge>
+            )}
+            {youtube && (
+              <Badge
+                bg="light"
+                className="p-2 text-dark d-inline-flex align-items-center gap-1"
+              >
+                <FaYoutube className="text-danger me-1" />
+                <a href={youtube} target="_blank" rel="noreferrer">
+                  YouTube
+                </a>
+              </Badge>
+            )}
           </span>
 
           <h4 className="ms-3 my-4">
@@ -84,47 +183,16 @@ export default function MasjidCard({
           {/* Single row contact info */}
           <div className="d-flex masjid-contacts-row my-3">
             {contact_phone && (
-              <span className="contact-item mx-3">
-                📞 <a href={`tel:${contact_phone}`}>{contact_phone}</a>
+              <span className="contact-item mx-2">
+                <FaPhoneAlt className="me-1" />{" "}
+                <a href={`tel:${contact_phone}`}>{contact_phone}</a>
               </span>
             )}
+
             {contact_email && (
-              <span className="contact-item mx-3">
-                ✉️ <a href={`mailto:${contact_email}`}>{contact_email}</a>
-              </span>
-            )}
-            {phone && (
-              <span className="contact-item mx-3">
-                📱 <a href={`tel:${phone}`}>{phone}</a>
-              </span>
-            )}
-            {email && (
-              <span className="contact-item mx-3">
-                📧 <a href={`mailto:${email}`}>{email}</a>
-              </span>
-            )}
-            {website && (
-              <span className="contact-item">
-                🌐{" "}
-                <a href={website} target="_blank" rel="noreferrer">
-                  {website.replace(/^https?:\/\//, "").replace(/\/$/, "")}
-                </a>
-              </span>
-            )}
-            {facebook && (
-              <span className="contact-item">
-                🔵{" "}
-                <a href={facebook} target="_blank" rel="noreferrer">
-                  Facebook
-                </a>
-              </span>
-            )}
-            {whatsapp && (
-              <span className="contact-item">
-                💬{" "}
-                <a href={whatsapp} target="_blank" rel="noreferrer">
-                  WhatsApp
-                </a>
+              <span className="contact-item mx-2">
+                <FaEnvelopeOpen className="me-1" />{" "}
+                <a href={`mailto:${contact_email}`}>{contact_email}</a>
               </span>
             )}
           </div>
@@ -137,9 +205,10 @@ export default function MasjidCard({
               style={{ cursor: "pointer" }}
               onClick={() => setShowOutreach(!showOutreach)}
             >
+              <FaUsers className="me-1" />
               {sortedOutreach.length} outreach
               {sortedOutreach.length !== 1 ? "es" : ""}{" "}
-              {showOutreach ? "▼" : "▶"}
+              {showOutreach ? <FaChevronDown /> : <FaChevronRight />}
             </Badge>
           )}
 
@@ -147,8 +216,11 @@ export default function MasjidCard({
           {sortedOutreach.length > 0 && (
             <div className="mt-2">
               <small className="text-muted">
+                <FaHistory className="me-1" />
                 Last contact:{" "}
-                {new Date(sortedOutreach[0].contacted_at).toLocaleDateString()}{" "}
+                {new Date(
+                  sortedOutreach[0].contacted_at,
+                ).toLocaleDateString()}{" "}
                 via {sortedOutreach[0].method}
                 {sortedOutreach[0].contacted_person_name &&
                   ` - ${sortedOutreach[0].contacted_person_name}`}

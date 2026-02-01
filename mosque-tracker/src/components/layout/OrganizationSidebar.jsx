@@ -1,6 +1,27 @@
 import { useState, useEffect } from "react";
 import { Card, Badge, ListGroup } from "react-bootstrap";
 import "../../assets/css/organization-sidebar.css";
+import {
+  FaChevronRight,
+  FaChevronLeft,
+  FaPhone,
+  FaEnvelope,
+  FaGlobe,
+  FaHeart,
+  FaFacebook,
+  FaInstagram,
+  FaTwitter,
+  FaLinkedin,
+  FaYoutube,
+  FaBullseye,
+  FaComments,
+  FaCrosshairs,
+  FaFolder,
+  FaFileAlt,
+  FaInfoCircle,
+  FaMapMarkerAlt,
+} from "react-icons/fa";
+import { FaFileCircleCheck } from "react-icons/fa6";
 
 export default function OrganizationSidebar({
   organizationId,
@@ -87,7 +108,7 @@ export default function OrganizationSidebar({
             onClick={onToggle}
             title={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
           >
-            {isCollapsed ? "▶" : "◀"}
+            {isCollapsed ? <FaChevronRight /> : <FaChevronLeft />}
           </button>
           <div>
             {tax_exempt_status && (
@@ -125,7 +146,7 @@ export default function OrganizationSidebar({
                   <span style={{ color: primary_color }}> Contacts</span>
                 </h6>
                 <div className="mb-3 fw-bold" style={{ fontSize: "11px" }}>
-                  {street}. {city}, {state}.
+                  <FaMapMarkerAlt className="me-1" /> {street}. {city}, {state}.
                 </div>
                 {phone && (
                   <div className="contact-item d-flex align-items-center mb-2">
@@ -133,14 +154,14 @@ export default function OrganizationSidebar({
                       className="me-2"
                       style={{ color: primary_color, width: "10px" }}
                     >
-                      📞
+                      <FaPhone />
                     </span>
                     <a href={`tel:${phone}`}>{phone}</a>
                     <span
                       className="mx-2"
                       style={{ color: primary_color, width: "10px" }}
                     >
-                      ✉️
+                      <FaEnvelope />
                     </span>
                     <a href={`mailto:${email}`}>{email}</a>
                   </div>
@@ -154,7 +175,7 @@ export default function OrganizationSidebar({
                       className="me-2"
                       style={{ color: primary_color, width: "20px" }}
                     >
-                      🌐
+                      <FaGlobe />
                     </span>
                     <a href={website} target="_blank" rel="noreferrer">
                       {website
@@ -169,7 +190,7 @@ export default function OrganizationSidebar({
                         className="resource-link"
                         style={{ color: primary_color }}
                       >
-                        💚 Donation Link
+                        <FaHeart className="me-1" /> Donation Link
                       </a>
                     )}
                   </div>
@@ -186,8 +207,8 @@ export default function OrganizationSidebar({
             <Card className="sidebar-card">
               <Card.Body>
                 <h6 className="card-title">
-                  <span style={{ color: primary_color }}>🌐</span> Social Media
-                  Links
+                  <FaGlobe style={{ color: primary_color }} className="me-1" />{" "}
+                  Social Media Links
                 </h6>
                 <div className="social-links ms-3">
                   {facebook_url && (
@@ -196,8 +217,9 @@ export default function OrganizationSidebar({
                       target="_blank"
                       rel="noreferrer"
                       title="Facebook"
+                      className="me-2"
                     >
-                      🔵
+                      <FaFacebook size={20} />
                     </a>
                   )}
                   {instagram_url && (
@@ -206,8 +228,9 @@ export default function OrganizationSidebar({
                       target="_blank"
                       rel="noreferrer"
                       title="Instagram"
+                      className="me-2"
                     >
-                      📷
+                      <FaInstagram size={20} />
                     </a>
                   )}
                   {twitter_url && (
@@ -216,8 +239,9 @@ export default function OrganizationSidebar({
                       target="_blank"
                       rel="noreferrer"
                       title="Twitter"
+                      className="me-2"
                     >
-                      🐦
+                      <FaTwitter size={20} />
                     </a>
                   )}
                   {linkedin_url && (
@@ -226,8 +250,9 @@ export default function OrganizationSidebar({
                       target="_blank"
                       rel="noreferrer"
                       title="LinkedIn"
+                      className="me-2"
                     >
-                      💼
+                      <FaLinkedin size={20} />
                     </a>
                   )}
                   {youtube_url && (
@@ -236,8 +261,9 @@ export default function OrganizationSidebar({
                       target="_blank"
                       rel="noreferrer"
                       title="YouTube"
+                      className="me-2"
                     >
-                      📺
+                      <FaYoutube size={20} />
                     </a>
                   )}
                 </div>
@@ -249,7 +275,11 @@ export default function OrganizationSidebar({
             <Card className="sidebar-card">
               <Card.Body>
                 <h6 className="card-title">
-                  <span style={{ color: primary_color }}>🎯</span> Quick Pitch
+                  <FaBullseye
+                    style={{ color: primary_color }}
+                    className="me-1"
+                  />{" "}
+                  Quick Pitch
                 </h6>
                 <p className="pitch-text">{elevator_pitch}</p>
               </Card.Body>
@@ -260,7 +290,9 @@ export default function OrganizationSidebar({
           {talking_points && talking_points.length > 0 && (
             <Card className="sidebar-card">
               <Card.Body>
-                <h6 className="card-title">💬 Talking Points</h6>
+                <h6 className="card-title">
+                  <FaComments className="me-1" /> Talking Points
+                </h6>
                 <ul style={{ listStyleType: "none", paddingLeft: 0 }}>
                   <ListGroup variant="flush">
                     {talking_points.map((point, index) => (
@@ -296,7 +328,11 @@ export default function OrganizationSidebar({
             <Card className="sidebar-card">
               <Card.Body>
                 <h6 className="card-title">
-                  <span style={{ color: primary_color }}>🎯</span> Current Goals
+                  <FaCrosshairs
+                    style={{ color: primary_color }}
+                    className="me-1"
+                  />{" "}
+                  Current Goals
                 </h6>
                 <p className="goals-text">{outreach_goals}</p>
               </Card.Body>
@@ -308,8 +344,11 @@ export default function OrganizationSidebar({
             <Card className="sidebar-card">
               <Card.Body>
                 <h6 className="card-title">
-                  <span style={{ color: primary_color }}>🎯</span> Mission
-                  Statement
+                  <FaBullseye
+                    style={{ color: primary_color }}
+                    className="me-1"
+                  />{" "}
+                  Mission Statement
                 </h6>
 
                 <div
@@ -325,7 +364,8 @@ export default function OrganizationSidebar({
             <Card className="sidebar-card">
               <Card.Body>
                 <h6 className="card-title">
-                  <span style={{ color: primary_color }}>📁</span> Resources
+                  <FaFolder style={{ color: primary_color }} className="me-1" />{" "}
+                  Resources
                 </h6>
                 <div className="resources-list">
                   {brochure_url && (
@@ -335,7 +375,7 @@ export default function OrganizationSidebar({
                       rel="noreferrer"
                       className="resource-link"
                     >
-                      📄 Brochure
+                      <FaFileAlt className="me-1" /> Brochure
                     </a>
                   )}
                   {presentation_url && (
@@ -345,7 +385,7 @@ export default function OrganizationSidebar({
                       rel="noreferrer"
                       className="resource-link"
                     >
-                      📊 Presentation
+                      <FaFileCircleCheck className="me-1" /> Presentation
                     </a>
                   )}
                   {donation_link && (
@@ -356,7 +396,7 @@ export default function OrganizationSidebar({
                       className="resource-link"
                       style={{ color: primary_color }}
                     >
-                      💚 Donate
+                      <FaHeart className="me-1" /> Donate
                     </a>
                   )}
                 </div>
@@ -369,7 +409,11 @@ export default function OrganizationSidebar({
             <Card className="sidebar-card">
               <Card.Body>
                 <h6 className="card-title">
-                  <span style={{ color: primary_color }}>📋</span> Tax Info
+                  <FaInfoCircle
+                    style={{ color: primary_color }}
+                    className="me-1"
+                  />{" "}
+                  Tax Info
                 </h6>
                 {tax_exempt_status && (
                   <Badge bg="success" className="mb-2">
