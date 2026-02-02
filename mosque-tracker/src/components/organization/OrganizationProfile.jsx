@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { US_STATES } from "../assets/ds/us_states";
-import "../assets/css/organization-profile.css";
+import { US_STATES } from "../../assets/ds/us_states";
+import "../../assets/css/organization-profile.css";
 
 export default function OrganizationProfile({ organizationId }) {
   const [formData, setFormData] = useState({

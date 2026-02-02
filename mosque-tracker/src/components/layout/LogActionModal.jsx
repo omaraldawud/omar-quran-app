@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "../assets/css/LogActionModal.css";
+import "../../assets/css/LogActionModal.css";
 
 export default function LogActionModal({ onSave, onClose }) {
   const [method, setMethod] = useState("phone");

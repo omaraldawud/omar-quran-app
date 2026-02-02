@@ -6,10 +6,10 @@ import Layout from "./components/layout/Layout";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 //organization
-import OrganizationRegistration from "./components/OrganizationRegistration";
-import AdminPanel from "./components/AdminPanel";
-import OrganizationProfile from "./components/OrganizationProfile";
-import MosqueEditForm from "./components/MosqueEditForm";
+import OrganizationRegistration from "./components/organization/OrganizationRegistration";
+import AdminPanel from "./components/admin/AdminPanel";
+import OrganizationProfile from "./components/organization/OrganizationProfile";
+import MosqueEditForm from "./components/mosque/MosqueEditForm";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -46,12 +46,18 @@ function App() {
 
   const handleLogout = async () => {
     try {
-      await fetch("http://localhost/api/logout.php", {
+      const res = await fetch("http://localhost/api/logout.php", {
         method: "POST",
         credentials: "include",
       });
-      setUser(null);
-      setCurrentView("dashboard");
+
+      if (res.ok) {
+        // Order matters: Clear user first to trigger Layout to hide Header/Footer
+        setUser(null);
+        setCurrentView("dashboard");
+        // Optional: Force a window reload to clear all states if it persists
+        // window.location.reload();
+      }
     } catch (err) {
       console.error("Logout failed:", err);
     }
@@ -97,6 +103,7 @@ function App() {
           {/* Dashboard View */}
           {currentView === "dashboard" && (
             <Dashboard
+              user={user}
               currentUserId={user.id}
               organizationId={user.organization_id}
               userRole={user.role}
@@ -137,6 +144,7 @@ function App() {
             currentView,
           ) && (
             <Dashboard
+              user={user}
               currentUserId={user.id}
               organizationId={user.organization_id}
               userRole={user.role}

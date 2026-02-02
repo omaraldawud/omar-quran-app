@@ -9,8 +9,8 @@ import {
   FaCity, // Alternative for organizations
 } from "react-icons/fa";
 
-import "../assets/css/admin-panel.css";
-import "../assets/css/admin-stats.css";
+import "../../assets/css/admin-panel.css";
+import "../../assets/css/admin-stats.css";
 
 export default function AdminPanel() {
   const [pendingOrgs, setPendingOrgs] = useState([]);
