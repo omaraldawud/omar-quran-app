@@ -166,20 +166,29 @@ export default function Dashboard({
 
           {/* Summary Stats */}
           <div className="d-flex gap-2">
-            <Badge bg="primary" className="p-2">
-              <FaMosque size={24} className="text-gray-700 me-2" />{" "}
+            <Badge className="my-light-gray p-2">
+              <FaMosque
+                size={24}
+                className="top-negative-12 text-gray-700 me-2"
+              />
               <span className="text-warning fs-5">
                 {filteredMosques.length}
               </span>{" "}
               Total Mosques in: {selectedState}
             </Badge>
-            <Badge bg="primary" className="p-2">
-              <FaChartLine size={24} className="text-blue-600 me-2" />{" "}
+            <Badge className="my-light-gray p-2">
+              <FaChartLine
+                size={24}
+                className="top-negative-12 text-blue-600 me-2"
+              />
               <span className="text-warning fs-5">{totalOutreach}</span> Total
               Outreach
             </Badge>
-            <Badge bg="primary" className="p-2">
-              <FaChartPie size={24} className="text-blue-600 me-2" />{" "}
+            <Badge className="my-light-gray p-2">
+              <FaChartPie
+                size={24}
+                className="top-negative-12 text-blue-600 me-2"
+              />
               <span className="text-warning fs-5">{mosquesWithOutreach}</span>{" "}
               Mosques Contacted
             </Badge>

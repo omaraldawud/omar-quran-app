@@ -2,12 +2,13 @@
 
 .mosque-admin-sidebar {
   position: fixed;
-  right: 0;
-  top: 145px;
+  right: 10px;
+  top: 135px;
   width: 350px;
-  height: calc(100vh - 145px);
+  height: calc(100vh - 155px);
   background: #ffffff;
-  border-left: 1px solid #e0e0e0;
+  border: 8px solid lightgray;
+  border-radius: 12px;
   box-shadow: -2px 0 10px rgba(0, 0, 0, 0.05);
   overflow-y: auto; /* FIXED: Ensures scrollability */
   overflow-x: hidden;

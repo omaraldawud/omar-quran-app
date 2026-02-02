@@ -95,21 +95,26 @@ export default function MasjidCard({
     <div className="masjid-card">
       <div className="masjid-card-row first-row">
         <div className="masjid-info">
-          <h2 className="text-success">{masjid.name}</h2>
+          <div className="d-flex align-items-center mb-4">
+            <img
+              src="/images/islamic-mosque-icon.png"
+              alt="Mosque icon"
+              width="48"
+              height="48"
+            />
+            <h2 className="text-success mb-0 ms-3">{masjid.name}</h2>
+          </div>
           <MasjidBadges masjid={masjid} />
 
           {/* Contact Person */}
-          <div className="d-flex align-items-center gap-2 my-2">
+          <div className="d-flex align-items-center gap-2 mt-2 mb-4">
             <h4 className="ms-2 my-1">
               <span className="small">- Contact Person: </span>
               <span className="text-secondary">
                 {masjid.contact_name || "N/A"}
               </span>
             </h4>
-          </div>
 
-          {/* Contact Links */}
-          <div className="d-flex masjid-contacts-row my-3">
             {masjid.contact_phone && (
               <span className="contact-item ms-2">
                 <FaPhoneAlt />
@@ -148,14 +153,14 @@ export default function MasjidCard({
               onClick={() => setShowOutreach(!showOutreach)}
               title="Toggle Outreach History"
             >
-              <Badge bg="info" className="px-4 py-2 text-light fs-5 ">
-                <FaUsers size={24} className="text-primary me-2" />
+              <Badge bg="success" className="px-4 py-2 text-light fs-5 ">
+                <FaUsers size={24} className="text-light me-2" />
                 {sortedOutreach.length} outreach
                 {sortedOutreach.length !== 1 ? "es" : ""}
                 {showOutreach ? (
-                  <FaChevronDown size={16} className="text-danger ms-3" />
+                  <FaChevronDown size={16} className="text-warning ms-3" />
                 ) : (
-                  <FaChevronRight size={16} className="text-danger ms-3" />
+                  <FaChevronRight size={16} className="text-warning ms-3" />
                 )}
               </Badge>
             </span>

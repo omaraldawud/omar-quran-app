@@ -49,11 +49,20 @@
   font-family: "Segoe UI", system-ui, sans-serif;
 }
 
+.my-light-gray {
+  background-color: rgb(180 184 189) !important;
+}
 /* Icon before title */
 .app-title::before {
-  content: "🕌";
-  font-size: 26px;
-  line-height: 1;
+  content: "";
+  display: inline-block;
+  background-image: url("/images/islamic-mosque-icon.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 64px;
+  height: 64px;
+  margin-right: 8px;
+  vertical-align: middle;
 }
 
 .header-container {

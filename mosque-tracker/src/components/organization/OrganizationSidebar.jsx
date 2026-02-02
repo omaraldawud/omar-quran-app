@@ -20,6 +20,7 @@ import {
   FaFileAlt,
   FaInfoCircle,
   FaMapMarkerAlt,
+  FaGlobeAmericas,
 } from "react-icons/fa";
 import { FaFileCircleCheck } from "react-icons/fa6";
 
@@ -142,58 +143,72 @@ export default function OrganizationSidebar({
           {(phone || email || website) && (
             <Card className="sidebar-card">
               <Card.Body>
-                <h6 className="card-title fs-4 fw-bold">
-                  <span style={{ color: primary_color }}> Contacts</span>
-                </h6>
-                <div className="mb-3 fw-bold" style={{ fontSize: "11px" }}>
-                  <FaMapMarkerAlt className="me-1" /> {street}. {city}, {state}.
-                </div>
-                {phone && (
-                  <div className="contact-item d-flex align-items-center mb-2">
-                    <span
-                      className="me-2"
-                      style={{ color: primary_color, width: "10px" }}
-                    >
-                      <FaPhone />
-                    </span>
-                    <a href={`tel:${phone}`}>{phone}</a>
-                    <span
-                      className="mx-2"
-                      style={{ color: primary_color, width: "10px" }}
-                    >
-                      <FaEnvelope />
-                    </span>
-                    <a href={`mailto:${email}`}>{email}</a>
-                  </div>
-                )}
-                {email && (
-                  <div className="contact-item d-flex align-items-center mb-2"></div>
-                )}
-                {website && (
-                  <div className="contact-item d-flex align-items-center mb-2">
-                    <span
-                      className="me-2"
-                      style={{ color: primary_color, width: "20px" }}
-                    >
-                      <FaGlobe />
-                    </span>
-                    <a href={website} target="_blank" rel="noreferrer">
-                      {website
-                        .replace(/^https?:\/\//, "")
-                        .replace(/^www\./, "")}
-                    </a>
-                    {donation_link && (
+                <h6 className="card-title justify-content-between fs-4 fw-bold">
+                  <span style={{ color: primary_color }}>Contacts</span>
+                  {donation_link && (
+                    <Badge bg="light" className="d-flex align-items-center">
+                      <FaHeart className="me-2 text-danger" />
                       <a
                         href={donation_link}
                         target="_blank"
                         rel="noreferrer"
-                        className="resource-link"
-                        style={{ color: primary_color }}
+                        className="resource-link text-decoration-none"
                       >
-                        <FaHeart className="me-1" /> Donation Link
+                        Donation Link
                       </a>
-                    )}
+                    </Badge>
+                  )}
+                </h6>
+
+                <div className="mb-3 fw-bold" style={{ fontSize: "11px" }}>
+                  <FaMapMarkerAlt className="text-success me-1" /> {street}.{" "}
+                  {city}, {state}.
+                </div>
+
+                {/* Fixed phone section */}
+                {phone && (
+                  <div className="contact-item d-flex align-items-center mb-2">
+                    <Badge
+                      bg="light"
+                      className="me-2 d-flex align-items-center"
+                    >
+                      <FaPhone className="text-primary me-2" />
+                      <a href={`tel:${phone}`} className="text-decoration-none">
+                        {phone}
+                      </a>
+                    </Badge>
                   </div>
+                )}
+
+                {/* Fixed email section */}
+                {email && (
+                  <div className="contact-item d-flex align-items-center mb-2">
+                    <Badge bg="light" className="d-flex align-items-center">
+                      <FaEnvelope className="text-primary me-2" />
+                      <a
+                        href={`mailto:${email}`}
+                        className="text-decoration-none"
+                      >
+                        {email}
+                      </a>
+                    </Badge>
+                  </div>
+                )}
+
+                {website && (
+                  <Badge bg="light" className="me-2 d-flex align-items-center">
+                    <FaGlobeAmericas className="text-primary me-2" />
+                    <a
+                      href={website}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="resource-link text-decoration-none"
+                    >
+                      {website
+                        .replace(/^https?:\/\//, "")
+                        .replace(/^www\./, "")}
+                    </a>
+                  </Badge>
                 )}
               </Card.Body>
             </Card>
@@ -278,7 +293,7 @@ export default function OrganizationSidebar({
                   <FaBullseye
                     style={{ color: primary_color }}
                     className="me-1"
-                  />{" "}
+                  />
                   Quick Pitch
                 </h6>
                 <p className="pitch-text">{elevator_pitch}</p>

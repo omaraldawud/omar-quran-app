@@ -150,8 +150,8 @@ export default function OrganizationRegistration({ onBackToLogin }) {
       <div className="registration-header">
         <h1>Organization Registration</h1>
         <p>Register your organization to access the platform</p>
-        <button onClick={onBackToLogin} className="btn-back-to-login">
-          ← Back to Login
+        <button onClick={onBackToLogin}>
+          <span className="text-primary">← Back to Login</span>
         </button>
       </div>
 

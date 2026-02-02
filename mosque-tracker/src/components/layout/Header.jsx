@@ -19,6 +19,9 @@ export default function Header({ user, onLogout, currentView, onNavigate }) {
   const hasOrganization =
     user.organization_id != null && user.organization_id !== "";
 
+  const hasMosque =
+    user.associated_mosque_id != null && user.associated_mosque_id !== "";
+
   return (
     <header className="app-header">
       <div className="header-container">
@@ -90,6 +93,8 @@ export default function Header({ user, onLogout, currentView, onNavigate }) {
                 {user.user_name} :{"  "}
                 <span className="text-dark">{user.role}</span>
                 {user.organization_id && ` - ORG-ID: ${user.organization_id}`}
+                {user.associated_mosque_id &&
+                  ` - MOSQUE-ID: ${user.associated_mosque_id}`}
               </span>
             </div>
           </div>

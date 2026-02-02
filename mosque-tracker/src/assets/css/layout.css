@@ -333,6 +333,9 @@
   margin-right: 50px;
 }
 
+.top-negative-12 {
+  margin-top: -12px;
+}
 /* Mobile responsive */
 @media (max-width: 768px) {
   .masjid-actions {
