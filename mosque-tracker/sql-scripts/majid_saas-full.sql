@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Feb 01, 2026 at 01:05 AM
+-- Generation Time: Feb 01, 2026 at 03:17 PM
 -- Server version: 10.6.24-MariaDB-cll-lve
 -- PHP Version: 8.3.29
 
@@ -20,8 +20,36 @@ SET time_zone = "+00:00";
 --
 -- Database: `majid_saas`
 --
-CREATE DATABASE IF NOT EXISTS `majid_saas` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `majid_saas`;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `email_templates`
+--
+
+CREATE TABLE `email_templates` (
+  `id` int(11) NOT NULL,
+  `slug` varchar(100) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `purpose` varchar(50) NOT NULL,
+  `subject` varchar(255) NOT NULL,
+  `body_html` longtext NOT NULL,
+  `body_text` text DEFAULT NULL,
+  `placeholders` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`placeholders`)),
+  `is_active` tinyint(1) DEFAULT 1,
+  `version` int(11) DEFAULT 1,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `email_templates`
+--
+
+INSERT INTO `email_templates` (`id`, `slug`, `name`, `purpose`, `subject`, `body_html`, `body_text`, `placeholders`, `is_active`, `version`, `created_at`, `updated_at`) VALUES
+(1, 'event-invitation', 'Event Invitation', 'Event', 'You Are Invited – Upcoming Event at {masjid_name}', '<p>Dear {contact_name},</p>\r\n<p>\r\n  We hope this message finds you well. We are pleased to invite you\r\n  to an upcoming event being held at <strong>{masjid_name}</strong>.\r\n</p>\r\n<p>\r\n  We believe this event will be a wonderful opportunity for our community\r\n  to come together. Please find the details below and let us know if you\r\n  have any questions.\r\n</p>\r\n<p>\r\n  We look forward to seeing you there.<br/>\r\n  Warm regards,<br/>\r\n  <strong>{user_name}</strong>\r\n</p>', 'Dear {contact_name},\r\n\r\nWe hope this message finds you well. We are pleased to invite you to an upcoming event being held at {masjid_name}.\r\n\r\nWe believe this event will be a wonderful opportunity for our community to come together. Please find the details below and let us know if you have any questions.\r\n\r\nWe look forward to seeing you there.\r\nWarm regards,\r\n{user_name}', '[\"masjid_name\", \"contact_name\", \"user_name\"]', 1, 1, '2026-02-01 22:00:04', '2026-02-01 22:00:04'),
+(2, 'thank-you-note', 'Thank You Note', 'Thank You', 'Thank You – {masjid_name}', '<p>Dear {contact_name},</p>\r\n<p>\r\n  We wanted to take a moment to express our sincere gratitude to you\r\n  and the team at <strong>{masjid_name}</strong>.\r\n</p>\r\n<p>\r\n  Your support and collaboration mean a great deal to our organization,\r\n  and we truly appreciate everything you do for the community.\r\n</p>\r\n<p>\r\n  Please do not hesitate to reach out if there is anything we can do\r\n  for you in return.<br/>\r\n  With appreciation,<br/>\r\n  <strong>{user_name}</strong>\r\n</p>', 'Dear {contact_name},\r\n\r\nWe wanted to take a moment to express our sincere gratitude to you and the team at {masjid_name}.\r\n\r\nYour support and collaboration mean a great deal to our organization, and we truly appreciate everything you do for the community.\r\n\r\nPlease do not hesitate to reach out if there is anything we can do for you in return.\r\nWith appreciation,\r\n{user_name}', '[\"masjid_name\", \"contact_name\", \"user_name\"]', 1, 1, '2026-02-01 22:00:04', '2026-02-01 22:00:04'),
+(3, 'visit-request', 'Visit Request', 'Request For Visit', 'Request For Visit – {masjid_name}', '<p>Dear {contact_name},</p>\r\n<p>\r\n  We hope you are doing well. We would like to kindly request the\r\n  opportunity to visit <strong>{masjid_name}</strong> at your earliest\r\n  convenience.\r\n</p>\r\n<p>\r\n  The purpose of the visit is to strengthen our relationship and explore\r\n  ways we can work together to better serve our community. We are\r\n  flexible on timing and happy to work around your schedule.\r\n</p>\r\n<p>\r\n  Please let us know what dates and times work best for you, and we will\r\n  confirm the details.<br/>\r\n  Thank you for your time,<br/>\r\n  <strong>{user_name}</strong>\r\n</p>', 'Dear {contact_name},\r\n\r\nWe hope you are doing well. We would like to kindly request the opportunity to visit {masjid_name} at your earliest convenience.\r\n\r\nThe purpose of the visit is to strengthen our relationship and explore ways we can work together to better serve our community. We are flexible on timing and happy to work around your schedule.\r\n\r\nPlease let us know what dates and times work best for you, and we will confirm the details.\r\nThank you for your time,\r\n{user_name}', '[\"masjid_name\", \"contact_name\", \"user_name\"]', 1, 1, '2026-02-01 22:00:04', '2026-02-01 22:00:04');
 
 -- --------------------------------------------------------
 
@@ -60,7 +88,7 @@ CREATE TABLE `mosques` (
 --
 
 INSERT INTO `mosques` (`id`, `parent_organization_id`, `name`, `contact_name`, `contact_email`, `contact_phone`, `is_outreach_enabled`, `is_verified`, `street`, `city`, `state`, `zip`, `phone`, `email`, `website`, `facebook`, `whatsapp`, `youtube`, `logo_url`, `donation_url`, `jumuah_schedule_url`, `created_at`, `updated_at`) VALUES
-(1, NULL, 'Masjid Abu Bakr', 'Iman Jodeh', 'omar@coloradomuslimsociety.org', '720-608-1882', 1, 1, '2071 S Parker Rd', 'Denver', 'CO', '80231', '(303) 696-9800', 'info@coloradomuslimsociety.org', 'https://coloradomuslimsociety.org', NULL, NULL, '', 'https://coloradomuslimsociety.org/wp-content/uploads/2018/03/cms-header-1-1024x94.gif', 'https://coloradomuslimsociety.org/donate/', NULL, '2026-01-31 12:19:29', '2026-02-01 07:18:55'),
+(1, NULL, 'Masjid Abu Bakr', 'Iman Jodeh', 'Omar.Aldawud@gmail.com', '720-608-1882', 1, 1, '2071 S Parker Rd', 'Denver', 'CO', '80231', '(303) 696-9800', 'info@coloradomuslimsociety.org', 'https://coloradomuslimsociety.org', NULL, NULL, '', 'https://coloradomuslimsociety.org/wp-content/uploads/2018/03/cms-header-1-1024x94.gif', 'https://coloradomuslimsociety.org/donate/', NULL, '2026-01-31 12:19:29', '2026-02-01 19:41:46'),
 (2, NULL, 'Colorado Islamic Center (Masjid Al-Salam)', 'Abdul Rahman', 'office@coislamiccenter.com', '(720) 555-2222', 1, 1, '14201 E Evans Ave', 'Aurora', 'CO', '80014', '(720) 544-3249', 'office@coislamiccenter.com', 'https://coislamiccenter.com', 'https://www.facebook.com/profile.php?id=100080104572185', NULL, 'https://www.youtube.com/channel/UCz-ybHATfNmaovUytFHwTDw', NULL, 'https://us.mohid.co/co/aurora/coislamiccenter/masjid/online/donation', NULL, '2026-01-31 12:19:29', '2026-02-01 07:09:52'),
 (3, NULL, 'Colorado Muslims Community Center (CMCC)', 'Mustafa Khan', 'info@ourcmcc.org', '(720) 555-3333', 1, 1, '1523 S Buckley Rd', 'Aurora', 'CO', '80017', '(720) 432-9027', 'info@ourcmcc.org', 'https://ourcmcc.org', NULL, NULL, '', NULL, NULL, NULL, '2026-01-31 12:19:29', '2026-01-31 12:48:49'),
 (4, NULL, 'Downtown Denver Islamic Center (Masjid Al-Shuhada)', 'Imam Karim', 'info@theddic.org', '(720) 555-4444', 1, 1, '1235 Galapago St', 'Denver', 'CO', '80204', '(720) 580-2605', 'info@theddic.org', 'https://theddic.org', NULL, NULL, '', NULL, NULL, NULL, '2026-01-31 12:19:29', '2026-01-31 12:48:49'),
@@ -276,7 +304,7 @@ CREATE TABLE `organizations` (
 --
 
 INSERT INTO `organizations` (`id`, `name`, `type`, `phone`, `email`, `website`, `street`, `city`, `state`, `zip`, `logo_url`, `tagline`, `mission_statement`, `description`, `talking_points`, `elevator_pitch`, `outreach_goals`, `brochure_url`, `presentation_url`, `donation_link`, `facebook_url`, `instagram_url`, `twitter_url`, `linkedin_url`, `youtube_url`, `ein`, `tax_exempt_status`, `primary_color`, `secondary_color`, `is_active`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Islam in Prison', 'nonprofit', '+1-844-7-PRISON (774766)', 'info@islaminprison.org', 'https://islaminprison.org/', '642 Forestwood Dr', 'Romeoville', 'IL', '60446', 'https://islaminprison.org/wp-content/uploads/2024/11/IslamInPrison-logo-Final.png', 'New Life Without Bars', 'To establish Islam in America as a complete way of life and to promote understanding and respect for Islamic practices in prisons. ', 'We work tirelessly to promote understanding and respect for Islamic practices in prisons. This includes advocating for the right to wear the hijab, access to prayer spaces, Halal meals, Jumu’ah services, and accommodations during Ramadhan. We also address the denial of Islamic resources and the lack of knowledge about Islamic practices among prison personnel. Through advocacy and action, we aim to secure the rights and dignity of Muslim prisoners while driving systemic change.', '[\"To help Muslims in the American prison system practice their faith, we provide essential religious materials, including:\",\"Prayer rugs\",\"Kufis and hijabs\",\"Dhikr beads\",\"Islamic books\",\"Miswak, attar, and thobes (where facilities permit)\"]', 'We provide unlimited free quantities of the English, Spanish, and Arabic Qurans to facilities across the U.S., meeting both individual and bulk requests from facility personnel. Additionally, we distribute free Islamic literature and brochures to introduce and deepen understanding of Islam.', NULL, NULL, NULL, 'https://islaminprison.org/donate/', 'https://facebook.com/islaminprisonorg', 'https://www.instagram.com/islaminprison', NULL, NULL, 'https://www.youtube.com/playlist?list=PLfr60nLPhb5wJCCIwKZodAlqt2wyMUdti', '20-0310701', '501c3', '#F0552E', '#233E93', 1, 'pending', '2026-01-29 08:00:48', '2026-02-01 06:22:37'),
+(1, 'Islam in Prison', 'nonprofit', '+1-844-7-PRISON (774766)', 'omar.aldawud@gmail.com', 'https://islaminprison.org/', '642 Forestwood Dr', 'Romeoville', 'IL', '60446', 'https://islaminprison.org/wp-content/uploads/2024/11/IslamInPrison-logo-Final.png', 'New Life Without Bars', 'To establish Islam in America as a complete way of life and to promote understanding and respect for Islamic practices in prisons. ', 'We work tirelessly to promote understanding and respect for Islamic practices in prisons. This includes advocating for the right to wear the hijab, access to prayer spaces, Halal meals, Jumu’ah services, and accommodations during Ramadhan. We also address the denial of Islamic resources and the lack of knowledge about Islamic practices among prison personnel. Through advocacy and action, we aim to secure the rights and dignity of Muslim prisoners while driving systemic change.', '[\"To help Muslims in the American prison system practice their faith, we provide essential religious materials, including:\",\"Prayer rugs\",\"Kufis and hijabs\",\"Dhikr beads\",\"Islamic books\",\"Miswak, attar, and thobes (where facilities permit)\"]', 'We provide unlimited free quantities of the English, Spanish, and Arabic Qurans to facilities across the U.S., meeting both individual and bulk requests from facility personnel. Additionally, we distribute free Islamic literature and brochures to introduce and deepen understanding of Islam.', NULL, NULL, NULL, 'https://islaminprison.org/donate/', 'https://facebook.com/islaminprisonorg', 'https://www.instagram.com/islaminprison', NULL, NULL, 'https://www.youtube.com/playlist?list=PLfr60nLPhb5wJCCIwKZodAlqt2wyMUdti', '20-0310701', '501c3', '#F0552E', '#233E93', 1, 'pending', '2026-01-29 08:00:48', '2026-02-01 19:15:45'),
 (2, 'Islamic Circle of North America (ICNA)', 'nonprofit', '+1-718-658-7028', 'info@icna.org', 'https://www.icna.org', '166-26 89th Ave', 'Jamaica', 'NY', '11432', 'https://www.icna.org/wp-content/uploads/2020/07/icna-logo.png', 'Establishing Islam in America', '<p><b>THE MISSION STATEMENT</b><br />\nMission of ICNA is to seek the pleasure of Allah (SWT) through the struggle for Iqamat-ud-Deen (application of the Islamic system of life) as spelled out in the Qur’an and the Sunnah of Prophet Muhammad (SAW).</p>\n<p><b>THE VISION STATEMENT</b><br />\nTo be a truly representative grassroots organization of diverse Muslim Americans inclusive for all ages, ethnicities and socioeconomic statuses. ICNA will be an innovative, agile, and credible source of institutional support for connecting with Allah (God), with other individuals, and with the community.</p>\n\n<p><b>THE 7-POINT PROGRAM OF ICNA</b><br /></p>\n<ol>\n  <li>Inviting mankind to submit to the Creator by using all possible means of communication.</li>\n  <li>Motivating Muslims to perform their duty of being witness unto mankind by their words and deeds.</li>\n  <li>Organizing those who agree to work for this cause in the discipline of ICNA.</li>\n  <li>Offering educational and training opportunities to increase Islamic knowledge, to enhance character, and to develop skills of all those who are associated with ICNA.</li>\n  <li>Opposing immorality and oppression in all forms, supporting efforts for socioeconomic justice and civil liberties in the society.</li>\n  <li>Strengthening the bond of humanity by serving all those in need anywhere in world, with special focus on our neighborhood across North America.</li>\n  <li>Cooperating with other organizations for implementation of this program and unity in the Ummah. (Clause 6 of ICNA Charter)</li>\n</ol>\n<style>\n  ol li::marker {\n    color: red; /* makes only the numbers red */\n  }\n</style>', 'ICNA is a leading grassroots Muslim organization focused on education, social services, relief, and dawah across North America.', '[\"Community education\",\"Disaster relief\",\"Youth development\",\"Interfaith outreach\"]', 'ICNA empowers communities through education, relief, and service rooted in Islamic values.', 'Expand partnerships with mosques nationwide to increase community programs and outreach.', NULL, NULL, 'https://www.icna.org/donate/', 'https://facebook.com/icnaorg', 'https://instagram.com/icnaorg', 'https://twitter.com/icna', 'https://www.linkedin.com/company/icna/', 'https://www.youtube.com/@ICNAorg', '11-2993976', '501c3', '#006837', '#1C75BC', 1, 'active', '2026-01-31 12:18:13', '2026-01-31 14:57:59'),
 (3, 'Council on American-Islamic Relations (CAIR)', 'nonprofit', '+1-202-488-8787', 'info@cair.com', 'https://www.cair.com', NULL, 'Washington', 'DC', '20005', 'https://www.cair.com/wp-content/uploads/CAIR-logo-green.png', 'Challenging stereotypes. Defending civil liberties.', 'To enhance understanding of Islam and protect civil rights.', 'CAIR is America’s largest Muslim civil liberties and advocacy organization.', '[\"Civil rights advocacy\", \"Legal defense\", \"Media engagement\", \"Community empowerment\"]', 'CAIR protects the civil rights of American Muslims through advocacy and education.', 'Build stronger relationships with mosques to support civil rights education.', NULL, NULL, 'https://www.cair.com/donate/', 'https://facebook.com/cairnational', 'https://instagram.com/cairnational', 'https://twitter.com/cairnational', 'https://www.linkedin.com/company/cair/', 'https://www.youtube.com/@CAIRNational', '52-1884951', '501c3', '#2E7D32', '#1565C0', 1, 'active', '2026-01-31 12:18:13', '2026-01-31 12:18:13'),
 (4, 'Islamic Relief USA', 'nonprofit', '+1-703-370-7202', 'info@irusa.org', 'https://irusa.org', '3655 Wheeler Ave', 'Alexandria', 'VA', '22304', 'https://irusa.org/wp-content/uploads/2021/06/IRUSA-logo.png', 'Working Together for a Better World', 'To alleviate human suffering regardless of race or religion.', 'Islamic Relief USA provides humanitarian aid and development programs domestically and globally.', '[\"Disaster response\", \"Food assistance\", \"Orphan support\", \"Health services\"]', 'Islamic Relief USA delivers life-saving aid and builds resilient communities.', 'Increase mosque-based fundraising and awareness campaigns.', NULL, NULL, 'https://irusa.org/donate/', 'https://facebook.com/islamicreliefusa', 'https://instagram.com/islamicreliefusa', 'https://twitter.com/IRUSA', 'https://www.linkedin.com/company/islamic-relief-usa/', 'https://www.youtube.com/@IslamicReliefUSA', '95-4453134', '501c3', '#E31B23', '#0054A6', 1, 'active', '2026-01-31 12:18:13', '2026-01-31 12:18:13'),
@@ -311,7 +339,10 @@ INSERT INTO `outreach_logs` (`id`, `mosque_id`, `user_id`, `contacted_by_org_id`
 (3, 1, 2, 1, 'phone', 'Omar Aldawud', '16308008077', 'oaldawud@clarku.edu', '', '', '2026-01-31 11:33:10'),
 (4, 1, 2, 1, 'phone', 'Omar Aldawud', '16308008077', 'oaldawud@clarku.edu', '', '', '2026-01-31 11:33:26'),
 (12, 1, 2, 1, 'phone', 'sddc', '16308008077', 'Omar.Aldawud@gmail.com', 'dsc', 'sdcdsc', '2026-01-31 12:12:33'),
-(13, 1, 1, NULL, 'phone', 'Omar Aldawud', '16308008077', 'oaldawud@clarku.edu', '', '', '2026-01-31 19:47:47');
+(13, 1, 1, NULL, 'phone', 'Omar Aldawud', '16308008077', 'oaldawud@clarku.edu', '', '', '2026-01-31 19:47:47'),
+(14, 1, 2, 1, 'visit', '', '', '', '', '', '2026-02-01 13:48:37'),
+(15, 1, 2, 1, 'visit', 'Omar Aldawud', '16308008077', 'omar@rushrash.com', '', '', '2026-02-01 15:01:25'),
+(16, 1, 2, 1, 'Email', 'Iman Jodeh', '720-608-1882', 'Omar.Aldawud@gmail.com', 'Template: Event Invitation | Subject: You Are Invited – Upcoming Event at Masjid Abu Bakr', 'Email Queued (dry run)', '2026-02-01 15:16:37');
 
 -- --------------------------------------------------------
 
@@ -342,15 +373,22 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `organization_id`, `associated_mosque_id`, `user_name`, `role`, `user_profile_picture`, `user_email`, `user_phone`, `password_hash`, `is_active`, `email_verified`, `failed_login_attempts`, `account_locked_until`, `last_login_at`, `created_at`) VALUES
-(1, NULL, NULL, 'System Admin', 'system_admin', '', 'sysadmin@example.com', '', '$2y$10$yHOtUIW7U5codj3RwAWBz.gTy6ZqJvJwAx2hWFrdknJ.zXRTZTkH6', 1, 1, 0, NULL, '2026-01-31 22:44:19', '2026-01-31 14:29:34'),
-(2, 1, NULL, 'Sr. Fatima', 'organization_admin', 'https://islaminprison.org/wp-content/uploads/2024/11/IslamInPrison-logo-Final.png', 'orgadmin@example.com', '', '$2y$10$yHOtUIW7U5codj3RwAWBz.gTy6ZqJvJwAx2hWFrdknJ.zXRTZTkH6', 1, 1, 0, NULL, '2026-01-31 22:57:23', '2026-01-31 14:29:34'),
-(3, NULL, 1, 'Mosque Admin', 'mosque_admin', '', 'mosqueadmin@example.com', '', '$2y$10$yHOtUIW7U5codj3RwAWBz.gTy6ZqJvJwAx2hWFrdknJ.zXRTZTkH6', 1, 1, 0, NULL, '2026-01-31 22:47:06', '2026-01-31 14:29:34'),
+(1, NULL, NULL, 'Omar A.', 'system_admin', '', 'sysadmin@example.com', '', '$2y$10$yHOtUIW7U5codj3RwAWBz.gTy6ZqJvJwAx2hWFrdknJ.zXRTZTkH6', 1, 1, 0, NULL, '2026-02-01 08:18:17', '2026-01-31 14:29:34'),
+(2, 1, NULL, 'Sr. Fatima', 'organization_admin', 'https://islaminprison.org/wp-content/uploads/2024/11/IslamInPrison-logo-Final.png', 'orgadmin@example.com', '', '$2y$10$yHOtUIW7U5codj3RwAWBz.gTy6ZqJvJwAx2hWFrdknJ.zXRTZTkH6', 1, 1, 0, NULL, '2026-02-01 14:55:19', '2026-01-31 14:29:34'),
+(3, NULL, 1, 'Mosque Admin', 'mosque_admin', 'https://coloradomuslimsociety.org/wp-content/uploads/2018/03/cms-header-1-1024x94.gif', 'mosqueadmin@example.com', '', '$2y$10$yHOtUIW7U5codj3RwAWBz.gTy6ZqJvJwAx2hWFrdknJ.zXRTZTkH6', 1, 1, 0, NULL, '2026-02-01 10:33:34', '2026-01-31 14:29:34'),
 (4, 1, NULL, 'ICNA Admin', 'organization_admin', '', 'info@icna.org', '', '$2y$10$yHOtUIW7U5codj3RwAWBz.gTy6ZqJvJwAx2hWFrdknJ.zXRTZTkH6', 1, 1, 0, NULL, '2026-01-31 07:50:03', '2026-01-31 14:29:34'),
 (5, 7, NULL, 'Omar Aldawud', '', '', 'omar@rushrash.com', '6308008077', '', 1, 0, 0, NULL, NULL, '2026-02-01 02:28:53');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `email_templates`
+--
+ALTER TABLE `email_templates`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `slug` (`slug`);
 
 --
 -- Indexes for table `mosques`
@@ -387,6 +425,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `email_templates`
+--
+ALTER TABLE `email_templates`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `mosques`
 --
 ALTER TABLE `mosques`
@@ -402,7 +446,7 @@ ALTER TABLE `organizations`
 -- AUTO_INCREMENT for table `outreach_logs`
 --
 ALTER TABLE `outreach_logs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `users`

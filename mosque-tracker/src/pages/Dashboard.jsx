@@ -1,14 +1,16 @@
 import { useState, useEffect } from "react";
 import Badge from "react-bootstrap/Badge";
-import MasjidCard from "../components/layout/MasjidCard";
-import LogActionModal from "../components/LogActionModal";
-import OrganizationSidebar from "../components/layout/OrganizationSidebar";
-import MosqueAdminSidebar from "../components/layout/MosqueAdminSidebar";
-import { US_STATES } from "../assets/ds/us_states";
-import "../assets/css/search-and-filter.css";
 import { FaMosque, FaChartPie, FaChartLine } from "react-icons/fa";
 
+import MasjidCard from "../components/mosque/MasjidCard";
+import LogActionModal from "../components/layout/LogActionModal";
+import OrganizationSidebar from "../components/organization/OrganizationSidebar";
+import MosqueAdminSidebar from "../components/mosque/MosqueAdminSidebar";
+import { US_STATES } from "../assets/ds/us_states";
+import "../assets/css/search-and-filter.css";
+
 export default function Dashboard({
+  user, // full user object — passed down to MasjidCard for email flow
   currentUserId,
   organizationId,
   userRole,
@@ -108,7 +110,7 @@ export default function Dashboard({
       m.website?.toLowerCase().includes(q) ||
       m.facebook?.toLowerCase().includes(q) ||
       m.whatsapp?.toLowerCase().includes(q) ||
-      m.youtube?.toLowerCase().include(q)
+      m.youtube?.toLowerCase().includes(q)
     );
   });
 
@@ -214,6 +216,7 @@ export default function Dashboard({
                   userRole={userRole}
                   userOrganizationId={organizationId}
                   userAssociatedMosqueId={associatedMosqueId}
+                  user={user}
                 />
               );
             })

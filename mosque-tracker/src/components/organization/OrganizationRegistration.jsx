@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { US_STATES } from "../assets/ds/us_states";
-import "../assets/css/registration-form.css";
+import { US_STATES } from "../../assets/ds/us_states";
+import "../../assets/css/registration-form.css";
 
 export default function OrganizationRegistration({ onBackToLogin }) {
   const [formData, setFormData] = useState({

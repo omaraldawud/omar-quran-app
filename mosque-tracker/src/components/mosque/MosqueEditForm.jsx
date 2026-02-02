@@ -1,8 +1,13 @@
 import { useState, useEffect } from "react";
-import { US_STATES } from "../assets/ds/us_states";
-import "../assets/css/mosque-edit-form.css";
+import { US_STATES } from "../../assets/ds/us_states";
+import "../../assets/css/mosque-edit-form.css";
 
-export default function MosqueEditForm({ mosqueId, userRole, onNavigate, onSuccess }) {
+export default function MosqueEditForm({
+  mosqueId,
+  userRole,
+  onNavigate,
+  onSuccess,
+}) {
   const [formData, setFormData] = useState({
     id: "",
     name: "",
@@ -44,7 +49,7 @@ export default function MosqueEditForm({ mosqueId, userRole, onNavigate, onSucce
         `http://localhost/api/mosque_details.php?id=${mosqueId}`,
         {
           credentials: "include",
-        }
+        },
       );
 
       if (!response.ok) {
@@ -57,7 +62,7 @@ export default function MosqueEditForm({ mosqueId, userRole, onNavigate, onSucce
     } catch (err) {
       console.error("Error fetching mosque:", err);
       setError(err.message || "Failed to load mosque details");
-      
+
       // If unauthorized, redirect back
       if (err.message.includes("permission")) {
         setTimeout(() => onNavigate("dashboard"), 2000);

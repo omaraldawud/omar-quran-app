@@ -25,7 +25,7 @@ export default function Login({ onLogin, onRegister }) {
       if (data.success) {
         onLogin(data.user);
       } else {
-        setError(data.error || "Login failed");
+        setError(data.message || "Login failed");
       }
     } catch (err) {
       console.error("Login error:", err);
