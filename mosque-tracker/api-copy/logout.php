@@ -1,8 +1,5 @@
 <?php
-// 1. Configure session BEFORE starting it
 require 'session_config.php';
-
-// 2. NOW start the session
 session_start();
 
 header('Content-Type: application/json');
@@ -16,13 +13,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit;
 }
 
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    http_response_code(405);
-    echo json_encode(['success' => false, 'message' => 'Method not allowed']);
-    exit;
+// 1. Unset all session variables
+$_SESSION = [];
+
+// 2. Clear the session cookie from the browser
+if (ini_get("session.use_cookies")) {
+    $params = session_get_cookie_params();
+    setcookie(session_name(), '', time() - 42000,
+        $params["path"], $params["domain"],
+        $params["secure"], $params["httponly"]
+    );
 }
 
-// Destroy session
+// 3. Finally, destroy the session data on the server
 session_destroy();
 
 echo json_encode(['success' => true, 'message' => 'Logged out successfully']);

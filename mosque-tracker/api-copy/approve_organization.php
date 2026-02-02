@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'PUT' || $_SERVER['REQUEST_METHOD'] === 'POST
             // Activate the organization
             $stmt = $pdo->prepare("
                 UPDATE organizations 
-                SET is_active = 1, status = 'active', updated_at = NOW()
+                SET is_active = 1, updated_at = NOW()
                 WHERE id = ?
             ");
             $stmt->execute([$orgId]);

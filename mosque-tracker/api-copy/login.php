@@ -40,6 +40,7 @@ try {
         SELECT 
             id, 
             organization_id, 
+            associated_mosque_id,
             role, 
             user_name, 
             user_email, 
@@ -115,22 +116,22 @@ try {
     ");
     $stmt->execute([$user['id']]);
 
-    // Set session user array for mosque_details.php
-    $_SESSION['user'] = [
-        'id' => $user['id'],
-        'username' => $user['user_name'],
-        'email' => $user['user_email'],
-        'role' => $user['role'],
-        'organization_id' => $user['organization_id'],
-        'associated_mosque_id' => $user['associated_mosque_id']
+    // Build the user object once — both the session and the JSON response
+    // use this exact same shape. auth.php returns the same shape on refresh.
+    $sessionUser = [
+        'id'                   => $user['id'],
+        'user_name'            => $user['user_name'],    
+        'user_email'           => $user['user_email'],
+        'role'                 => $user['role'],
+        'organization_id'      => $user['organization_id'],
+        'associated_mosque_id' => $user['associated_mosque_id'],
     ];
 
-    // Remove sensitive data before sending response
-    unset($user['password_hash'], $user['failed_login_attempts'], $user['account_locked_until']);
+    $_SESSION['user'] = $sessionUser;
 
     echo json_encode([
         'success' => true,
-        'user' => $_SESSION['user']
+        'user'    => $sessionUser
     ]);
 
 } catch (PDOException $e) {

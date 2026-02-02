@@ -19,40 +19,51 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 require 'db.php';
 
 try {
-    // Check if user is logged in via session
-    if (!isset($_SESSION['user_id'])) {
+    // login.php stores the session as $_SESSION['user']['id']
+    // so we must read it the same way
+    if (!isset($_SESSION['user']['id'])) {
         echo json_encode(['authenticated' => false]);
         exit;
     }
 
-    // Fetch current user data
+    // Fetch current user data from DB to get fresh values
     $stmt = $pdo->prepare("
         SELECT 
-            id, 
-            organization_id, 
-            role, 
-            user_name, 
-            user_email, 
+            id,
+            organization_id,
             associated_mosque_id,
+            user_name,
+            user_email,
+            role,
             is_active,
-            user_phone
+            user_profile_picture
         FROM users 
         WHERE id = ? AND is_active = 1
     ");
-    $stmt->execute([$_SESSION['user_id']]);
+    $stmt->execute([$_SESSION['user']['id']]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if ($user) {
-        // User is authenticated and active
-        echo json_encode([
-            'authenticated' => true, 
-            'user' => $user
-        ]);
-    } else {
+    if (!$user) {
         // User not found or inactive - clear session
         session_destroy();
         echo json_encode(['authenticated' => false]);
+        exit;
     }
+
+    // Return the user object with the same shape login.php sends.
+    // This keeps the frontend consistent regardless of which path set the user.
+    echo json_encode([
+        'authenticated' => true,
+        'user' => [
+            'id'                   => $user['id'],
+            'user_name'            => $user['user_name'],
+            'user_email'           => $user['user_email'],
+            'role'                 => $user['role'],
+            'organization_id'      => $user['organization_id'],
+            'associated_mosque_id' => $user['associated_mosque_id'],
+            'user_profile_picture' => $user['user_profile_picture'],
+        ]
+    ]);
 
 } catch (PDOException $e) {
     error_log("Auth check error: " . $e->getMessage());

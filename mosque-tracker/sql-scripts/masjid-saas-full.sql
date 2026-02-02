@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Feb 01, 2026 at 03:17 PM
+-- Generation Time: Feb 01, 2026 at 06:16 PM
 -- Server version: 10.6.24-MariaDB-cll-lve
 -- PHP Version: 8.3.29
 
@@ -342,7 +342,13 @@ INSERT INTO `outreach_logs` (`id`, `mosque_id`, `user_id`, `contacted_by_org_id`
 (13, 1, 1, NULL, 'phone', 'Omar Aldawud', '16308008077', 'oaldawud@clarku.edu', '', '', '2026-01-31 19:47:47'),
 (14, 1, 2, 1, 'visit', '', '', '', '', '', '2026-02-01 13:48:37'),
 (15, 1, 2, 1, 'visit', 'Omar Aldawud', '16308008077', 'omar@rushrash.com', '', '', '2026-02-01 15:01:25'),
-(16, 1, 2, 1, 'Email', 'Iman Jodeh', '720-608-1882', 'Omar.Aldawud@gmail.com', 'Template: Event Invitation | Subject: You Are Invited – Upcoming Event at Masjid Abu Bakr', 'Email Queued (dry run)', '2026-02-01 15:16:37');
+(16, 1, 2, 1, 'Email', 'Iman Jodeh', '720-608-1882', 'Omar.Aldawud@gmail.com', 'Template: Event Invitation | Subject: You Are Invited – Upcoming Event at Masjid Abu Bakr', 'Email Queued (dry run)', '2026-02-01 15:16:37'),
+(17, 1, 2, 1, 'email', 'Omar Aldawud', '16308008077', 'oaldawud@clarku.edu', '', '', '2026-02-01 15:31:27'),
+(18, 2, 2, 1, 'visit', 'Omar Aldawud', '16308008077', 'Omar.Aldawud@gmail.com', '', '', '2026-02-01 15:31:52'),
+(19, 1, 2, 1, 'phone', 'Omar Aldawud', '16308008077', 'oaldawud@clarku.edu', '', '', '2026-02-01 15:43:41'),
+(20, 1, 3, NULL, 'visit', 'Omar Aldawud', '16308008077', 'oaldawud@clarku.edu', '', '', '2026-02-01 16:08:37'),
+(21, 1, 3, NULL, 'Email', 'Iman Jodeh', '720-608-1882', 'Omar.Aldawud@gmail.com', 'Template: Event Invitation | Subject: You Are Invited – Upcoming Event at Masjid Abu Bakr', 'Email Queued (dry run)', '2026-02-01 17:00:08'),
+(22, 1, 3, NULL, 'Email', 'Iman Jodeh', '720-608-1882', 'Omar.Aldawud@gmail.com', 'Template: Event Invitation | Subject: You Are Invited – Upcoming Event at Masjid Abu Bakr', 'Email Queued (dry run)', '2026-02-01 17:06:29');
 
 -- --------------------------------------------------------
 
@@ -373,10 +379,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `organization_id`, `associated_mosque_id`, `user_name`, `role`, `user_profile_picture`, `user_email`, `user_phone`, `password_hash`, `is_active`, `email_verified`, `failed_login_attempts`, `account_locked_until`, `last_login_at`, `created_at`) VALUES
-(1, NULL, NULL, 'Omar A.', 'system_admin', '', 'sysadmin@example.com', '', '$2y$10$yHOtUIW7U5codj3RwAWBz.gTy6ZqJvJwAx2hWFrdknJ.zXRTZTkH6', 1, 1, 0, NULL, '2026-02-01 08:18:17', '2026-01-31 14:29:34'),
-(2, 1, NULL, 'Sr. Fatima', 'organization_admin', 'https://islaminprison.org/wp-content/uploads/2024/11/IslamInPrison-logo-Final.png', 'orgadmin@example.com', '', '$2y$10$yHOtUIW7U5codj3RwAWBz.gTy6ZqJvJwAx2hWFrdknJ.zXRTZTkH6', 1, 1, 0, NULL, '2026-02-01 14:55:19', '2026-01-31 14:29:34'),
-(3, NULL, 1, 'Mosque Admin', 'mosque_admin', 'https://coloradomuslimsociety.org/wp-content/uploads/2018/03/cms-header-1-1024x94.gif', 'mosqueadmin@example.com', '', '$2y$10$yHOtUIW7U5codj3RwAWBz.gTy6ZqJvJwAx2hWFrdknJ.zXRTZTkH6', 1, 1, 0, NULL, '2026-02-01 10:33:34', '2026-01-31 14:29:34'),
-(4, 1, NULL, 'ICNA Admin', 'organization_admin', '', 'info@icna.org', '', '$2y$10$yHOtUIW7U5codj3RwAWBz.gTy6ZqJvJwAx2hWFrdknJ.zXRTZTkH6', 1, 1, 0, NULL, '2026-01-31 07:50:03', '2026-01-31 14:29:34'),
+(1, NULL, NULL, 'Omar A.', 'system_admin', '', 'sysadmin@example.com', '', '$2y$10$yHOtUIW7U5codj3RwAWBz.gTy6ZqJvJwAx2hWFrdknJ.zXRTZTkH6', 1, 1, 0, NULL, '2026-02-01 17:10:13', '2026-01-31 14:29:34'),
+(2, 1, NULL, 'Sr. Fatima', 'organization_admin', 'https://islaminprison.org/wp-content/uploads/2024/11/IslamInPrison-logo-Final.png', 'orgadmin@example.com', '', '$2y$10$yHOtUIW7U5codj3RwAWBz.gTy6ZqJvJwAx2hWFrdknJ.zXRTZTkH6', 1, 1, 0, NULL, '2026-02-01 17:07:14', '2026-01-31 14:29:34'),
+(3, NULL, 1, 'Mosque Admin', 'mosque_admin', 'https://coloradomuslimsociety.org/wp-content/uploads/2018/03/cms-header-1-1024x94.gif', 'mosqueadmin@example.com', '', '$2y$10$yHOtUIW7U5codj3RwAWBz.gTy6ZqJvJwAx2hWFrdknJ.zXRTZTkH6', 1, 1, 0, NULL, '2026-02-01 17:06:12', '2026-01-31 14:29:34'),
+(4, 1, NULL, 'ICNA Admin', 'organization_admin', 'https://icna.org/wp-content/uploads/2022/02/ICNA-Logo-Updated-01.png', 'info@icna.org', '', '$2y$10$yHOtUIW7U5codj3RwAWBz.gTy6ZqJvJwAx2hWFrdknJ.zXRTZTkH6', 1, 1, 0, NULL, '2026-01-31 07:50:03', '2026-01-31 14:29:34'),
 (5, 7, NULL, 'Omar Aldawud', '', '', 'omar@rushrash.com', '6308008077', '', 1, 0, 0, NULL, NULL, '2026-02-01 02:28:53');
 
 --
@@ -446,7 +452,7 @@ ALTER TABLE `organizations`
 -- AUTO_INCREMENT for table `outreach_logs`
 --
 ALTER TABLE `outreach_logs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `users`

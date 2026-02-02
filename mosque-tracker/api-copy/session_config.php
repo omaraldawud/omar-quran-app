@@ -9,7 +9,7 @@ if (session_status() === PHP_SESSION_NONE) {
         'domain' => '',       // Let browser default to current host
         'secure' => false,    // HTTP on localhost
         'httponly' => true,
-        'samesite' => 'Lax'   // Works for cross-port localhost
+        'samesite' => 'Lax'   // Works for cross-port localhost:5173 for react and localhost:80 for api
     ]);
 }
 ?>
