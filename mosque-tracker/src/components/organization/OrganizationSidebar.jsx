@@ -76,6 +76,7 @@ export default function OrganizationSidebar({
     tagline,
     mission_statement,
     description,
+    guidelines,
     talking_points,
     elevator_pitch,
     outreach_goals,
@@ -301,7 +302,18 @@ export default function OrganizationSidebar({
             </Card>
           )}
 
-          {/* Talking Points */}
+          {/* Guidelines Section - Simplified */}
+          {guidelines && (
+            <Card className="sidebar-card">
+              <Card.Body>
+                <h6 className="card-title">
+                  <FaComments className="me-1" /> Guidelines
+                </h6>
+                <div dangerouslySetInnerHTML={{ __html: guidelines }} />
+              </Card.Body>
+            </Card>
+          )}
+
           {talking_points && talking_points.length > 0 && (
             <Card className="sidebar-card">
               <Card.Body>

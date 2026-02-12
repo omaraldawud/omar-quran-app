@@ -16,6 +16,7 @@ export default function OutreachHistory({ outreachLog }) {
       <h5 style={{ marginBottom: "15px", color: "#495057" }}>
         📋 Outreach History ({outreachLog.length})
       </h5>
+
       <div style={{ overflowX: "auto" }}>
         <table
           style={{
@@ -26,116 +27,65 @@ export default function OutreachHistory({ outreachLog }) {
         >
           <thead>
             <tr style={{ backgroundColor: "#e9ecef" }}>
-              <th
-                style={{
-                  padding: "10px",
-                  textAlign: "left",
-                  borderBottom: "2px solid #dee2e6",
-                }}
-              >
-                Date/Time
-              </th>
-              <th
-                style={{
-                  padding: "10px",
-                  textAlign: "left",
-                  borderBottom: "2px solid #dee2e6",
-                }}
-              >
-                Method
-              </th>
-              <th
-                style={{
-                  padding: "10px",
-                  textAlign: "left",
-                  borderBottom: "2px solid #dee2e6",
-                }}
-              >
-                Contact Person
-              </th>
-              <th
-                style={{
-                  padding: "10px",
-                  textAlign: "left",
-                  borderBottom: "2px solid #dee2e6",
-                }}
-              >
-                Notes
-              </th>
-              <th
-                style={{
-                  padding: "10px",
-                  textAlign: "left",
-                  borderBottom: "2px solid #dee2e6",
-                }}
-              >
-                Result
-              </th>
+              <th style={thStyle}>Date/Time</th>
+              <th style={thStyle}>Method</th>
+              <th style={thStyle}>Contact Person</th>
+              <th style={thStyle}>Notes</th>
+              <th style={thStyle}>Result</th>
             </tr>
           </thead>
+
           <tbody>
             {outreachLog.map((entry) => (
               <tr key={entry.id} style={{ borderBottom: "1px solid #dee2e6" }}>
-                <td style={{ padding: "10px", fontSize: "14px" }}>
+                <td style={tdStyle}>
                   {new Date(entry.contacted_at).toLocaleString()}
                 </td>
-                <td style={{ padding: "10px" }}>
-                  <span
-                    style={{
-                      padding: "4px 8px",
-                      borderRadius: "4px",
-                      backgroundColor: "#e7f3ff",
-                      fontSize: "13px",
-                      display: "inline-block",
-                    }}
-                  >
-                    {entry.method}
-                  </span>
+
+                <td style={tdStyle}>
+                  <span style={methodBadge}>{entry.method}</span>
                 </td>
-                <td style={{ padding: "10px", fontSize: "14px" }}>
-                  <div>
-                    <strong>{entry.contacted_person_name || "N/A"}</strong>
-                  </div>
+
+                <td style={tdStyle}>
+                  <strong>{entry.contacted_person_name || "N/A"}</strong>
                   {entry.contacted_person_email && (
-                    <div
-                      style={{
-                        fontSize: "12px",
-                        color: "#666",
-                        marginTop: "2px",
-                      }}
-                    >
-                      ✉️ {entry.contacted_person_email}
-                    </div>
+                    <div style={subText}>✉️ {entry.contacted_person_email}</div>
                   )}
                   {entry.contacted_person_phone && (
-                    <div
-                      style={{
-                        fontSize: "12px",
-                        color: "#666",
-                        marginTop: "2px",
-                      }}
-                    >
-                      📞 {entry.contacted_person_phone}
-                    </div>
+                    <div style={subText}>📞 {entry.contacted_person_phone}</div>
                   )}
                 </td>
-                <td
-                  style={{
-                    padding: "10px",
-                    fontSize: "14px",
-                    maxWidth: "200px",
-                  }}
-                >
+
+                <td style={{ ...tdStyle, maxWidth: "200px" }}>
                   {entry.notes || "-"}
                 </td>
-                <td
-                  style={{
-                    padding: "10px",
-                    fontSize: "14px",
-                    maxWidth: "200px",
-                  }}
-                >
-                  {entry.result || "-"}
+
+                <td style={{ ...tdStyle, maxWidth: "260px" }}>
+                  <div>{entry.result || "-"}</div>
+
+                  {entry.is_agreed == 1 && (
+                    <div style={{ marginTop: "8px", color: "green" }}>
+                      ✅ Agreed
+                    </div>
+                  )}
+
+                  {entry.agreed_date && (
+                    <div style={subText}>
+                      📅 {new Date(entry.agreed_date).toLocaleDateString()}
+                    </div>
+                  )}
+
+                  {entry.event_type && (
+                    <div style={subText}>🕌 {entry.event_type}</div>
+                  )}
+
+                  {entry.event_khateeb && (
+                    <div style={subText}>🎤 {entry.event_khateeb}</div>
+                  )}
+
+                  {entry.event_address && (
+                    <div style={subText}>📍 {entry.event_address}</div>
+                  )}
                 </td>
               </tr>
             ))}
@@ -145,3 +95,29 @@ export default function OutreachHistory({ outreachLog }) {
     </div>
   );
 }
+
+const thStyle = {
+  padding: "10px",
+  textAlign: "left",
+  borderBottom: "2px solid #dee2e6",
+};
+
+const tdStyle = {
+  padding: "10px",
+  fontSize: "14px",
+  verticalAlign: "top",
+};
+
+const subText = {
+  fontSize: "12px",
+  color: "#666",
+  marginTop: "4px",
+};
+
+const methodBadge = {
+  padding: "4px 8px",
+  borderRadius: "4px",
+  backgroundColor: "#e7f3ff",
+  fontSize: "13px",
+  display: "inline-block",
+};

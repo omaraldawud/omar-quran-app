@@ -4,9 +4,6 @@ export default function OutreachTable({ outreachLog = [] }) {
   const [usersMap, setUsersMap] = useState({});
   const [mosquesMap, setMosquesMap] = useState({});
 
-  console.log("🔍 OutreachTable rendering with", outreachLog.length, "entries");
-
-  // Fetch users
   useEffect(() => {
     fetch("http://localhost/api/users.php")
       .then((res) => res.json())
@@ -18,7 +15,6 @@ export default function OutreachTable({ outreachLog = [] }) {
       .catch(console.error);
   }, []);
 
-  // Fetch mosques for display
   useEffect(() => {
     fetch("http://localhost/api/mosques.php")
       .then((res) => res.json())
@@ -30,35 +26,6 @@ export default function OutreachTable({ outreachLog = [] }) {
       .catch(console.error);
   }, []);
 
-  // Force visibility with inline styles - no CSS classes
-  const containerStyle = {
-    width: "100%",
-    display: "block",
-    visibility: "visible",
-    opacity: 1,
-    padding: "20px",
-    marginTop: "20px",
-    backgroundColor: "#ffffff",
-    border: "2px solid #dee2e6",
-    borderRadius: "8px",
-  };
-
-  const tableStyle = {
-    width: "100%",
-    borderCollapse: "collapse",
-    display: "table",
-    visibility: "visible",
-    opacity: 1,
-  };
-
-  const thStyle = {
-    padding: "12px",
-    textAlign: "left",
-    borderBottom: "2px solid #dee2e6",
-    backgroundColor: "#e9ecef",
-    fontWeight: "bold",
-  };
-
   const tdStyle = {
     padding: "12px",
     borderBottom: "1px solid #dee2e6",
@@ -66,104 +33,84 @@ export default function OutreachTable({ outreachLog = [] }) {
   };
 
   if (outreachLog.length === 0) {
-    return (
-      <div style={containerStyle}>
-        <p
-          style={{
-            fontSize: "16px",
-            color: "#666",
-            textAlign: "center",
-            margin: 0,
-          }}
-        >
-          📋 No outreach logged yet. Click "+ Log Action" on any mosque card to
-          add your first entry.
-        </p>
-      </div>
-    );
+    return <div>No outreach logged yet.</div>;
   }
 
   return (
-    <div style={containerStyle}>
-      <div style={{ overflowX: "auto", display: "block" }}>
-        <table style={tableStyle}>
-          <thead>
-            <tr>
-              <th style={thStyle}>Mosque</th>
-              <th style={thStyle}>Method</th>
-              <th style={thStyle}>Contact Time</th>
-              <th style={thStyle}>Contacted Person</th>
-              <th style={thStyle}>Notes</th>
-              <th style={thStyle}>Result</th>
-              <th style={thStyle}>User</th>
-            </tr>
-          </thead>
-          <tbody>
-            {outreachLog.map((entry) => (
-              <tr key={entry.id}>
-                <td style={tdStyle}>
-                  <strong>
-                    {mosquesMap[entry.mosque_id] ||
-                      `Mosque #${entry.mosque_id}`}
-                  </strong>
-                </td>
-                <td style={tdStyle}>
-                  <span
-                    style={{
-                      padding: "4px 8px",
-                      borderRadius: "4px",
-                      backgroundColor: "#e7f3ff",
-                      fontSize: "14px",
-                      display: "inline-block",
-                    }}
-                  >
-                    {entry.method}
-                  </span>
-                </td>
-                <td style={tdStyle}>
-                  {new Date(entry.contacted_at).toLocaleString()}
-                </td>
-                <td style={tdStyle}>
-                  <div>
-                    <strong>{entry.contacted_person_name || "N/A"}</strong>
+    <div style={{ padding: "20px", marginTop: "20px" }}>
+      <table style={{ width: "100%", borderCollapse: "collapse" }}>
+        <thead>
+          <tr>
+            <th>Mosque</th>
+            <th>User</th>
+            <th>Method</th>
+            <th>Contact Time</th>
+            <th>Contacted Person</th>
+            <th>Notes</th>
+            <th>Result</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {outreachLog.map((entry) => (
+            <tr key={entry.id}>
+              <td style={tdStyle}>
+                {mosquesMap[entry.mosque_id] || `Mosque #${entry.mosque_id}`}
+              </td>
+
+              <td style={tdStyle}>
+                {usersMap[entry.user_id] || `User #${entry.user_id}`}
+              </td>
+
+              <td style={tdStyle}>{entry.method}</td>
+
+              <td style={tdStyle}>
+                {new Date(entry.contacted_at).toLocaleString()}
+              </td>
+
+              <td style={tdStyle}>
+                <strong>{entry.contacted_person_name || "N/A"}</strong>
+              </td>
+
+              <td style={tdStyle}>{entry.notes || "-"}</td>
+
+              <td style={{ ...tdStyle, maxWidth: "260px" }}>
+                <div>{entry.result || "-"}</div>
+
+                {entry.is_agreed == 1 && (
+                  <div style={{ marginTop: "6px", color: "green" }}>
+                    ✅ Agreed
                   </div>
-                  {entry.contacted_person_email && (
-                    <div
-                      style={{
-                        fontSize: "12px",
-                        color: "#666",
-                        marginTop: "4px",
-                      }}
-                    >
-                      ✉️ {entry.contacted_person_email}
-                    </div>
-                  )}
-                  {entry.contacted_person_phone && (
-                    <div
-                      style={{
-                        fontSize: "12px",
-                        color: "#666",
-                        marginTop: "4px",
-                      }}
-                    >
-                      📞 {entry.contacted_person_phone}
-                    </div>
-                  )}
-                </td>
-                <td style={{ ...tdStyle, maxWidth: "250px" }}>
-                  {entry.notes || "-"}
-                </td>
-                <td style={{ ...tdStyle, maxWidth: "250px" }}>
-                  {entry.result || "-"}
-                </td>
-                <td style={tdStyle}>
-                  {usersMap[entry.user_id] || `User #${entry.user_id}`}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+                )}
+
+                {entry.agreed_date && (
+                  <div style={{ fontSize: "12px", marginTop: "4px" }}>
+                    📅 {new Date(entry.agreed_date).toLocaleDateString()}
+                  </div>
+                )}
+
+                {entry.event_type && (
+                  <div style={{ fontSize: "12px", marginTop: "4px" }}>
+                    🕌 {entry.event_type}
+                  </div>
+                )}
+
+                {entry.event_khateeb && (
+                  <div style={{ fontSize: "12px", marginTop: "4px" }}>
+                    🎤 {entry.event_khateeb}
+                  </div>
+                )}
+
+                {entry.event_address && (
+                  <div style={{ fontSize: "12px", marginTop: "4px" }}>
+                    📍 {entry.event_address}
+                  </div>
+                )}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }

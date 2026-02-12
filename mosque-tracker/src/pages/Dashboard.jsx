@@ -50,26 +50,13 @@ export default function Dashboard({
       });
   }, []);
 
-  const handleSaveAction = async ({
-    method,
-    contacted_person_name,
-    contacted_person_phone,
-    contacted_person_email,
-    notes,
-    result,
-    contacted_by_org_id,
-  }) => {
+  const handleSaveAction = async (formData) => {
     if (!activeMasjidId) return;
+
     const newEntry = {
       mosque_id: activeMasjidId,
       user_id: currentUserId,
-      method,
-      contacted_person_name,
-      contacted_person_phone,
-      contacted_person_email,
-      notes,
-      result,
-      contacted_by_org_id,
+      ...formData,
     };
 
     try {
@@ -79,11 +66,8 @@ export default function Dashboard({
         credentials: "include",
         body: JSON.stringify(newEntry),
       });
+
       const savedEntry = await res.json();
-
-      // console.log("Saved entry:", savedEntry);
-
-      // Append new entry to local state (add to beginning for newest first)
       setOutreach((prev) => [savedEntry, ...prev]);
       setActiveMasjidId(null);
     } catch (err) {
