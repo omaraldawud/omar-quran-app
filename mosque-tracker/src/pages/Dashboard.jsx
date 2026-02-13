@@ -28,7 +28,7 @@ export default function Dashboard({
 
   // Load mosques and outreach from API
   useEffect(() => {
-    fetch("https://hostitwise.net/qt/api/mosques.php", {
+    fetch(`${import.meta.env.VITE_API_BASE}/mosques.php`, {
       credentials: "include",
     })
       .then((res) => res.json())
@@ -38,7 +38,7 @@ export default function Dashboard({
       })
       .catch(console.error);
 
-    fetch("https://hostitwise.net/qt/api/outreach.php", {
+    fetch(`${import.meta.env.VITE_API_BASE}/outreach.php`, {
       credentials: "include",
     })
       .then((res) => res.json())
@@ -54,7 +54,7 @@ export default function Dashboard({
 
   //fetch email templates:
   useEffect(() => {
-    fetch("https://hostitwise.net/qt/api/email_templates.php", {
+    fetch(`${import.meta.env.VITE_API_BASE}/email_templates.php`, {
       credentials: "include",
     })
       .then((res) => {
@@ -85,7 +85,7 @@ export default function Dashboard({
     };
 
     try {
-      const res = await fetch("https://hostitwise.net/qt/api/outreach.php", {
+      const res = await fetch(`${import.meta.env.VITE_API_BASE}/outreach.php`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",

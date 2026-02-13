@@ -70,15 +70,18 @@ export default function MasjidCard({
   const handleSendEmail = async () => {
     if (!previewTemplate) return;
     try {
-      const res = await fetch("https://hostitwise.net/qt/api/send_mail.php", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify({
-          template_id: previewTemplate.id,
-          masjid_id: masjid.id,
-        }),
-      });
+      const res = await fetch(
+        `${import.meta.env.VITE_API_BASE}/send_mail.php`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+          body: JSON.stringify({
+            template_id: previewTemplate.id,
+            masjid_id: masjid.id,
+          }),
+        },
+      );
       const data = await res.json();
       alert(data.message || "Email sent!");
       setShowPreview(false);

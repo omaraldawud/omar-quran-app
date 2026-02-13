@@ -118,11 +118,11 @@
 }
 
 .close-btn {
-  background: none;
+  background: #ff4800;
   border: none;
   font-size: 28px;
   cursor: pointer;
-  color: #6b7280;
+  color: #e8e0de;
   width: 36px;
   height: 36px;
   border-radius: 50%;

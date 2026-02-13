@@ -21,9 +21,12 @@ export default function MosqueAdminSidebar({
 
     console.log("Fetching mosque details for ID:", mosqueId);
 
-    fetch(`https://hostitwise.net/qt/api/mosque_details.php?id=${mosqueId}`, {
-      credentials: "include",
-    })
+    fetch(
+      `${import.meta.env.VITE_API_BASE}/mosque_details.php?id=${mosqueId}`,
+      {
+        credentials: "include",
+      },
+    )
       .then((res) => {
         if (!res.ok) {
           throw new Error(`HTTP ${res.status}: Failed to load mosque`);

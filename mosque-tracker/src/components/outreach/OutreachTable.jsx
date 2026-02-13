@@ -5,7 +5,7 @@ export default function OutreachTable({ outreachLog = [] }) {
   const [mosquesMap, setMosquesMap] = useState({});
 
   useEffect(() => {
-    fetch("https://hostitwise.net/qt/api/users.php")
+    fetch(`${import.meta.env.VITE_API_BASE}/users.php`)
       .then((res) => res.json())
       .then((users) => {
         const map = {};
@@ -16,7 +16,7 @@ export default function OutreachTable({ outreachLog = [] }) {
   }, []);
 
   useEffect(() => {
-    fetch("https://hostitwise.net/qt/api/mosques.php")
+    fetch(`${import.meta.env.VITE_API_BASE}/mosques.php`)
       .then((res) => res.json())
       .then((mosques) => {
         const map = {};

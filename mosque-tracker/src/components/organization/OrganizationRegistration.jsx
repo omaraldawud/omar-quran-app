@@ -94,7 +94,7 @@ export default function OrganizationRegistration({ onBackToLogin }) {
 
     try {
       const response = await fetch(
-        "https://hostitwise.net/qt/api/register_organization.php",
+        `${import.meta.env.VITE_API_BASE}/register_organization.php`,
         {
           method: "POST",
           headers: {

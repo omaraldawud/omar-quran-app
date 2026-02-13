@@ -35,7 +35,9 @@ export default function OrganizationSidebar({
   useEffect(() => {
     if (!organizationId) return;
 
-    fetch(`https://hostitwise.net/qt/api/organization.php?id=${organizationId}`)
+    fetch(
+      `${import.meta.env.VITE_API_BASE}/organization.php?id=${organizationId}`,
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log("Organization loaded:", data);

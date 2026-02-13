@@ -24,7 +24,7 @@ function App() {
 
   const checkAuth = async () => {
     try {
-      const res = await fetch("https://hostitwise.net/qt/api/auth.php", {
+      const res = await fetch(`${import.meta.env.VITE_API_BASE}/auth.php`, {
         credentials: "include",
       });
       const data = await res.json();
@@ -46,7 +46,7 @@ function App() {
 
   const handleLogout = async () => {
     try {
-      const res = await fetch("https://hostitwise.net/qt/api/logout.php", {
+      const res = await fetch(`${import.meta.env.VITE_API_BASE}/logout.php`, {
         method: "POST",
         credentials: "include",
       });

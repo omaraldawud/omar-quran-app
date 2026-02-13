@@ -16,7 +16,7 @@ export default function EmailPreviewModal({
   useEffect(() => {
     if (user?.organization_id) {
       fetch(
-        `https://hostitwise.net/qt/api/organization.php?id=${user.organization_id}`,
+        `${import.meta.env.VITE_API_BASE}/organization.php?id=${user.organization_id}`,
         {
           method: "GET",
           credentials: "include", // send cookies if needed

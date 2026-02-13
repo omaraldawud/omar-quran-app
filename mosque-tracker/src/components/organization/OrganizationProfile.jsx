@@ -47,7 +47,7 @@ export default function OrganizationProfile({ organizationId }) {
   const fetchOrganizationData = async () => {
     try {
       const response = await fetch(
-        `https://hostitwise.net/qt/api/organization_profile.php?id=${organizationId}`,
+        `${import.meta.env.VITE_API_BASE}/organization_profile.php?id=${organizationId}`,
       );
       const data = await response.json();
 
@@ -99,7 +99,7 @@ export default function OrganizationProfile({ organizationId }) {
 
     try {
       const response = await fetch(
-        "https://hostitwise.net/qt/api/organization_profile.php",
+        `${import.meta.env.VITE_API_BASE}/organization_profile.php`,
         {
           method: "PUT",
           headers: {
