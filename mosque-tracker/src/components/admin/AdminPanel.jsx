@@ -27,7 +27,7 @@ export default function AdminPanel() {
 
   const fetchStats = async () => {
     try {
-      const res = await fetch("http://localhost/api/stats.php", {
+      const res = await fetch("https://hostitwise.net/qt/api/stats.php", {
         credentials: "include",
       });
       const data = await res.json();
@@ -42,14 +42,14 @@ export default function AdminPanel() {
     try {
       // Fetch pending organizations
       const pendingRes = await fetch(
-        "http://localhost/api/register_organization.php?status=pending",
+        "https://localhost/api/register_organization.php?status=pending",
       );
       const pending = await pendingRes.json();
       setPendingOrgs(pending);
 
       // Fetch all organizations
       const allRes = await fetch(
-        "http://localhost/api/register_organization.php?status=all",
+        "https://localhost/api/register_organization.php?status=all",
       );
       const all = await allRes.json();
       setAllOrgs(all);
@@ -68,7 +68,7 @@ export default function AdminPanel() {
     setProcessingId(orgId);
     try {
       const response = await fetch(
-        "http://localhost/api/approve_organization.php",
+        "https://localhost/api/approve_organization.php",
         {
           method: "POST",
           headers: {
@@ -109,7 +109,7 @@ export default function AdminPanel() {
     setProcessingId(orgId);
     try {
       const response = await fetch(
-        "http://localhost/api/approve_organization.php",
+        "https://localhost/api/approve_organization.php",
         {
           method: "POST",
           headers: {

@@ -23,7 +23,8 @@ export default function MasjidCard({
   userRole,
   userOrganizationId,
   userAssociatedMosqueId,
-  user, // full user object — needed for send (CC) and placeholder substitution
+  user,
+  templates = [],
 }) {
   const [showOutreach, setShowOutreach] = useState(false);
 
@@ -52,14 +53,14 @@ export default function MasjidCard({
     (a, b) => new Date(b.contacted_at) - new Date(a.contacted_at),
   );
 
-  /** Replace placeholders in body_html with real masjid/user data */
+  /**   placeholders in body_html with real masjid/user data */
   const handlePreviewEmail = (template) => {
     setPreviewTemplate(template);
 
     let body = template.body_html
       .replace(/\{masjid_name\}/g, masjid.name || "")
       .replace(/\{contact_name\}/g, masjid.contact_name || "")
-      .replace(/\{user_name\}/g, user?.user_name || "");
+      .replace(/\{user_name\}/g, user?.name || user?.user_name || "");
 
     setPreviewBody(body);
     setShowPreview(true);
@@ -69,7 +70,7 @@ export default function MasjidCard({
   const handleSendEmail = async () => {
     if (!previewTemplate) return;
     try {
-      const res = await fetch("/api/send_mail.php", {
+      const res = await fetch("https://hostitwise.net/qt/api/send_mail.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -97,7 +98,7 @@ export default function MasjidCard({
         <div className="masjid-info">
           <div className="d-flex align-items-center mb-4">
             <img
-              src="/images/islamic-mosque-icon.png"
+              src="/qt/images/islamic-mosque-icon.png"
               alt="Mosque icon"
               width="48"
               height="48"
@@ -136,7 +137,10 @@ export default function MasjidCard({
           {/* Email Templates — only for roles that can send */}
           {canSendEmail && (
             <div className="email-actions">
-              <EmailTemplates onSelectTemplate={handlePreviewEmail} />
+              <EmailTemplates
+                templates={templates}
+                onSelectTemplate={handlePreviewEmail}
+              />
             </div>
           )}
 
@@ -208,6 +212,8 @@ export default function MasjidCard({
           previewBody={previewBody}
           onClose={() => setShowPreview(false)}
           onSend={handleSendEmail}
+          masjid={masjid}
+          user={user}
         />
       )}
     </div>

@@ -3,7 +3,7 @@ import Badge from "react-bootstrap/Badge";
 import { FaMosque, FaChartPie, FaChartLine } from "react-icons/fa";
 
 import MasjidCard from "../components/mosque/MasjidCard";
-import LogActionModal from "../components/layout/LogActionModal";
+import LogActionModal from "../components/outreach/LogActionModal";
 import OrganizationSidebar from "../components/organization/OrganizationSidebar";
 import MosqueAdminSidebar from "../components/mosque/MosqueAdminSidebar";
 import { US_STATES } from "../assets/ds/us_states";
@@ -23,10 +23,12 @@ export default function Dashboard({
   const [selectedState, setSelectedState] = useState("ALL STATES");
   const [searchTerm, setSearchTerm] = useState("");
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [templates, setTemplates] = useState([]);
+  const [loadingTemplates, setLoadingTemplates] = useState(true);
 
   // Load mosques and outreach from API
   useEffect(() => {
-    fetch("http://localhost/api/mosques.php", {
+    fetch("https://hostitwise.net/qt/api/mosques.php", {
       credentials: "include",
     })
       .then((res) => res.json())
@@ -36,7 +38,7 @@ export default function Dashboard({
       })
       .catch(console.error);
 
-    fetch("http://localhost/api/outreach.php", {
+    fetch("https://hostitwise.net/qt/api/outreach.php", {
       credentials: "include",
     })
       .then((res) => res.json())
@@ -50,6 +52,29 @@ export default function Dashboard({
       });
   }, []);
 
+  //fetch email templates:
+  useEffect(() => {
+    fetch("https://hostitwise.net/qt/api/email_templates.php", {
+      credentials: "include",
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to fetch templates");
+        return res.json();
+      })
+      .then((data) => {
+        if (data.success && Array.isArray(data.templates)) {
+          setTemplates(data.templates);
+        } else {
+          setTemplates([]);
+        }
+      })
+      .catch((err) => {
+        console.error("Error fetching templates:", err);
+        setTemplates([]);
+      })
+      .finally(() => setLoadingTemplates(false));
+  }, []);
+
   const handleSaveAction = async (formData) => {
     if (!activeMasjidId) return;
 
@@ -60,7 +85,7 @@ export default function Dashboard({
     };
 
     try {
-      const res = await fetch("http://localhost/api/outreach.php", {
+      const res = await fetch("https://hostitwise.net/qt/api/outreach.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -107,16 +132,6 @@ export default function Dashboard({
     userRole === "organization_admin" && organizationId;
   const showMosqueSidebar = userRole === "mosque_admin" && associatedMosqueId;
   const showNoSidebar = userRole === "system_admin";
-
-  // Debug logging
-  // console.log("Dashboard Props:", {
-  //   userRole,
-  //   organizationId,
-  //   associatedMosqueId,
-  //   showOrganizationSidebar,
-  //   showMosqueSidebar,
-  //   showNoSidebar,
-  // });
 
   return (
     <>
@@ -210,6 +225,7 @@ export default function Dashboard({
                   userOrganizationId={organizationId}
                   userAssociatedMosqueId={associatedMosqueId}
                   user={user}
+                  templates={templates}
                 />
               );
             })

@@ -13,7 +13,7 @@ export default function Login({ onLogin, onRegister }) {
     setLoading(true);
 
     try {
-      const res = await fetch("http://localhost/api/login.php", {
+      const res = await fetch("https://hostitwise.net/qt/api/login.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",

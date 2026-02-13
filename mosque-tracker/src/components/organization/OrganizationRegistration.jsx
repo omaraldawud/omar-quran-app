@@ -94,7 +94,7 @@ export default function OrganizationRegistration({ onBackToLogin }) {
 
     try {
       const response = await fetch(
-        "http://localhost/api/register_organization.php",
+        "https://hostitwise.net/qt/api/register_organization.php",
         {
           method: "POST",
           headers: {

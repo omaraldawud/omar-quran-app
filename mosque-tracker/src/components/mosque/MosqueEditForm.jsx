@@ -46,7 +46,7 @@ export default function MosqueEditForm({
 
     try {
       const response = await fetch(
-        `http://localhost/api/mosque_details.php?id=${mosqueId}`,
+        `https://hostitwise.net/qt/api/mosque_details.php?id=${mosqueId}`,
         {
           credentials: "include",
         },
@@ -87,14 +87,17 @@ export default function MosqueEditForm({
     setSaving(true);
 
     try {
-      const response = await fetch("http://localhost/api/mosque_details.php", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
+      const response = await fetch(
+        "https://hostitwise.net/qt/api/mosque_details.php",
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          body: JSON.stringify(formData),
         },
-        credentials: "include",
-        body: JSON.stringify(formData),
-      });
+      );
 
       if (!response.ok) {
         const errorData = await response.json();

@@ -47,7 +47,7 @@ export default function OrganizationProfile({ organizationId }) {
   const fetchOrganizationData = async () => {
     try {
       const response = await fetch(
-        `http://localhost/api/organization_profile.php?id=${organizationId}`,
+        `https://hostitwise.net/qt/api/organization_profile.php?id=${organizationId}`,
       );
       const data = await response.json();
 
@@ -99,7 +99,7 @@ export default function OrganizationProfile({ organizationId }) {
 
     try {
       const response = await fetch(
-        "http://localhost/api/organization_profile.php",
+        "https://hostitwise.net/qt/api/organization_profile.php",
         {
           method: "PUT",
           headers: {

@@ -21,7 +21,7 @@ export default function MosqueAdminSidebar({
 
     console.log("Fetching mosque details for ID:", mosqueId);
 
-    fetch(`http://localhost/api/mosque_details.php?id=${mosqueId}`, {
+    fetch(`https://hostitwise.net/qt/api/mosque_details.php?id=${mosqueId}`, {
       credentials: "include",
     })
       .then((res) => {

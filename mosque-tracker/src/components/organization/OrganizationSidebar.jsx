@@ -35,7 +35,7 @@ export default function OrganizationSidebar({
   useEffect(() => {
     if (!organizationId) return;
 
-    fetch(`http://localhost/api/organization.php?id=${organizationId}`)
+    fetch(`https://hostitwise.net/qt/api/organization.php?id=${organizationId}`)
       .then((res) => res.json())
       .then((data) => {
         console.log("Organization loaded:", data);
@@ -177,15 +177,7 @@ export default function OrganizationSidebar({
                       <a href={`tel:${phone}`} className="text-decoration-none">
                         {phone}
                       </a>
-                    </Badge>
-                  </div>
-                )}
-
-                {/* Fixed email section */}
-                {email && (
-                  <div className="contact-item d-flex align-items-center mb-2">
-                    <Badge bg="light" className="d-flex align-items-center">
-                      <FaEnvelope className="text-primary me-2" />
+                      <FaEnvelope className="text-primary mx-2" />
                       <a
                         href={`mailto:${email}`}
                         className="text-decoration-none"
@@ -205,9 +197,7 @@ export default function OrganizationSidebar({
                       rel="noreferrer"
                       className="resource-link text-decoration-none"
                     >
-                      {website
-                        .replace(/^https?:\/\//, "")
-                        .replace(/^www\./, "")}
+                      {website}
                     </a>
                   </Badge>
                 )}
@@ -309,11 +299,37 @@ export default function OrganizationSidebar({
                 <h6 className="card-title">
                   <FaComments className="me-1" /> Guidelines
                 </h6>
-                <div dangerouslySetInnerHTML={{ __html: guidelines }} />
+                <ul style={{ listStyleType: "none", paddingLeft: 0 }}>
+                  <ListGroup variant="flush">
+                    {guidelines.map((point, index) => (
+                      <li
+                        key={index}
+                        className="ps-3 my-2"
+                        style={{
+                          fontSize: "14px",
+                          position: "relative",
+                        }}
+                      >
+                        <span
+                          style={{
+                            color: primary_color,
+                            position: "absolute",
+                            left: 0,
+                            fontSize: "1.5em",
+                          }}
+                        >
+                          •
+                        </span>
+                        {point}
+                      </li>
+                    ))}
+                  </ListGroup>
+                </ul>
               </Card.Body>
             </Card>
           )}
 
+          {/* Taling Points */}
           {talking_points && talking_points.length > 0 && (
             <Card className="sidebar-card">
               <Card.Body>
