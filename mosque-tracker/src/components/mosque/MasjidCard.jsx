@@ -60,7 +60,10 @@ export default function MasjidCard({
     let body = template.body_html
       .replace(/\{masjid_name\}/g, masjid.name || "")
       .replace(/\{contact_name\}/g, masjid.contact_name || "")
-      .replace(/\{user_name\}/g, user?.name || user?.user_name || "");
+      .replace(/\{user_name\}/g, user?.name || user?.user_name || "")
+      .replace(/\{user_phone\}/g, user?.user_phone || "")
+      .replace(/\{user_email\}/g, user?.user_email || "");
+    // .replace(/\{organization.website\}/g, organization?.website || "");
 
     setPreviewBody(body);
     setShowPreview(true);
@@ -206,7 +209,12 @@ export default function MasjidCard({
       </div>
 
       {/* ROW 2: OUTREACH HISTORY TABLE */}
-      {showOutreach && <OutreachHistory outreachLog={sortedOutreach} />}
+      {showOutreach && (
+        <OutreachHistory
+          user_name={user.user_name}
+          outreachLog={sortedOutreach}
+        />
+      )}
 
       {/* Email Preview + Send Modal */}
       {showPreview && (

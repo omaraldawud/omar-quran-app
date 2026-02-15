@@ -57,27 +57,35 @@ export default function LogActionModal({ onSave, onClose }) {
           </button>
         </header>
 
-        <nav className="tab-nav">
-          <TabButton
-            className="ms-4 my-3 bg-primary text-light"
-            label="Outreach Details"
-            active={activeTab === "details"}
-            onClick={() => setActiveTab("details")}
+        <div className="tabs-container">
+          <nav className="tab-nav">
+            <TabButton
+              label="Outreach Details"
+              active={activeTab === "details"}
+              onClick={() => setActiveTab("details")}
+            />
+            <TabButton
+              label="Result & Agreement"
+              active={activeTab === "result"}
+              onClick={() => setActiveTab("result")}
+            />
+          </nav>
+          <div
+            className="tab-indicator"
+            style={{
+              transform: `translateX(${activeTab === "details" ? "0" : "100%"})`,
+            }}
           />
-          <TabButton
-            className="ms-4 my-3 bg-primary text-light"
-            label="Result & Agreement"
-            active={activeTab === "result"}
-            onClick={() => setActiveTab("result")}
-          />
-        </nav>
+        </div>
 
         <form onSubmit={handleSubmit}>
-          {activeTab === "details" ? (
-            <OutreachDetails formData={formData} updateField={updateField} />
-          ) : (
-            <ResultAgreement formData={formData} updateField={updateField} />
-          )}
+          <div className="modal-body">
+            {activeTab === "details" ? (
+              <OutreachDetails formData={formData} updateField={updateField} />
+            ) : (
+              <ResultAgreement formData={formData} updateField={updateField} />
+            )}
+          </div>
 
           <footer className="form-footer">
             <button type="button" className="btn-secondary" onClick={onClose}>
@@ -96,67 +104,61 @@ export default function LogActionModal({ onSave, onClose }) {
 function OutreachDetails({ formData, updateField }) {
   return (
     <div className="form-grid">
-      <div className="form-column">
-        <div className="form-group">
-          <label>📞 Contact Method</label>
-          <select
-            value={formData.method}
-            onChange={(e) => updateField("method", e.target.value)}
-            className="form-input"
-          >
-            <option value="phone">Phone Call</option>
-            <option value="email">Email</option>
-            <option value="visit">In-Person Visit</option>
-            <option value="whatsapp">WhatsApp</option>
-            <option value="social">Social Media</option>
-          </select>
-        </div>
-
-        <div className="form-group">
-          <label>👤 Contact Person</label>
-          <input
-            value={formData.contacted_person_name}
-            onChange={(e) =>
-              updateField("contacted_person_name", e.target.value)
-            }
-            className="form-input"
-          />
-        </div>
-
-        <div className="form-group">
-          <label>📱 Phone</label>
-          <input
-            value={formData.contacted_person_phone}
-            onChange={(e) =>
-              updateField("contacted_person_phone", e.target.value)
-            }
-            className="form-input"
-          />
-        </div>
-
-        <div className="form-group">
-          <label>✉️ Email</label>
-          <input
-            type="email"
-            value={formData.contacted_person_email}
-            onChange={(e) =>
-              updateField("contacted_person_email", e.target.value)
-            }
-            className="form-input"
-          />
-        </div>
+      <div className="form-group">
+        <label>📞 Contact Method</label>
+        <select
+          value={formData.method}
+          onChange={(e) => updateField("method", e.target.value)}
+          className="form-input"
+        >
+          <option value="phone">Phone Call</option>
+          <option value="email">Email</option>
+          <option value="visit">In-Person Visit</option>
+          <option value="whatsapp">WhatsApp</option>
+          <option value="social">Social Media</option>
+        </select>
       </div>
 
-      <div className="form-column">
-        <div className="form-group">
-          <label>📝 Notes</label>
-          <textarea
-            value={formData.notes}
-            onChange={(e) => updateField("notes", e.target.value)}
-            className="form-textarea"
-            rows="6"
-          />
-        </div>
+      <div className="form-group">
+        <label>👤 Contact Person</label>
+        <input
+          value={formData.contacted_person_name}
+          onChange={(e) => updateField("contacted_person_name", e.target.value)}
+          className="form-input"
+        />
+      </div>
+
+      <div className="form-group">
+        <label>📱 Contact Phone</label>
+        <input
+          value={formData.contacted_person_phone}
+          onChange={(e) =>
+            updateField("contacted_person_phone", e.target.value)
+          }
+          className="form-input"
+        />
+      </div>
+
+      <div className="form-group">
+        <label>✉️ Contact Email</label>
+        <input
+          type="email"
+          value={formData.contacted_person_email}
+          onChange={(e) =>
+            updateField("contacted_person_email", e.target.value)
+          }
+          className="form-input"
+        />
+      </div>
+
+      <div className="form-group full-width">
+        <label>📝 Notes</label>
+        <textarea
+          value={formData.notes}
+          onChange={(e) => updateField("notes", e.target.value)}
+          className="form-textarea"
+          rows="2"
+        />
       </div>
     </div>
   );
@@ -164,33 +166,32 @@ function OutreachDetails({ formData, updateField }) {
 
 function ResultAgreement({ formData, updateField }) {
   return (
-    <div className="form-grid" style={{ display: "flex", gap: "24px" }}>
-      {/* Left Column - Result */}
-      <div className="form-column" style={{ flex: 1 }}>
-        <div className="form-group">
-          <label>✅ Result</label>
-          <textarea
-            value={formData.result}
-            onChange={(e) => updateField("result", e.target.value)}
-            className="form-textarea"
-            rows="4"
-          />
-        </div>
+    <div className="form-grid">
+      <div className="form-group full-width">
+        <label>✅ Result</label>
+        <textarea
+          value={formData.result}
+          onChange={(e) => updateField("result", e.target.value)}
+          className="form-textarea"
+          rows="2"
+        />
       </div>
 
-      {/* Right Column - Agreement */}
-      <div className="form-column" style={{ flex: 1 }}>
-        <label className="checkbox-label text-primary">
-          Mark as Agreed Event
+      <div className="form-group full-width">
+        <div className="checkbox-wrapper">
           <input
             type="checkbox"
+            id="agreed-event"
             checked={formData.is_agreed}
             onChange={(e) => updateField("is_agreed", e.target.checked)}
           />
-        </label>
+          <label htmlFor="agreed-event">Mark as Agreed Event</label>
+        </div>
 
         {formData.is_agreed && (
-          <AgreementDetails formData={formData} updateField={updateField} />
+          <div className="agreement-box">
+            <AgreementDetails formData={formData} updateField={updateField} />
+          </div>
         )}
       </div>
     </div>
@@ -199,7 +200,7 @@ function ResultAgreement({ formData, updateField }) {
 
 function AgreementDetails({ formData, updateField }) {
   return (
-    <>
+    <div className="form-grid">
       <div className="form-group">
         <label>📅 Agreed Date</label>
         <input
@@ -241,18 +242,16 @@ function AgreementDetails({ formData, updateField }) {
           className="form-input"
         />
       </div>
-    </>
+    </div>
   );
 }
 
-function TabButton({ label, active, onClick, className = "" }) {
+function TabButton({ label, active, onClick }) {
   return (
     <button
       type="button"
       onClick={onClick}
-      className={`tab-button ${className} ${
-        active ? "bg-success text-white" : ""
-      }`}
+      className={`tab-button ${active ? "active" : ""}`}
       aria-current={active ? "page" : undefined}
     >
       {label}

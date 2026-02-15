@@ -38,13 +38,18 @@ export default function EmailPreviewModal({
     .replace(/\{masjid_name\}/g, masjid?.name || "")
     .replace(/\{contact_name\}/g, masjid?.contact_name || "")
     .replace(/\{user_name\}/g, user?.name || user?.user_name || "")
+    .replace(/\{user_phone\}/g, user?.user_phone || "")
+    .replace(/\{user_email\}/g, user?.user_email || "")
     .replace(/\{organization.name\}/g, organization?.name || "");
 
   const body = previewBody
     .replace(/\{masjid_name\}/g, masjid?.name || "")
     .replace(/\{contact_name\}/g, masjid?.contact_name || "")
     .replace(/\{user_name\}/g, user?.name || user?.user_name || "")
-    .replace(/\{organization.name\}/g, organization?.name || "");
+    .replace(/\{user_phone\}/g, user?.user_phone || "")
+    .replace(/\{user_email\}/g, user?.user_email || "")
+    .replace(/\{organization.name\}/g, organization?.name || "")
+    .replace(/\{organization.website\}/g, organization?.website || "");
 
   return (
     <Modal show={show} onHide={onClose} size="lg">

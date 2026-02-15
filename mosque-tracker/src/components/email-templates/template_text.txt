@@ -1,0 +1,39 @@
+<p>Assalamualaikum Warahmatullahi Wabarakatuh,</p>
+
+<p>Dear {contact_name},</p>
+
+<p>In Shaa Allah this message finds you well and having a blessed day.</p>
+
+<p>My name is <strong>{user_name}</strong> and I'm reaching out on behalf of <strong>{organization.name}</strong>. We are an exclusive project supporting the prison Dawah and our brothers and sisters who are in prisons.</p>
+
+<p>There are many people in prison reverting to Islam, Alhamdulillah. But we cannot do this work without the support of our Muslim communities.</p>
+
+<p>I am sure you get many letters at your Masjid from people in prison — maybe you have volunteers to read them and send the items they ask for. We do this everyday, nationally, and receive about 400 letters a month. We send Islamic books, prayer rugs, and work to get community volunteers approved to go inside prisons to provide Islamic services like Jummah Khutbahs and Islamic support. Prison Chaplains are always asking for more Muslims to visit them inside.</p>
+
+<p>Would you be so kind and grant us an opportunity to come to <strong>{masjid_name}</strong> for a Jumu'ah Khutbah with an appeal? It is not a fundraiser, but rather an announcement with a table set-up to share our project with your community and raise financial support.</p>
+
+<p>We support all prisons in the U.S. — State, Federal, Jails, and Detention Centers. We are building relationships with both Masjids and Prison Chaplains to get more Muslims involved in volunteering to provide Islamic support in their local communities.</p>
+
+<p>In Shaa Allah, would you grant us a Friday Khutbah for Islam in Prison?</p>
+
+<p>Please let us know what dates and times work best for you, and we will confirm the details. We are flexible on timing and happy to work around your schedule.</p>
+
+<p>Peace & Blessings,</p>
+
+<p style="margin:0 0 4px 0; padding:0; font-size:20px; font-weight:600; color:#0f293f; letter-spacing:-0.3px;">
+        <strong>{user_name}</strong>
+    </p>
+
+    <!-- phone + email line (separator ·) -->
+    <p style="margin:4px 0 6px 0; padding:0; font-size:15px; color:#2e475d;">
+        <span style="color:#1e3b4f;">  {user_phone}</span> 
+        <span style="color:#8a9fb0; font-weight:400; margin:0 6px;">·</span> 
+        <span style="color:#1e3b4f;">  {user_email}</span>
+    </p>
+
+    <!-- organisation link (no bullet, subtle underline) -->
+    <p style="margin:6px 0 0 0; padding:0; font-size:15px;">
+        <a href="{organization.website}" style="color:#20649b; text-decoration:none; border-bottom:1px dashed #9bb7d4; font-weight:450;">
+            {organization.name}
+        </a>
+    </p>

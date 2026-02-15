@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function OutreachHistory({ outreachLog }) {
+export default function OutreachHistory({ user_name = "-", outreachLog }) {
   if (!outreachLog || outreachLog.length === 0) return null;
 
   return (
@@ -29,6 +29,8 @@ export default function OutreachHistory({ outreachLog }) {
             <tr style={{ backgroundColor: "#e9ecef" }}>
               <th style={thStyle}>Date/Time</th>
               <th style={thStyle}>Method</th>
+              <th style={thStyle}>Contact By</th>
+
               <th style={thStyle}>Contact Person</th>
               <th style={thStyle}>Notes</th>
               <th style={thStyle}>Result</th>
@@ -45,7 +47,9 @@ export default function OutreachHistory({ outreachLog }) {
                 <td style={tdStyle}>
                   <span style={methodBadge}>{entry.method}</span>
                 </td>
-
+                <td style={tdStyle}>
+                  {user_name} - Id: {entry.user_id}
+                </td>
                 <td style={tdStyle}>
                   <strong>{entry.contacted_person_name || "N/A"}</strong>
                   {entry.contacted_person_email && (
@@ -61,7 +65,7 @@ export default function OutreachHistory({ outreachLog }) {
                 </td>
 
                 <td style={{ ...tdStyle, maxWidth: "260px" }}>
-                  <div>{entry.result || "-"}</div>
+                  {entry.result && <div>{entry.result || "-"}</div>}
 
                   {entry.is_agreed == 1 && (
                     <div style={{ marginTop: "8px", color: "green" }}>
