@@ -5,9 +5,10 @@ import "./assets/css/App.css";
 import Layout from "./components/layout/Layout";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
+
 //organization
 import OrganizationRegistration from "./components/organization/OrganizationRegistration";
-import AdminPanel from "./components/admin/AdminPanel";
+import AdminDashboard from "./components/admin/AdminDashboard";
 import OrganizationProfile from "./components/organization/OrganizationProfile";
 import MosqueEditForm from "./components/mosque/MosqueEditForm";
 
@@ -24,6 +25,7 @@ function App() {
 
   const checkAuth = async () => {
     try {
+      console.log("--- VITE_API_BASE:", import.meta.env.VITE_API_BASE);
       const res = await fetch(`${import.meta.env.VITE_API_BASE}/auth.php`, {
         credentials: "include",
       });
@@ -122,7 +124,7 @@ function App() {
           {/* Admin Panel View (only for system_admin) */}
           {currentView === "admin" && user.role === "system_admin" && (
             <div className="page-container">
-              <AdminPanel />
+              <AdminDashboard />
             </div>
           )}
 

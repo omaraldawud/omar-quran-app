@@ -1,16 +1,16 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-export default defineConfig({
-  base: "/qt/", // <-- ensures built CSS/JS have correct paths
+export default defineConfig(({ mode }) => ({
+  base: mode === "production" ? "/qt/" : "/",
   plugins: [react()],
   server: {
     proxy: {
       "/api": {
-        target: "http://localhost", // dev proxy for API
+        target: "http://localhost",
         changeOrigin: true,
         secure: false,
       },
     },
   },
-});
+}));

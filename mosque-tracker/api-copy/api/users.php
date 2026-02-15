@@ -3,7 +3,14 @@ header('Content-Type: application/json');
 
 $data = json_decode(file_get_contents('php://input'), true);
 
-header("Access-Control-Allow-Origin: https://hostitiwise.net/qt");
+$allowedOrigins = [
+    "http://localhost:5173",
+    "https://hostitwise.net"
+];
+
+if (isset($_SERVER['HTTP_ORIGIN']) && in_array($_SERVER['HTTP_ORIGIN'], $allowedOrigins)) {
+    header("Access-Control-Allow-Origin: " . $_SERVER['HTTP_ORIGIN']);
+}
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
 header("Access-Control-Allow-Credentials: true");
@@ -15,8 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 
 require 'db.php'; // your PDO connection
 
-header('Content-Type: application/json');
-
+ 
 try {
     $stmt = $pdo->query("
         SELECT id, user_name, user_email, user_phone, role, organization_id, associated_mosque_id

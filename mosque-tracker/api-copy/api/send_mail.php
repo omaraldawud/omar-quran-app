@@ -1,7 +1,14 @@
 <?php
 header('Content-Type: application/json');
-// header("Access-Control-Allow-Origin: https://localhost:5173");
-header("Access-Control-Allow-Origin: https://hostitwise.net/qt");
+
+$allowedOrigins = [
+    "http://localhost:5173",
+    "https://hostitwise.net"
+];
+
+if (isset($_SERVER['HTTP_ORIGIN']) && in_array($_SERVER['HTTP_ORIGIN'], $allowedOrigins)) {
+    header("Access-Control-Allow-Origin: " . $_SERVER['HTTP_ORIGIN']);
+}
 
 header("Access-Control-Allow-Methods: POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
@@ -66,12 +73,13 @@ try {
 
     // Resolve placeholders
     $body = str_replace(
-        ['{masjid_name}', '{contact_name}', '{user_name}', '{organization.name}', '{user_email}', '{user_phone}'],
+        ['{masjid_name}', '{contact_name}', '{user_name}', '{organization.name}', '{user_email}', '{user_phone}', '{organization_website}'],
         [
             $masjid['name'],
             $masjid['contact_name'] ?? '',
             $user['user_name'] ?? '',
             $user['organization_name'] ?? '',
+            $user['organization_website'] ?? '',
             $user['user_email'] ?? '',
             $user['user_phone'] ?? ''
         ],
@@ -97,7 +105,7 @@ try {
 
     // Send email
     //info@coloradomuslimsociety.org
-
+    // send to masjid's contact email
     if (mail($masjid['contact_email'], $subject, $body, $headers)) {
 
         // Log to outreach_logs (matches manual form structure)

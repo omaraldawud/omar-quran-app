@@ -5,7 +5,9 @@ export default function OutreachTable({ outreachLog = [] }) {
   const [mosquesMap, setMosquesMap] = useState({});
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_BASE}/users.php`)
+    fetch(`${import.meta.env.VITE_API_BASE}/users.php`, {
+      credentials: "include",
+    })
       .then((res) => res.json())
       .then((users) => {
         const map = {};
@@ -16,14 +18,18 @@ export default function OutreachTable({ outreachLog = [] }) {
   }, []);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_BASE}/mosques.php`)
-      .then((res) => res.json())
-      .then((mosques) => {
-        const map = {};
-        mosques.forEach((m) => (map[m.id] = m.name));
-        setMosquesMap(map);
-      })
-      .catch(console.error);
+    (fetch(`${import.meta.env.VITE_API_BASE}/mosques.php`).then((res) =>
+      res.json(),
+    ),
+      {
+        credentials: "include",
+      }
+        .then((mosques) => {
+          const map = {};
+          mosques.forEach((m) => (map[m.id] = m.name));
+          setMosquesMap(map);
+        })
+        .catch(console.error));
   }, []);
 
   const tdStyle = {

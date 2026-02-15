@@ -1,6 +1,15 @@
 <?php
+
 header('Content-Type: application/json');
-header("Access-Control-Allow-Origin: https://hostitwise.net/qt");
+$allowedOrigins = [
+    "http://localhost:5173",
+    "https://hostitwise.net"
+];
+
+if (isset($_SERVER['HTTP_ORIGIN']) && in_array($_SERVER['HTTP_ORIGIN'], $allowedOrigins)) {
+    header("Access-Control-Allow-Origin: " . $_SERVER['HTTP_ORIGIN']);
+}
+
 header("Access-Control-Allow-Methods: GET, PUT, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
 header("Access-Control-Allow-Credentials: true");
@@ -141,40 +150,55 @@ if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
         
         // Update mosque
         $stmt = $pdo->prepare("
-            UPDATE mosques SET
-                name = ?,
-                street = ?,
-                city = ?,
-                state = ?,
-                zip = ?,
-                contact_name = ?,
-                contact_email = ?,
-                contact_phone = ?,
-                phone = ?,
-                email = ?,
-                website = ?,
-                facebook = ?,
-                whatsapp = ?,
-                updated_at = NOW()
-            WHERE id = ?
-        ");
-        
-        $stmt->execute([
-            $data['name'],
-            $data['street'] ?? null,
-            $data['city'] ?? null,
-            $data['state'] ?? null,
-            $data['zip'] ?? null,
-            $data['contact_name'] ?? null,
-            $data['contact_email'] ?? null,
-            $data['contact_phone'] ?? null,
-            $data['phone'] ?? null,
-            $data['email'] ?? null,
-            $data['website'] ?? null,
-            $data['facebook'] ?? null,
-            $data['whatsapp'] ?? null,
-            $mosqueId
-        ]);
+    UPDATE mosques SET
+        parent_organization_id = ?,
+        name = ?,
+        is_outreach_enabled = ?,
+        is_verified = ?,
+        street = ?,
+        city = ?,
+        state = ?,
+        zip = ?,
+        contact_name = ?,
+        contact_email = ?,
+        contact_phone = ?,
+        phone = ?,
+        email = ?,
+        website = ?,
+        facebook = ?,
+        whatsapp = ?,
+        youtube = ?,
+        logo_url = ?,
+        donation_url = ?,
+        jumuah_schedule_url = ?,
+        updated_at = NOW()
+    WHERE id = ?
+");
+
+$stmt->execute([
+    $data['parent_organization_id'] ?? null,
+    $data['name'],
+    isset($data['is_outreach_enabled']) ? (int)$data['is_outreach_enabled'] : 1,
+    isset($data['is_verified']) ? (int)$data['is_verified'] : 1,
+    $data['street'] ?? null,
+    $data['city'] ?? null,
+    $data['state'] ?? null,
+    $data['zip'] ?? null,
+    $data['contact_name'] ?? null,
+    $data['contact_email'] ?? null,
+    $data['contact_phone'] ?? null,
+    $data['phone'] ?? null,
+    $data['email'] ?? null,
+    $data['website'] ?? null,
+    $data['facebook'] ?? null,
+    $data['whatsapp'] ?? null,
+    $data['youtube'] ?? null,
+    $data['logo_url'] ?? null,
+    $data['donation_url'] ?? null,
+    $data['jumuah_schedule_url'] ?? null,
+    $mosqueId
+]);
+
         
         // Fetch updated mosque
         $stmt = $pdo->prepare("
